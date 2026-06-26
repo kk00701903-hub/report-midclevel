@@ -7,18 +7,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg: #0A0E1A; --ppt-bg-soft: #141B2D; --ppt-surface: #1E2638;
-  --ppt-border: #334155; --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15; --ppt-good: #22C55E;
-  --ppt-radius-md: 8px; --ppt-radius-lg: 16px;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-}
+
 * { margin:0; padding:0; box-sizing:border-box; }
-body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+body { width:100vw; height:100vh; overflow:hidden; background:var(--ppt-bg);
   display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font-body); }
 .slide-root { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
   display:flex; flex-direction:column; overflow:hidden; }
@@ -32,14 +25,14 @@ body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
 .hero-row { display:flex; align-items:stretch; justify-content:center; gap:12px; flex-shrink:0; }
 .hero-kpi { flex:1; max-width:200px; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border); border-radius:var(--ppt-radius-md);
   padding:12px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
-.hero-kpi i { font-size:22px; color:var(--ppt-accent); }
+.hero-kpi i { font-size:22px; color:var(--ppt-accent-light); }
 .hero-kpi-val { font-size:20px; font-weight:800; color:var(--ppt-good); }
 .hero-kpi-lbl { font-size:12px; color:var(--ppt-text-2); line-height:1.3; }
-.hero-stat { flex:1.2; max-width:280px; text-align:center; background:linear-gradient(135deg,rgba(0,240,255,.08),rgba(250,204,21,.06));
-  border:1px solid rgba(0,240,255,.25); border-radius:var(--ppt-radius-lg); padding:14px 12px;
+.hero-stat { flex:1.2; max-width:280px; text-align:center; background:linear-gradient(135deg,rgba(0, 120, 212,.08),rgba(255, 185, 0,.06));
+  border:1px solid rgba(0, 120, 212,.25); border-radius:var(--ppt-radius-lg); padding:14px 12px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; }
 .hero-num { font-size:56px; font-weight:700; color:var(--ppt-accent-2); line-height:1; letter-spacing:-2px; }
-.hero-unit { font-size:16px; color:var(--ppt-accent); font-weight:600; margin-top:4px; }
+.hero-unit { font-size:16px; color:var(--ppt-accent-light); font-weight:600; margin-top:4px; }
 .hero-label { font-size:14px; color:var(--ppt-text-2); margin-top:4px; }
 .hero-context { font-size:12px; color:var(--ppt-text-3); margin-top:4px; }
 .pipeline { flex:1; min-height:0; display:flex; align-items:stretch; gap:0; position:relative; }
@@ -55,28 +48,28 @@ body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
 .node-desc { font-size:13px; font-weight:600; color:var(--ppt-text-1); }
 .node-detail { font-size:11.5px; color:var(--ppt-text-3); line-height:1.35; }
 .engine-col { flex:1.2; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
-.engine-box { background:linear-gradient(145deg,#2A344A,var(--ppt-surface)); border:2px solid var(--ppt-accent);
+.engine-box { background:linear-gradient(145deg,var(--ppt-surface-2),var(--ppt-surface)); border:2px solid var(--ppt-accent);
   border-radius:var(--ppt-radius-lg); padding:16px 12px; height:100%; display:flex; flex-direction:column;
-  justify-content:center; align-items:center; gap:8px; box-shadow:0 0 28px rgba(0,240,255,0.18); position:relative; }
-.engine-box::before { content:''; position:absolute; inset:-4px; border-radius:18px; border:2px solid rgba(0,240,255,.2);
+  justify-content:center; align-items:center; gap:8px; box-shadow:0 0 28px rgba(0, 120, 212,0.18); position:relative; }
+.engine-box::before { content:''; position:absolute; inset:-4px; border-radius:18px; border:2px solid rgba(0, 120, 212,.2);
   animation:pulse-ring 2s ease-in-out infinite; }
 @keyframes pulse-ring { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.8;transform:scale(1.02)} }
-.engine-label { background:rgba(0,240,255,0.1); color:var(--ppt-accent); padding:5px 14px;
+.engine-label { background:rgba(0, 120, 212,0.1); color:var(--ppt-accent-light); padding:5px 14px;
   border-radius:20px; font-size:13px; font-weight:700; z-index:1; }
 .engine-stat { font-size:28px; font-weight:700; color:var(--ppt-accent-2); z-index:1; }
 .engine-sub { font-size:13px; color:var(--ppt-text-2); z-index:1; }
-.flow-arrows { display:flex; align-items:center; gap:6px; color:var(--ppt-accent); font-size:18px; z-index:1; }
+.flow-arrows { display:flex; align-items:center; gap:6px; color:var(--ppt-accent-light); font-size:18px; z-index:1; }
 .metrics { display:flex; gap:10px; flex-shrink:0; }
 .metric { flex:1; background:var(--ppt-bg-soft); border-left:4px solid var(--ppt-accent);
   padding:10px 12px; border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0;
   display:flex; align-items:center; gap:10px; }
 .metric-icon { width:40px; height:40px; background:var(--ppt-surface); border-radius:var(--ppt-radius-md);
-  display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--ppt-accent); flex-shrink:0; }
+  display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--ppt-accent-light); flex-shrink:0; }
 .metric-body { flex:1; min-width:0; }
 .metric-title { font-size:14px; font-weight:700; color:var(--ppt-text-1); margin-bottom:2px; }
 .metric-desc { font-size:12px; color:var(--ppt-text-3); line-height:1.35; }
 .insight-bar { flex-shrink:0; margin:0 40px 12px; padding:9px 16px;
-  background:linear-gradient(90deg,rgba(250,204,21,0.1),transparent);
+  background:linear-gradient(90deg,rgba(255, 185, 0,0.1),transparent);
   border-left:4px solid var(--ppt-accent-2); border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; }
 .insight-bar p { font-size:14px; color:var(--ppt-text-2); line-height:1.4; }
 .insight-bar strong { color:var(--ppt-accent-2); }
@@ -114,9 +107,9 @@ html { overflow:hidden; margin:0; padding:0; }
     </div>
     <div class="pipeline">
       <svg class="flow-svg" viewBox="0 0 600 20" preserveAspectRatio="none">
-        <line x1="0" y1="10" x2="600" y2="10" stroke="#334155" stroke-width="2" stroke-dasharray="8 6"/>
-        <polygon points="590,5 600,10 590,15" fill="#00F0FF" opacity="0.6"/>
-        <polygon points="10,5 0,10 10,15" fill="#00F0FF" opacity="0.6"/>
+        <line x1="0" y1="10" x2="600" y2="10" stroke="var(--ppt-border)" stroke-width="2" stroke-dasharray="8 6"/>
+        <polygon points="590,5 600,10 590,15" fill="var(--ppt-accent)" opacity="0.6"/>
+        <polygon points="10,5 0,10 10,15" fill="var(--ppt-accent)" opacity="0.6"/>
       </svg>
       <div class="node-col">
         <div class="node-box">

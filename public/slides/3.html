@@ -7,20 +7,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg: #0A0E1A; --ppt-bg-soft: #141B2D; --ppt-surface: #1E2638;
-  --ppt-border: #334155; --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15; --ppt-good: #22C55E;
-  --ppt-purple: #A78BFA; --ppt-orange: #FB923C;
-  --ppt-radius-md: 8px; --ppt-radius-lg: 16px;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+  width:100vw; height:100vh; overflow:hidden; background:var(--ppt-bg);
   display:flex; justify-content:center; align-items:center;
   font-family:var(--ppt-font-body);
 }
@@ -30,16 +22,16 @@ body {
 }
 .slide-root::before {
   content:''; position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(ellipse at 8% 12%, rgba(0,240,255,0.05) 0%, transparent 50%),
-             radial-gradient(ellipse at 92% 88%, rgba(250,204,21,0.04) 0%, transparent 50%);
+  background:radial-gradient(ellipse at 8% 12%, rgba(0, 120, 212,0.05) 0%, transparent 50%),
+             radial-gradient(ellipse at 92% 88%, rgba(255, 185, 0,0.04) 0%, transparent 50%);
 }
 .title-region { flex-shrink:0; padding:22px 40px 8px; display:flex; flex-direction:column; gap:6px; }
 .title-header { display:flex; align-items:center; gap:12px; }
 .title-bar { width:4px; height:32px; background:var(--ppt-accent); border-radius:2px; flex-shrink:0; }
 .title-badge {
-  background:rgba(250,204,21,0.12); color:var(--ppt-accent-2);
+  background:rgba(255, 185, 0,0.12); color:var(--ppt-accent-2);
   padding:3px 12px; border-radius:4px; font-size:13px; font-weight:600;
-  border:1px solid rgba(250,204,21,0.3); white-space:nowrap;
+  border:1px solid rgba(255, 185, 0,0.3); white-space:nowrap;
 }
 .title-main {
   font-family:var(--ppt-font-display); font-size:28px; font-weight:700; line-height:1.22; margin:0;
@@ -63,7 +55,7 @@ body {
   gap:10px; position:relative; overflow:hidden; text-align:center; z-index:1;
 }
 .watermark { position:absolute; bottom:-10px; right:-10px; font-size:80px; opacity:.06; pointer-events:none; }
-.trend-card.cyan .watermark { color:var(--ppt-accent); }
+.trend-card.cyan .watermark { color:var(--ppt-accent-light); }
 .trend-card.green .watermark { color:var(--ppt-good); }
 .trend-card.purple .watermark { color:var(--ppt-purple); }
 .trend-card.gold .watermark { color:var(--ppt-accent-2); }
@@ -83,17 +75,17 @@ body {
   width:60px; height:60px; border-radius:var(--ppt-radius-lg);
   display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0;
 }
-.card-icon.cyan   { background:rgba(0,240,255,0.12); color:var(--ppt-accent); }
-.card-icon.green  { background:rgba(34,197,94,0.12); color:var(--ppt-good); }
-.card-icon.purple { background:rgba(167,139,250,0.12); color:var(--ppt-purple); }
-.card-icon.gold   { background:rgba(250,204,21,0.12); color:var(--ppt-accent-2); }
+.card-icon.cyan   { background:rgba(0, 120, 212,0.12); color:var(--ppt-accent-light); }
+.card-icon.green  { background:rgba(16,124,16,0.12); color:var(--ppt-good); }
+.card-icon.purple { background:rgba(135,100,184,0.12); color:var(--ppt-purple); }
+.card-icon.gold   { background:rgba(255, 185, 0,0.12); color:var(--ppt-accent-2); }
 .card-title { font-size:20px; font-weight:700; line-height:1.28; }
 .card-msg { font-size:15px; font-weight:600; color:var(--ppt-text-1); line-height:1.4; }
 .card-detail { font-size:13px; color:var(--ppt-text-3); line-height:1.45; max-width:280px; }
 .bottom-bar {
   flex-shrink:0; margin:0 32px 14px;
   padding:10px 16px; border-radius:var(--ppt-radius-md);
-  background:linear-gradient(90deg,rgba(251,146,60,0.1),rgba(0,240,255,0.06),transparent);
+  background:linear-gradient(90deg,rgba(251,146,60,0.1),rgba(0, 120, 212,0.06),transparent);
   border:1px solid rgba(251,146,60,0.25);
   display:flex; align-items:center; gap:12px;
 }
@@ -116,7 +108,7 @@ html { overflow:hidden; margin:0; padding:0; }
   </div>
 
   <div class="trend-grid">
-    <svg class="hub-svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="8" fill="none" stroke="#00F0FF" stroke-width="1.5"/><line x1="40" y1="8" x2="40" y2="32" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="40" y1="48" x2="40" y2="72" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="8" y1="40" x2="32" y2="40" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="48" y1="40" x2="72" y2="40" stroke="#00F0FF" stroke-width="1" opacity=".5"/></svg>
+    <svg class="hub-svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="8" fill="none" stroke="var(--ppt-accent)" stroke-width="1.5"/><line x1="40" y1="8" x2="40" y2="32" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="40" y1="48" x2="40" y2="72" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="8" y1="40" x2="32" y2="40" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="48" y1="40" x2="72" y2="40" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/></svg>
     <div class="trend-card cyan">
       <i class="fas fa-cubes watermark"></i>
       <div class="card-icon cyan"><i class="fas fa-cubes"></i></div>

@@ -7,26 +7,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
 
-  --ppt-bg: #0A0E1A; --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15;
-  --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-font: "Noto Sans KR", sans-serif;
-}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body{ width:100vw; height:100vh; overflow:hidden; background:#0A0E1A; display:flex; justify-content:center; align-items:center; ;font-family:var(--ppt-font-body,var(--ppt-font))}
+body{ width:100vw; height:100vh; overflow:hidden; background:var(--ppt-bg); display:flex; justify-content:center; align-items:center; ;font-family:var(--ppt-font-body,var(--ppt-font))}
 .section-slide-root {
   width:960px; height:720px; background:var(--ppt-bg); font-family:var(--ppt-font);
   position:relative; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
   padding:0 80px; overflow:hidden;
 }
-.bg-grid-overlay { position:absolute; inset:0; background-image:linear-gradient(rgba(0,240,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
-.bg-glow-circle { position:absolute; right:-120px; top:50%; transform:translateY(-50%); width:500px; height:500px; background:radial-gradient(circle,rgba(0,240,255,0.07) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
+.bg-grid-overlay { position:absolute; inset:0; background-image:linear-gradient(rgba(0, 120, 212,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0, 120, 212,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
+.bg-glow-circle { position:absolute; right:-120px; top:50%; transform:translateY(-50%); width:500px; height:500px; background:radial-gradient(circle,rgba(0, 120, 212,0.07) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
 .bg-left-bar { position:absolute; left:0; top:0; bottom:0; width:6px; background:linear-gradient(180deg,transparent 0%,var(--ppt-accent) 40%,var(--ppt-accent) 60%,transparent 100%); }
-.section-part-number { font-size:120px; font-weight:700; line-height:1; color:transparent; -webkit-text-stroke:1px rgba(0,240,255,0.2); position:absolute; right:60px; bottom:40px; }
-.section-part-label { font-size:14px; font-weight:700; color:var(--ppt-accent); letter-spacing:4px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.section-part-number { font-size:120px; font-weight:700; line-height:1; color:transparent; -webkit-text-stroke:1px rgba(0, 120, 212,0.2); position:absolute; right:60px; bottom:40px; }
+.section-part-label { font-size:14px; font-weight:700; color:var(--ppt-accent-light); letter-spacing:4px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
 .section-part-label::after { content:''; display:block; width:60px; height:1px; background:var(--ppt-accent); opacity:0.5; }
 .section-title-ko { font-size:26px; font-weight:700; color:var(--ppt-text-1); line-height:1.2; margin-bottom:8px; }
 .section-title-en { font-size:18px; color:var(--ppt-accent-2); letter-spacing:1px; margin-bottom:40px; }

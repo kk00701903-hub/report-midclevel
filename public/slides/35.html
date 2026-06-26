@@ -7,25 +7,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-surface-2:#2A344A;
-  --ppt-border:#334155; --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-k8s:#326CE5; --ppt-good:#22C55E; --ppt-bad:#EF4444;
-  --ppt-radius-sm:4px; --ppt-radius-md:8px; --ppt-radius-lg:16px;
-  --ppt-font-display:"Noto Sans KR", sans-serif;
-}
+
 * { box-sizing:border-box; margin:0; padding:0; }
-body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+body { width:100vw; height:100vh; overflow:hidden; background:var(--ppt-bg);
   display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font); }
 .slide { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
   display:flex; flex-direction:column; overflow:hidden; }
 .title-region { padding:22px 40px 6px; display:flex; flex-direction:column; gap:6px; }
 .title-header { display:flex; align-items:center; gap:12px; }
 .title-bar { width:4px; height:32px; background:var(--ppt-accent); border-radius:2px; }
-.title-badge { background:rgba(0,240,255,.12); color:var(--ppt-accent); padding:3px 12px;
-  border-radius:var(--ppt-radius-sm); font-size:13px; font-weight:600; border:1px solid rgba(0,240,255,.3); }
+.title-badge { background:rgba(0, 120, 212,.12); color:var(--ppt-accent-light); padding:3px 12px;
+  border-radius:var(--ppt-radius-sm); font-size:13px; font-weight:600; border:1px solid rgba(0, 120, 212,.3); }
 .title-text { font-family:var(--ppt-font-display); font-size:26px; font-weight:700; margin:0; }
 .title-sub { font-size:14px; color:var(--ppt-text-2); padding-left:16px; line-height:1.4; }
 .title-line { height:1px; width:100%; background:linear-gradient(90deg,var(--ppt-accent),transparent); opacity:.3; margin-top:4px; }
@@ -58,12 +52,12 @@ body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
 .worker-label { font-size:12px; font-weight:700; color:var(--ppt-good); display:flex; align-items:center; gap:6px; }
 .worker-role { font-size:10.5px; color:var(--ppt-text-3); margin-bottom:2px; }
 .pods { display:flex; flex-wrap:wrap; gap:5px; flex:1; align-content:flex-start; }
-.pod { padding:6px 8px; background:rgba(0,240,255,.06); border:1px solid rgba(0,240,255,.25);
+.pod { padding:6px 8px; background:rgba(0, 120, 212,.06); border:1px solid rgba(0, 120, 212,.25);
   border-radius:6px; font-size:12px; font-weight:600; color:var(--ppt-text-2); text-align:center; min-width:54px; }
-.pod i { display:block; font-size:14px; color:var(--ppt-accent); margin-bottom:3px; }
+.pod i { display:block; font-size:14px; color:var(--ppt-accent-light); margin-bottom:3px; }
 .diagram-caption { font-size:12px; color:var(--ppt-text-2); text-align:center; line-height:1.35; padding-top:4px; }
 .insight-bar { flex-shrink:0; margin:0 40px 10px; padding:9px 16px;
-  background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);
+  background:linear-gradient(90deg,rgba(255, 185, 0,.08),transparent);
   border-left:3px solid var(--ppt-accent-2); border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; }
 .insight-bar p { font-size:14px; color:var(--ppt-text-2); line-height:1.4; }
 .insight-bar strong { color:var(--ppt-accent-2); }

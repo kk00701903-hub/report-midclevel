@@ -7,28 +7,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-  --ppt-bg: #0A0E1A;
-  --ppt-bg-soft: #141B2D;
-  --ppt-surface: #1E2638;
-  --ppt-border: #334155;
-  --ppt-text-1: #FFF;
-  --ppt-text-2: #94A3B8;
-  --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF;
-  --ppt-accent-2: #FACC15;
-  --ppt-good: #22C55E;
-  --ppt-radius-md: 8px;
-  --ppt-radius-lg: 16px;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-}
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
+<style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   width: 100vw; height: 100vh; overflow: hidden;
-  background: #0A0E1A;
+  background: var(--ppt-bg);
   display: flex; justify-content: center; align-items: center;
   font-family: var(--ppt-font-body);
 }
@@ -53,7 +37,7 @@ body {
 .ref-badge {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 14px; border-radius: var(--ppt-radius-md);
-  background: rgba(250,204,21,0.08); border: 1px solid rgba(250,204,21,0.25);
+  background: rgba(255, 185, 0,0.08); border: 1px solid rgba(255, 185, 0,0.25);
   font-size: 13px; color: var(--ppt-accent-2); width: fit-content;
 }
 .compare-grid { flex: 1; display: grid; grid-template-columns: 1fr 56px 1fr; gap: 10px; align-items: stretch; }

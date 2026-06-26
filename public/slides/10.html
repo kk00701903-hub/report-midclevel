@@ -7,132 +7,93 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --navy-900: #0B1D3A;
-  --navy-800: #122849;
-  --navy-700: #1A3560;
-  --blue-500: #2563EB;
-  --blue-400: #3B82F6;
-  --blue-300: #60A5FA;
-  --white: #FFFFFF;
-  --gray-100: #E2E8F0;
-  --gray-300: #94A3B8;
-  --gray-400: #64748B;
-  --green: #22C55E;
-  --amber: #F59E0B;
-  --gold: #FACC15;
-  --font: "Noto Sans KR", sans-serif;
-}
+
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
 html { overflow: hidden; }
 body {
   width: 100vw; height: 100vh; overflow: hidden;
-  background: var(--navy-900);
+  background: var(--ppt-bg);
   display: flex; justify-content: center; align-items: center;
-  font-family: var(--font);
+  font-family: var(--ppt-font-body);
 }
 .slide {
   width: 960px; height: 720px;
-  background: linear-gradient(160deg, var(--navy-900) 0%, #0F2744 55%, var(--navy-800) 100%);
-  color: var(--white);
+  background: var(--ppt-bg);
+  color: var(--ppt-text-1);
   display: flex; flex-direction: column;
   overflow: hidden; position: relative;
 }
 .slide::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at 85% 10%, rgba(37,99,235,.12) 0%, transparent 45%);
+  background: radial-gradient(ellipse at 92% 8%, rgba(0, 120, 212, 0.08) 0%, transparent 42%);
 }
-
-/* ── Header ── */
-.header {
-  flex-shrink: 0;
-  padding: 18px 36px 8px;
-  position: relative; z-index: 1;
-}
-.header-top {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.header { flex-shrink: 0; padding: 18px 36px 8px; position: relative; z-index: 1; }
+.header-top { display: flex; align-items: center; justify-content: space-between; }
 .header-left { display: flex; align-items: center; gap: 12px; }
-.header-bar { width: 4px; height: 34px; background: var(--blue-400); border-radius: 2px; }
-.header-badge {
-  font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
-  background: rgba(37,99,235,.15); border: 1px solid rgba(96,165,250,.35); color: var(--blue-300);
-}
+.header-bar { width: 4px; height: 34px; background: var(--ppt-accent); border-radius: 2px; }
 .header h1 { font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
-.header-date { font-size: 15px; color: var(--gray-300); font-weight: 500; }
-.header-sub {
-  margin-top: 6px; padding-left: 16px;
-  font-size: 16px; color: var(--gray-300); line-height: 1.4;
-}
-.header-line {
-  height: 1px; margin-top: 10px;
-  background: linear-gradient(90deg, var(--blue-400), transparent); opacity: .35;
-}
-
-/* ── KPI Cards ── */
 .kpi-row {
-  flex-shrink: 0;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-  padding: 8px 36px 10px;
-  position: relative; z-index: 1;
+  flex-shrink: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  padding: 8px 36px 10px; position: relative; z-index: 1;
 }
-.kpi-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 12px 12px 10px;
-  display: flex; flex-direction: column; gap: 6px;
-  box-shadow: 0 4px 16px rgba(0,0,0,.2);
-}
-.kpi-label { font-size: 13px; font-weight: 600; color: var(--gray-300); letter-spacing: .02em; }
 .kpi-value-row { display: flex; align-items: baseline; gap: 4px; }
-.kpi-value { font-size: 32px; font-weight: 800; color: var(--white); line-height: 1; }
-.kpi-unit { font-size: 16px; font-weight: 600; color: var(--blue-300); }
-.kpi-delta {
-  font-size: 13px; font-weight: 600; color: var(--green);
-  display: flex; align-items: center; gap: 4px; margin-top: 2px;
-}
-.kpi-delta.warn { color: var(--amber); }
-.kpi-delta i { font-size: 11px; }
 .kpi-bar-wrap { margin-top: 4px; }
-.kpi-bar-track {
-  height: 6px; border-radius: 3px;
-  background: rgba(255,255,255,.08); overflow: hidden;
-}
-.kpi-bar-fill {
-  height: 100%; border-radius: 3px;
-  background: linear-gradient(90deg, var(--blue-500), var(--blue-300));
-}
-.kpi-bar-fill.green { background: linear-gradient(90deg, #16A34A, var(--green)); }
-.kpi-bar-fill.gold { background: linear-gradient(90deg, #CA8A04, var(--gold)); }
-
-/* ── Main body ── */
+.kpi-bar-track { height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
 .body {
-  flex: 1; min-height: 0;
-  display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px;
-  padding: 0 36px 12px;
-  position: relative; z-index: 1;
+  flex: 1; min-height: 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px;
+  padding: 0 36px 12px; position: relative; z-index: 1;
 }
+.panel-head { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.panel-title { font-size: 18px; font-weight: 700; }
+.header-badge {
+  font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: var(--ppt-radius-sm);
+  background: rgba(0, 120, 212, 0.15); border: 1px solid rgba(0, 120, 212, 0.35); color: var(--ppt-accent-light);
+}
+.header-date { font-size: 15px; color: var(--ppt-text-2); font-weight: 500; }
+.header-sub { margin-top: 6px; padding-left: 16px; font-size: 16px; color: var(--ppt-text-2); line-height: 1.4; }
+.header-line { height: 1px; margin-top: 10px; background: linear-gradient(90deg, var(--ppt-accent), transparent); opacity: .35; }
+.kpi-card {
+  background: var(--ppt-surface); border: 1px solid var(--ppt-border); border-radius: var(--ppt-radius-lg);
+  border-top: 3px solid var(--ppt-accent); padding: 12px; display: flex; flex-direction: column; gap: 6px;
+  box-shadow: var(--ppt-shadow-soft);
+}
+.kpi-label { font-size: 13px; font-weight: 600; color: var(--ppt-text-2); }
+.kpi-value { font-size: 32px; font-weight: 800; color: var(--ppt-text-1); line-height: 1; }
+.kpi-unit { font-size: 16px; font-weight: 600; color: var(--ppt-accent-light); }
+.kpi-delta { font-size: 13px; font-weight: 600; color: var(--ppt-good); display: flex; align-items: center; gap: 4px; }
+.kpi-delta.warn { color: var(--ppt-warn); }
+.kpi-bar-fill { height: 100%; border-radius: 3px; background: var(--ppt-accent); }
+.kpi-bar-fill.green { background: var(--ppt-good); }
+.kpi-bar-fill.gold { background: var(--ppt-chart-3); }
 .panel {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 16px;
-  padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 10px;
-  min-height: 0;
-}
-.panel-head {
-  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  background: var(--ppt-surface); border: 1px solid var(--ppt-border); border-radius: var(--ppt-radius-lg);
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-height: 0;
+  box-shadow: var(--ppt-shadow-soft);
 }
 .panel-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: rgba(37,99,235,.18);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--blue-300); font-size: 16px;
+  width: 36px; height: 36px; border-radius: var(--ppt-radius-md);
+  background: rgba(0, 120, 212, 0.18); display: flex; align-items: center; justify-content: center;
+  color: var(--ppt-accent-light); font-size: 16px;
 }
-.panel-title { font-size: 18px; font-weight: 700; }
-.panel-sub { font-size: 13px; color: var(--gray-400); margin-left: auto; }
+.panel-sub { font-size: 13px; color: var(--ppt-text-3); margin-left: auto; }
+.tl-fill { background: var(--ppt-accent); }
+.tl-marker { background: var(--ppt-good); border: 2px solid var(--ppt-text-1); box-shadow: none; }
+.tl-phase.done { color: var(--ppt-good); background: rgba(16, 124, 16, 0.12); border-color: rgba(16, 124, 16, 0.25); }
+.tl-phase.active { color: var(--ppt-chart-3); background: rgba(255, 192, 0, 0.12); border-color: rgba(255, 192, 0, 0.3); font-weight: 700; }
+.prog-pct { color: var(--ppt-accent-light); }
+.donut {
+  background: conic-gradient(var(--ppt-chart-2) 0deg 100deg, var(--ppt-chart-1) 100deg 230deg, rgba(255,255,255,.1) 230deg 360deg);
+}
+.donut::after { background: var(--ppt-surface); }
+.conclusion-item i { color: var(--ppt-accent-2); }
+.conclusion-item em { color: var(--ppt-accent-light); }
+.footer {
+  background: linear-gradient(90deg, rgba(0, 120, 212, 0.12), transparent);
+  border-left: 3px solid var(--ppt-accent);
+}
+.footer strong { color: var(--ppt-accent-2); }
 
 /* Timeline */
 .timeline { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; }
@@ -143,13 +104,12 @@ body {
 .tl-fill {
   position: absolute; left: 0; top: 0; height: 100%; width: 35%;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--blue-500), var(--green));
+  background: var(--ppt-accent);
 }
 .tl-marker {
   position: absolute; top: 50%; transform: translate(-50%, -50%);
   width: 14px; height: 14px; border-radius: 50%;
-  background: var(--green); border: 2px solid var(--white);
-  box-shadow: 0 0 8px rgba(34,197,94,.5);
+  background: var(--ppt-good); border: 2px solid var(--ppt-text-1);
   left: 35%;
 }
 .tl-phases {
@@ -160,8 +120,8 @@ body {
   border-radius: 8px; font-size: 11px; line-height: 1.25;
   color: var(--gray-400); border: 1px solid transparent;
 }
-.tl-phase.done { color: var(--green); background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.2); }
-.tl-phase.active { color: var(--amber); background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.3); font-weight: 700; }
+.tl-phase.done { color: var(--ppt-good); background: rgba(16, 124, 16, 0.12); border-color: rgba(16, 124, 16, 0.25); }
+.tl-phase.active { color: var(--ppt-chart-3); background: rgba(255, 192, 0, 0.12); border-color: rgba(255, 192, 0, 0.3); font-weight: 700; }
 .tl-phase .num { display: block; font-size: 13px; font-weight: 800; margin-bottom: 2px; }
 .tl-phase .lbl { display: block; font-size: 10px; opacity: .85; }
 
@@ -170,7 +130,7 @@ body {
 .prog-item { display: flex; flex-direction: column; gap: 5px; }
 .prog-head { display: flex; justify-content: space-between; align-items: baseline; }
 .prog-name { font-size: 15px; font-weight: 600; }
-.prog-pct { font-size: 15px; font-weight: 800; color: var(--blue-300); }
+.prog-pct { font-size: 15px; font-weight: 800; color: var(--ppt-accent-light); }
 .prog-track { height: 10px; border-radius: 5px; background: rgba(255,255,255,.06); overflow: hidden; }
 .prog-fill { height: 100%; border-radius: 5px; }
 .prog-note { font-size: 12px; color: var(--gray-400); line-height: 1.35; }
@@ -212,7 +172,7 @@ body {
   flex-shrink: 0;
   margin: 0 36px 12px;
   padding: 8px 14px;
-  background: linear-gradient(90deg, rgba(37,99,235,.12), transparent);
+  background: linear-gradient(90deg, rgba(0, 120, 212,.12), transparent);
   border-left: 3px solid var(--blue-400);
   border-radius: 0 10px 10px 0;
   font-size: 15px; color: var(--gray-300); line-height: 1.45;
@@ -290,17 +250,17 @@ body {
       <div class="prog-list">
         <div class="prog-item">
           <div class="prog-head"><span class="prog-name">기반 표준 확립</span><span class="prog-pct">100%</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--green)"></div></div>
+          <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--ppt-good)"></div></div>
           <span class="prog-note">차세대 표준 기술 기반·아키텍처 설계 완료</span>
         </div>
         <div class="prog-item">
           <div class="prog-head"><span class="prog-name">AI 자동화 환경</span><span class="prog-pct">100%</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--green)"></div></div>
+          <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--ppt-good)"></div></div>
           <span class="prog-note">레거시 코드 변환·품질 검증 자동화 환경 가동</span>
         </div>
         <div class="prog-item">
           <div class="prog-head"><span class="prog-name">UI/UX·핵심 화면 개발</span><span class="prog-pct">55%</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:55%;background:linear-gradient(90deg,var(--amber),var(--gold))"></div></div>
+          <div class="prog-track"><div class="prog-fill" style="width:55%;background:var(--ppt-chart-3)"></div></div>
           <span class="prog-note">디자인 시스템 정립 및 주요 화면 개발 착수</span>
         </div>
       </div>
@@ -320,8 +280,8 @@ body {
           </div>
         </div>
         <div class="donut-legend">
-          <div class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>완료 — 현황·목표·인프라 (28%)</div>
-          <div class="legend-item"><span class="legend-dot" style="background:var(--blue-400)"></span>진행 — PoC·표준화 (36%)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--ppt-chart-2)"></span>완료 — 현황·목표·인프라 (28%)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--ppt-chart-1)"></span>진행 — PoC·표준화 (36%)</div>
           <div class="legend-item"><span class="legend-dot" style="background:rgba(255,255,255,.15)"></span>예정 — 프로토타입~본전환 (36%)</div>
         </div>
       </div>

@@ -8,41 +8,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    --ppt-accent-2: #FACC15;
-    --ppt-chart-1: #00F0FF;
-    --ppt-chart-2: #3B82F6;
-    --ppt-chart-3: #8B5CF6;
-    --ppt-chart-4: #FACC15;
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --ppt-shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.5);
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
+<style>
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0
     }
-body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
+body{width:100vw; height:100vh; overflow: hidden; background-color: var(--ppt-bg); display: flex;
     justify-content: center;
     align-items: center;font-family:var(--ppt-font-body,var(--ppt-font))}
 .fass-report-slide-root {
@@ -74,7 +47,7 @@ body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.7) 40%, transparent 100%);
+    background: linear-gradient(90deg, rgba(20, 20, 20, 0.95) 0%, rgba(20, 20, 20, 0.7) 40%, transparent 100%);
     padding: 60px 56px;
     display: flex;
     flex-direction: column

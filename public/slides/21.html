@@ -7,19 +7,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg: #0A0E1A; --ppt-bg-soft: #141B2D; --ppt-surface: #1E2638;
-  --ppt-border: #334155; --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15; --ppt-good: #22C55E;
-  --ppt-radius-sm: 4px; --ppt-radius-md: 8px; --ppt-radius-lg: 16px;
-  --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+body { width:100vw; height:100vh; overflow:hidden; background:var(--ppt-bg);
   display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font-body); }
 .fass-slide-root { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
   display:flex; flex-direction:column; overflow:hidden; }
@@ -35,20 +27,20 @@ body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
 .visual-card { flex:1; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border);
   border-radius:var(--ppt-radius-lg); padding:12px 14px; display:flex; flex-direction:column; gap:8px;
   box-shadow:var(--ppt-shadow-soft); }
-.badge-cyan { background:rgba(0,240,255,0.1); color:var(--ppt-accent); padding:4px 12px;
-  border-radius:var(--ppt-radius-sm); font-size:13px; font-weight:600; border:1px solid rgba(0,240,255,0.3);
+.badge-cyan { background:rgba(0, 120, 212,0.1); color:var(--ppt-accent-light); padding:4px 12px;
+  border-radius:var(--ppt-radius-sm); font-size:13px; font-weight:600; border:1px solid rgba(0, 120, 212,0.3);
   align-self:flex-start; }
 .diagram { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
   background:rgba(255,255,255,0.02); border-radius:var(--ppt-radius-md); border:1px dashed var(--ppt-border); padding:12px; position:relative; }
 .module-db-wrap { width:92%; position:relative; }
 .conn-svg { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .server-box { width:100%; padding:14px; border:2px solid var(--ppt-accent); border-radius:var(--ppt-radius-md);
-  background:rgba(0,240,255,0.05); display:flex; flex-direction:column; gap:10px; position:relative; z-index:1; }
-.server-title { font-size:14px; color:var(--ppt-accent); font-weight:700; text-align:center; }
+  background:rgba(0, 120, 212,0.05); display:flex; flex-direction:column; gap:10px; position:relative; z-index:1; }
+.server-title { font-size:14px; color:var(--ppt-accent-light); font-weight:700; text-align:center; }
 .module-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
 .module-box { background:var(--ppt-surface); border:1px solid var(--ppt-border); padding:10px 6px;
   border-radius:var(--ppt-radius-sm); text-align:center; display:flex; flex-direction:column; gap:4px; align-items:center; }
-.module-box i { color:var(--ppt-accent); font-size:22px; }
+.module-box i { color:var(--ppt-accent-light); font-size:22px; }
 .module-box span { font-size:13px; font-weight:600; }
 .db-row { display:flex; justify-content:space-around; width:100%; margin-top:2px; }
 .db-item { display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--ppt-text-3); font-size:12px; }
@@ -56,26 +48,26 @@ body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
 .right-col { flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; }
 .compare-card { flex:1; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border);
   border-radius:var(--ppt-radius-md); padding:12px 14px; display:flex; align-items:center; gap:12px; }
-.compare-card.highlight { border:2px solid rgba(0,240,255,0.55); border-left:4px solid var(--ppt-accent);
-  background:linear-gradient(135deg,rgba(0,240,255,0.14),var(--ppt-bg-soft));
-  box-shadow:0 0 22px rgba(0,240,255,0.16); }
+.compare-card.highlight { border:2px solid rgba(0, 120, 212,0.55); border-left:4px solid var(--ppt-accent);
+  background:linear-gradient(135deg,rgba(0, 120, 212,0.14),var(--ppt-bg-soft));
+  box-shadow:0 0 22px rgba(0, 120, 212,0.16); }
 .compare-num { width:28px; height:28px; border-radius:50%; background:var(--ppt-surface);
   border:1px solid var(--ppt-border); font-size:13px; font-weight:700; color:var(--ppt-text-2);
   display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.compare-card.highlight .compare-num { background:rgba(0,240,255,0.22); border-color:var(--ppt-accent); color:var(--ppt-text-1); }
-.compare-icon { width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,0.05);
+.compare-card.highlight .compare-num { background:rgba(0, 120, 212,0.22); border-color:var(--ppt-accent-light); color:var(--ppt-text-1); }
+.compare-icon { width:44px; height:44px; border-radius:var(--ppt-radius-lg); background:rgba(255,255,255,0.05);
   display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
 .compare-card:nth-child(1) .compare-icon { color:var(--ppt-text-3); }
-.compare-card.highlight .compare-icon { color:var(--ppt-accent); }
-.compare-card:nth-child(3) .compare-icon { color:#A78BFA; }
+.compare-card.highlight .compare-icon { color:var(--ppt-accent-light); }
+.compare-card:nth-child(3) .compare-icon { color:var(--ppt-purple); }
 .compare-body { flex:1; min-width:0; }
 .compare-title { font-size:15px; font-weight:700; margin-bottom:2px; }
-.compare-card.highlight .compare-title { color:var(--ppt-accent); }
+.compare-card.highlight .compare-title { color:var(--ppt-accent-light); }
 .compare-label { font-size:14px; font-weight:600; color:var(--ppt-text-1); margin-bottom:2px; }
 .compare-desc { font-size:12.5px; color:var(--ppt-text-3); line-height:1.4; }
 .fass-badge { font-size:11px; font-weight:700; padding:2px 7px; border-radius:10px;
-  background:rgba(0,240,255,0.22); color:var(--ppt-text-1); border:1px solid rgba(0,240,255,0.55); margin-left:6px; }
-.footer-box { background:linear-gradient(90deg,rgba(250,204,21,0.1),transparent);
+  background:rgba(0, 120, 212,0.22); color:var(--ppt-text-1); border:1px solid rgba(0, 120, 212,0.55); margin-left:6px; }
+.footer-box { background:linear-gradient(90deg,rgba(255, 185, 0,0.1),transparent);
   border-left:4px solid var(--ppt-accent-2); padding:9px 16px; border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; flex-shrink:0; }
 .footer-box p { font-size:14px; color:var(--ppt-text-1); line-height:1.4; }
 html { overflow:hidden; margin:0; padding:0; }
@@ -99,9 +91,9 @@ html { overflow:hidden; margin:0; padding:0; }
           <div class="diagram">
             <div class="module-db-wrap">
               <svg class="conn-svg" viewBox="0 0 400 120" preserveAspectRatio="none">
-                <line x1="67" y1="70" x2="67" y2="95" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
-                <line x1="200" y1="70" x2="200" y2="95" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
-                <line x1="333" y1="70" x2="333" y2="95" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+                <line x1="67" y1="70" x2="67" y2="95" stroke="var(--ppt-accent)" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+                <line x1="200" y1="70" x2="200" y2="95" stroke="var(--ppt-accent)" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+                <line x1="333" y1="70" x2="333" y2="95" stroke="var(--ppt-accent)" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
               </svg>
             <div class="server-box">
               <div class="server-title">유통물류 시스템</div>

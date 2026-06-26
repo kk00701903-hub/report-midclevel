@@ -9,40 +9,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    /* Deep Midnight Navy */
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    /* Electric Cyan for Tech */
-    --ppt-accent-2: #FACC15;
-    /* Gold for Value/ROI */
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --ppt-shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.5);
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
+<style>
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0
     }
-body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
+body {width:100vw; height:100vh; overflow: hidden; background-color: var(--ppt-bg); display: flex;
     justify-content: center;
     align-items: center;
     font-family: var(--ppt-font-body)}
@@ -121,8 +95,8 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     text-align: center;
     padding: 20px 18px;
     border-radius: var(--ppt-radius-lg);
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    background: radial-gradient(circle at center, rgba(0, 240, 255, 0.08) 0%, rgba(20, 27, 45, 0.6) 70%)
+    border: 1px solid rgba(0, 120, 212, 0.25);
+    background: radial-gradient(circle at center, rgba(0, 120, 212, 0.08) 0%, rgba(20, 27, 45, 0.6) 70%)
     }
 /* Vision pillars — completion state (not rollout timeline) */
 .vision-pillar-grid {
@@ -180,7 +154,7 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     padding: 10px 16px;
     border-left: 3px solid var(--ppt-accent-2);
     border-radius: 0 10px 10px 0;
-    background: rgba(250, 204, 21, 0.06);
+    background: rgba(255, 185, 0, 0.06);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -217,7 +191,7 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     color: var(--ppt-text-1);
     line-height: 1;
     margin: 10px 0;
-    text-shadow: 0 0 30px rgba(0, 240, 255, 0.3)
+    text-shadow: 0 0 30px rgba(0, 120, 212, 0.3)
     }
 .closing-anchor-accent-keyword {
     font-size: 48px;
@@ -291,7 +265,7 @@ html { overflow: hidden;  margin:0; padding:0; }
 <p class="vision-pillar-desc">모듈러 모놀리스에서 출발해 CDC·GitOps 기반으로 점진 확장합니다. 레거시와 공존하며 전환하고, 중장기적으로 클라우드·MSA로 무리 없이 진화하는 기술 기반이 갖춰집니다.</p>
 </div>
 </div>
-<div class="vision-pillar-card" style="--vc:#A78BFA">
+<div class="vision-pillar-card" style="--vc:var(--ppt-purple)">
 <div class="vision-pillar-icon"><i class="fas fa-coins"></i></div>
 <div class="vision-pillar-body">
 <div class="vision-pillar-tag">경영 · 사업 가치</div>
@@ -325,7 +299,7 @@ html { overflow: hidden;  margin:0; padding:0; }
 </div>
 <div class="closing-commitment-bar">
 <strong>TFT 실행 약속</strong>
-<span class="commit-pill"><i class="fas fa-calendar-check" style="color:var(--ppt-accent);margin-right:4px"></i>일정 ±1주</span>
+<span class="commit-pill"><i class="fas fa-calendar-check" style="color:var(--ppt-accent-light);margin-right:4px"></i>일정 ±1주</span>
 <span class="commit-pill"><i class="fas fa-shield-halved" style="color:var(--ppt-good);margin-right:4px"></i>Quality Gate 100%</span>
 <span class="commit-pill"><i class="fas fa-rocket" style="color:var(--ppt-accent-2);margin-right:4px"></i>ASP 전개 가능 아키텍처</span>
 </div>

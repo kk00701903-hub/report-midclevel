@@ -7,44 +7,39 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-border:#334155;
-  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15;
-  --ppt-radius-lg:16px;
-}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
 .slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
 .bg-grid{position:absolute;inset:0;pointer-events:none;background-image:
-  linear-gradient(rgba(0,240,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.03) 1px,transparent 1px);
+  linear-gradient(rgba(0, 120, 212,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0, 120, 212,.03) 1px,transparent 1px);
   background-size:40px 40px}
 .bg-glow{position:absolute;right:0;top:50%;transform:translateY(-50%);width:300px;height:300px;
-  background:radial-gradient(circle,rgba(0,240,255,.06) 0%,transparent 70%);border-radius:50%;pointer-events:none;overflow:hidden}
+  background:radial-gradient(circle,rgba(0, 120, 212,.06) 0%,transparent 70%);border-radius:50%;pointer-events:none;overflow:hidden}
 .title-r{flex-shrink:0;padding:20px 36px 4px;position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
 .title-row{display:flex;align-items:center;gap:10px}
 .bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:var(--ppt-radius-lg);background:rgba(255, 185, 0,.12);border:1px solid rgba(255, 185, 0,.35);color:var(--ppt-accent-2)}
 h1.title-main{font-size:26px;font-weight:700;margin:0}
 .title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
 .line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
 .body-wrap{flex:1;min-height:0;padding:10px 36px 8px;display:flex;align-items:stretch;gap:0;position:relative;z-index:1;overflow:hidden}
 .col{flex:1;min-width:0;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:var(--ppt-radius-lg);
   padding:16px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
-.col-arrow{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;color:var(--ppt-accent);font-size:18px}
-.col-icon{width:56px;height:56px;border-radius:50%;background:rgba(0,240,255,.08);border:2px solid rgba(0,240,255,.25);
+.col-arrow{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;color:var(--ppt-accent-light);font-size:18px}
+.col-icon{width:56px;height:56px;border-radius:50%;background:rgba(0, 120, 212,.08);border:2px solid rgba(0, 120, 212,.25);
   display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ppt-accent)}
 .col-title{font-size:17px;font-weight:700}
 .col-msg{font-size:13px;font-weight:600;color:var(--ppt-text-1);line-height:1.4}
 .col-detail{font-size:12px;color:var(--ppt-text-3);line-height:1.4}
 .col-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
-  background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+  background:rgba(255, 185, 0,.1);border:1px solid rgba(255, 185, 0,.35);color:var(--ppt-accent-2)}
 .col-impact{font-size:11.5px;color:var(--ppt-text-2);line-height:1.35;margin-top:auto;padding-top:6px;
   border-top:1px dashed var(--ppt-border);width:100%}
 .insight-bar{flex-shrink:0;margin:0 40px 12px;padding:9px 16px;position:relative;z-index:1;
-  background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);
+  background:linear-gradient(90deg,rgba(255, 185, 0,.08),transparent);
   border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.4}
 .insight-bar strong{color:var(--ppt-accent-2)}
 html{overflow:hidden;margin:0;padding:0}

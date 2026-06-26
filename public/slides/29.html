@@ -7,30 +7,25 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
-  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E; --ppt-bad:#EF4444;
-  --ppt-radius-lg:16px;
-}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
 .slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
 .slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(ellipse at 50% 40%,rgba(0,240,255,.05) 0%,transparent 55%)}
+  radial-gradient(ellipse at 50% 40%,rgba(0, 120, 212,.05) 0%,transparent 55%)}
 .title-r{flex-shrink:0;padding:20px 36px 4px;position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
 .title-row{display:flex;align-items:center;gap:10px}
 .bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:var(--ppt-radius-lg);background:rgba(255, 185, 0,.12);border:1px solid rgba(255, 185, 0,.35);color:var(--ppt-accent-2)}
 h1.title-main{font-size:26px;font-weight:700;margin:0}
 .title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
 .line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
 .body{flex:1;min-height:0;padding:10px 40px 8px;display:flex;flex-direction:column;gap:12px;justify-content:center;position:relative;z-index:1}
 .metrics-wrap{position:relative}
 .metrics-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0}
-.metrics-watermark i{font-size:200px;color:var(--ppt-accent);opacity:.04}
+.metrics-watermark i{font-size:200px;color:var(--ppt-accent-light);opacity:.04}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1}
 .metric{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:var(--ppt-radius-lg);
   padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -44,7 +39,7 @@ h1.title-main{font-size:26px;font-weight:700;margin:0}
 .pipeline{display:flex;align-items:center;justify-content:center;gap:0;position:relative}
 .pipeline::before{content:'';position:absolute;top:50%;left:10%;right:10%;height:4px;transform:translateY(-50%);
   background:linear-gradient(90deg,var(--ppt-accent-2),var(--ppt-accent),var(--ppt-bad));border-radius:2px;z-index:0;opacity:.4}
-.step{flex:1;max-width:180px;background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:12px;
+.step{flex:1;max-width:180px;background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:var(--ppt-radius-lg);
   padding:12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative;z-index:1}
 .step.s1{border-top:3px solid var(--ppt-accent-2)}
 .step.s2{border-top:3px solid var(--ppt-accent)}
@@ -56,9 +51,9 @@ h1.title-main{font-size:26px;font-weight:700;margin:0}
 .policy-strip{display:flex;gap:10px}
 .policy-item{flex:1;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:10px;
   padding:10px;text-align:center;font-size:12px;font-weight:600;color:var(--ppt-text-2);line-height:1.35}
-.policy-item i{display:block;font-size:18px;color:var(--ppt-accent);margin-bottom:5px}
+.policy-item i{display:block;font-size:18px;color:var(--ppt-accent-light);margin-bottom:5px}
 .footer{margin:0 40px 12px;padding:9px 16px;border-left:3px solid var(--ppt-accent-2);
-  background:rgba(250,204,21,.05);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.45;position:relative;z-index:1}
+  background:rgba(255, 185, 0,.05);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.45;position:relative;z-index:1}
 .footer strong{color:var(--ppt-accent-2)}
 html{overflow:hidden;margin:0;padding:0}
 </style>
@@ -80,7 +75,7 @@ html{overflow:hidden;margin:0;padding:0}
       <div class="metrics">
         <div class="metric">
           <div class="gauge-wrap">
-            <svg viewBox="0 0 90 50"><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#334155" stroke-width="6" stroke-linecap="round"/><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#EF4444" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 126"/></svg>
+            <svg viewBox="0 0 90 50"><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="var(--ppt-border)" stroke-width="6" stroke-linecap="round"/><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#EF4444" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 126"/></svg>
             <div class="gauge-num">0</div>
           </div>
           <div class="metric-label">치명적 결함</div>
@@ -88,7 +83,7 @@ html{overflow:hidden;margin:0;padding:0}
         </div>
         <div class="metric safe">
           <div class="gauge-wrap">
-            <svg viewBox="0 0 90 50"><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#334155" stroke-width="6" stroke-linecap="round"/><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#22C55E" stroke-width="6" stroke-linecap="round" stroke-dasharray="101 126"/></svg>
+            <svg viewBox="0 0 90 50"><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="var(--ppt-border)" stroke-width="6" stroke-linecap="round"/><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="var(--ppt-good)" stroke-width="6" stroke-linecap="round" stroke-dasharray="101 126"/></svg>
             <div class="gauge-num">80%</div>
           </div>
           <div class="metric-label">테스트 커버리지</div>
@@ -96,7 +91,7 @@ html{overflow:hidden;margin:0;padding:0}
         </div>
         <div class="metric">
           <div class="gauge-wrap">
-            <svg viewBox="0 0 90 50"><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#334155" stroke-width="6" stroke-linecap="round"/><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#EF4444" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 126"/></svg>
+            <svg viewBox="0 0 90 50"><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="var(--ppt-border)" stroke-width="6" stroke-linecap="round"/><path d="M5 45 A40 40 0 0 1 85 45" fill="none" stroke="#EF4444" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 126"/></svg>
             <div class="gauge-num">0</div>
           </div>
           <div class="metric-label">보안 취약점</div>

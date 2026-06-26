@@ -7,16 +7,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root{--ppt-font:"Noto Sans KR",sans-serif;--ppt-bg:#0A0E1A;--ppt-bg-soft:#141B2D;--ppt-surface:#1E2638;--ppt-border:#334155;--ppt-text-1:#FFF;--ppt-text-2:#94A3B8;--ppt-text-3:#64748B;--ppt-accent:#00F0FF;--ppt-accent-2:#FACC15}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
 .slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
-.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 12% 20%,rgba(0,240,255,.06) 0%,transparent 50%)}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 12% 20%,rgba(0, 120, 212,.06) 0%,transparent 50%)}
 .title-r{flex-shrink:0;padding:24px 40px 8px;position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
 .title-row{display:flex;align-items:center;gap:10px}
 .bar{width:4px;height:32px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(0,240,255,.1);border:1px solid rgba(0,240,255,.3);color:var(--ppt-accent)}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:var(--ppt-radius-lg);background:rgba(0, 120, 212,.1);border:1px solid rgba(0, 120, 212,.3);color:var(--ppt-accent)}
 h1{font-size:28px;font-weight:700;margin:0}
 .title-sub{font-size:15px;color:var(--ppt-text-2);padding-left:14px;line-height:1.45}
 .line{height:1px;margin-top:6px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
@@ -24,11 +25,11 @@ h1{font-size:28px;font-weight:700;margin:0}
 .hero-msg{text-align:center;font-size:20px;font-weight:700;color:var(--ppt-text-1);line-height:1.45;max-width:720px;margin:0 auto}
 .hero-msg em{font-style:normal;color:var(--ppt-accent-2)}
 .preview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.prev-card{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:14px;padding:18px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.prev-card{background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:var(--ppt-radius-lg);border-top:3px solid var(--ppt-accent);padding:18px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:var(--ppt-shadow-soft)}
 .prev-card i{font-size:32px;color:var(--ppt-accent)}
 .prev-title{font-size:16px;font-weight:700}
 .prev-sub{font-size:13px;color:var(--ppt-text-3);line-height:1.4}
-.insight{flex-shrink:0;margin:0 40px 14px;padding:10px 16px;background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.45;position:relative;z-index:1}
+.insight{flex-shrink:0;margin:0 40px 14px;padding:10px 16px;background:linear-gradient(90deg,rgba(255, 185, 0,.08),transparent);border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.45;position:relative;z-index:1}
 .insight strong{color:var(--ppt-accent-2)}
 html{overflow:hidden;margin:0;padding:0}
 </style>

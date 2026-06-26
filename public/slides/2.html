@@ -7,27 +7,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
 
-  --ppt-bg: #0A0E1A;
-  --ppt-bg-soft: #141B2D;
-  --ppt-surface: #1E2638;
-  --ppt-surface-2: #2A344A;
-  --ppt-border: #334155;
-  --ppt-text-1: #FFF;
-  --ppt-text-2: #94A3B8;
-  --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF;
-  --ppt-accent-2: #FACC15;
-  --ppt-font: "Noto Sans KR", sans-serif;
-}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body{
   width:100vw; height:100vh; overflow: hidden;
-  background-color:#0A0E1A; display: flex;
+  background-color: var(--ppt-bg); display: flex;
   justify-content: center; align-items: center;
 ;font-family:var(--ppt-font-body,var(--ppt-font))}
 .section-slide-root {
@@ -44,8 +30,8 @@ body{
 .bg-grid-overlay {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 120, 212,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 120, 212,0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
 }
@@ -53,7 +39,7 @@ body{
   position: absolute; right: -120px; top: 50%;
   transform: translateY(-50%);
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(0,240,255,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 120, 212,0.07) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -80,7 +66,7 @@ body{
   font-size: 120px; font-weight: 700;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(0,240,255,0.2);
+  -webkit-text-stroke: 1px rgba(0, 120, 212,0.2);
   position: absolute; right: 60px; bottom: 40px;
   user-select: none;
 }

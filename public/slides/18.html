@@ -8,38 +8,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    /* Deep Midnight Navy */
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    /* Electric Cyan for Tech */
-    --ppt-accent-2: #FACC15;
-    /* Gold for Value/ROI */
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
+<style>
 * {
     box-sizing: border-box;
     margin: 0 0;
     padding: 0 0
     }
-body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
+body{width:100vw; height:100vh; overflow: hidden; background-color: var(--ppt-bg); display: flex;
     justify-content: center;
     align-items: center;font-family:var(--ppt-font-body,var(--ppt-font))}
 .poc-slide-root {
@@ -118,7 +94,7 @@ body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
 .poc-target-icon {
     width: 56px;
     height: 56px;
-    background: rgba(0, 240, 255, 0.1);
+    background: rgba(0, 120, 212, 0.1);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -171,9 +147,9 @@ body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     color: var(--ppt-text-2);
     line-height: 1.45;
     padding: 8px 12px;
-    background: rgba(0, 240, 255, 0.06);
+    background: rgba(0, 120, 212, 0.06);
     border-radius: var(--ppt-radius-md);
-    border: 1px solid rgba(0, 240, 255, 0.2);
+    border: 1px solid rgba(0, 120, 212, 0.2);
     margin-bottom: 2px
     }
 .poc-cdc-definition strong {
@@ -216,7 +192,7 @@ body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     }
 /* Bottom: Risk Mitigation Banner */
 .poc-risk-impact-banner {
-    background: linear-gradient(90deg, #1E2638 0%, #0A0E1A 100%);
+    background: linear-gradient(90deg, var(--ppt-surface) 0%, var(--ppt-bg) 100%);
     border: 1px solid var(--ppt-border);
     border-left: 6px solid var(--ppt-good);
     border-radius: var(--ppt-radius-md);
@@ -350,7 +326,7 @@ html { overflow: hidden;  margin:0; padding:0; }
 </div>
 </div>
 </div>
-<div style="margin-top: 5px;padding: 10px 16px;background: rgba(0, 240, 255, 0.05);border-radius: var(--ppt-radius-md);border: 1px dashed var(--ppt-accent);">
+<div style="margin-top: 5px;padding: 10px 16px;background: rgba(0, 120, 212, 0.05);border-radius: var(--ppt-radius-md);border: 1px dashed var(--ppt-accent);">
 <div style="font-size: 15px;color: var(--ppt-text-1);font-weight: 600;margin-bottom: 2px;">기술적 의의</div>
 <div style="font-size: 14px;color: var(--ppt-text-2);line-height: 1.5;">
               이기종 DB 간의 제약을 극복하고 실시간 스트리밍 아키텍처를 완벽히 구현함으로써, 향후 대규모 시스템 이관 시 발생할 수 있는 데이터 정합성 이슈를 원천 차단했습니다.

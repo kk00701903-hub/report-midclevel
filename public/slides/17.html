@@ -8,36 +8,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    --ppt-accent-2: #FACC15;
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
+<style>
 * {
     box-sizing: border-box;
     margin: 0 0;
     padding: 0 0
     }
-body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
+body {width:100vw; height:100vh; overflow: hidden; background-color: var(--ppt-bg); display: flex;
     justify-content: center;
     align-items: center;
     font-family: var(--ppt-font-body)}
@@ -129,7 +108,7 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 240, 255, 0.1);
+    background: rgba(0, 120, 212, 0.1);
     border-radius: var(--ppt-radius-md)
     }
 .war-room-card-title {
@@ -204,8 +183,8 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
 .war-room-dailyscrum-banner {
     margin: 0 40px 14px 40px;
     flex-shrink: 0;
-    background: linear-gradient(90deg, rgba(0,240,255,0.08) 0%, rgba(167,139,250,0.06) 100%);
-    border: 1px solid rgba(0,240,255,0.35);
+    background: linear-gradient(90deg, rgba(0, 120, 212,0.08) 0%, rgba(167,139,250,0.06) 100%);
+    border: 1px solid rgba(0, 120, 212,0.35);
     border-radius: var(--ppt-radius-lg);
     padding: 10px 14px;
     display: flex;
@@ -217,7 +196,7 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     width: 44px;
     height: 44px;
     border-radius: var(--ppt-radius-md);
-    background: rgba(0,240,255,0.12);
+    background: rgba(0, 120, 212,0.12);
     color: var(--ppt-accent);
     display: flex;
     align-items: center;
@@ -247,7 +226,7 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     gap: 8px;
     padding: 8px 14px;
     border-radius: var(--ppt-radius-md);
-    background: rgba(0,240,255,0.12);
+    background: rgba(0, 120, 212,0.12);
     border: 1px solid var(--ppt-accent);
     color: var(--ppt-accent);
     font-size: 13px;
@@ -334,7 +313,7 @@ html { overflow: hidden; margin:0; padding:0; }
 <div class="war-room-card-body">
 <div class="war-room-highlight-item">
 <i class="fas fa-chart-line war-room-highlight-bullet"></i>
-<span><a href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="color:var(--ppt-accent);font-weight:600;">FASS 데일리 스크럼 Analytics</a>으로 일단위 업무·스프린트 진척도를 점검하고 워룸에서 공유</span>
+<span><a href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="color:var(--ppt-accent-light);font-weight:600;">FASS 데일리 스크럼 Analytics</a>으로 일단위 업무·스프린트 진척도를 점검하고 워룸에서 공유</span>
 </div>
 <div class="war-room-highlight-item">
 <i class="fas fa-bug war-room-highlight-bullet"></i>
@@ -342,7 +321,7 @@ html { overflow: hidden; margin:0; padding:0; }
 </div>
 </div>
 <div class="war-room-dashboard-preview">
-<a class="war-room-dashboard-box" href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="border-color:var(--ppt-accent);text-decoration:none;cursor:pointer;">
+<a class="war-room-dashboard-box" href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="border-color:var(--ppt-accent-light);text-decoration:none;cursor:pointer;">
 <span class="war-room-dashboard-label">Daily Scrum</span>
 <span class="war-room-dashboard-value">Analytics</span>
 </a>

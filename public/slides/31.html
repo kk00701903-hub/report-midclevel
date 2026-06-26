@@ -7,21 +7,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
 <style>
-:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
-  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
-  --ppt-radius-lg:16px;
-}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
 .slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
 .title-r{flex-shrink:0;padding:20px 36px 4px;display:flex;flex-direction:column;gap:6px}
 .title-row{display:flex;align-items:center;gap:10px}
 .bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:var(--ppt-radius-lg);background:rgba(255, 185, 0,.12);border:1px solid rgba(255, 185, 0,.35);color:var(--ppt-accent-2)}
 h1.title-main{font-size:26px;font-weight:700;margin:0}
 .title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
 .line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
@@ -30,16 +25,16 @@ h1.title-main{font-size:26px;font-weight:700;margin:0}
 .hero{flex:0 0 200px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px}
 .hero-label{font-size:14px;color:var(--ppt-text-2);font-weight:600}
 .hero-num{font-size:72px;font-weight:700;color:var(--ppt-accent-2);line-height:1;letter-spacing:-3px}
-.hero-unit{font-size:24px;color:var(--ppt-accent);font-weight:600}
+.hero-unit{font-size:24px;color:var(--ppt-accent-light);font-weight:600}
 .hero-msg{font-size:13px;font-weight:600;color:var(--ppt-text-1);line-height:1.4;margin-top:4px}
 .hero-detail{font-size:12px;color:var(--ppt-text-3);line-height:1.4}
 .hub{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:var(--ppt-radius-lg);padding:14px;position:relative}
 .hub-caption{font-size:12px;color:var(--ppt-text-2);text-align:center;line-height:1.35;margin-bottom:2px}
-.hub-center{width:80px;height:80px;border-radius:50%;background:rgba(0,240,255,.12);border:2px solid var(--ppt-accent);
+.hub-center{width:80px;height:80px;border-radius:50%;background:rgba(0, 120, 212,.12);border:2px solid var(--ppt-accent);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;z-index:2}
 .hub-center i{font-size:24px;color:var(--ppt-accent)}
-.hub-center span{font-size:11px;font-weight:700;color:var(--ppt-accent);text-align:center;line-height:1.2}
+.hub-center span{font-size:11px;font-weight:700;color:var(--ppt-accent-light);text-align:center;line-height:1.2}
 .hub-agents-wrap{position:relative;width:100%}
 .spoke-svg{position:absolute;top:0;left:0;width:100%;height:60px;pointer-events:none;opacity:.35}
 .agents{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:100%;position:relative;z-index:1}
@@ -51,10 +46,10 @@ h1.title-main{font-size:26px;font-weight:700;margin:0}
 .process-strip{display:flex;gap:8px;flex-shrink:0}
 .process-item{flex:1;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:8px;
   padding:8px;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:600;color:var(--ppt-text-2)}
-.process-item i{color:var(--ppt-accent);font-size:16px}
+.process-item i{color:var(--ppt-accent-light);font-size:16px}
 .process-arrow{color:var(--ppt-text-3);font-size:14px;display:flex;align-items:center}
 .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 36px 8px;flex-shrink:0}
-.benefit{background:rgba(0,240,255,.06);border:1px solid rgba(0,240,255,.2);border-radius:10px;
+.benefit{background:rgba(0, 120, 212,.06);border:1px solid rgba(0, 120, 212,.2);border-radius:10px;
   padding:10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
 .benefit i{font-size:20px;color:var(--ppt-good)}
 .benefit-title{font-size:14px;font-weight:700}
@@ -88,7 +83,7 @@ html{overflow:hidden;margin:0;padding:0}
         <div class="hub-caption">기획부터 문서까지 End-to-End AI 협업</div>
         <div class="hub-center"><i class="fas fa-robot"></i><span>AI<br/>협업 허브</span></div>
         <div class="hub-agents-wrap">
-          <svg class="spoke-svg" viewBox="0 0 500 60"><line x1="250" y1="0" x2="50" y2="55" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="150" y2="55" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="250" y2="55" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="350" y2="55" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="450" y2="55" stroke="#00F0FF" stroke-width="1" opacity=".5"/></svg>
+          <svg class="spoke-svg" viewBox="0 0 500 60"><line x1="250" y1="0" x2="50" y2="55" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="150" y2="55" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="250" y2="55" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="350" y2="55" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/><line x1="250" y1="0" x2="450" y2="55" stroke="var(--ppt-accent)" stroke-width="1" opacity=".5"/></svg>
         <div class="agents">
           <div class="agent"><i class="fas fa-lightbulb"></i><div class="agent-title">기획</div><div class="agent-sub">요구 분석</div></div>
           <div class="agent"><i class="fas fa-sitemap"></i><div class="agent-title">설계</div><div class="agent-sub">구조 설계</div></div>
