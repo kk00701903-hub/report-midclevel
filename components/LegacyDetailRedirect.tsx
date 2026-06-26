@@ -21,8 +21,8 @@ export default function LegacyDetailRedirect({ targetSlideId, detailId }: Legacy
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#141414",
-        color: "#94A3B8",
+        background: "#FFFFFF",
+        color: "#605E5C",
         fontFamily: '"Noto Sans KR", sans-serif',
       }}
     >

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
-<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-light.css">
 <style>
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -29,16 +29,16 @@ body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:f
 .phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ph);border-radius:16px 16px 0 0}
 .phase::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(180deg,transparent,rgba(0,0,0,.15));pointer-events:none}
 .phase-content{display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1}
-.phase-num{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:2px solid var(--ph);
+.phase-num{width:32px;height:32px;border-radius:50%;background:var(--ppt-track-bg);border:2px solid var(--ph);
   color:var(--ph);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center}
-.phase-icon{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.06);
+.phase-icon{width:56px;height:56px;border-radius:16px;background:var(--ppt-track-bg);
   display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--ph);position:relative}
 .phase-icon::before{content:'';position:absolute;inset:-6px;border-radius:20px;border:2px dashed var(--ph);opacity:.25}
 .phase-title{font-size:18px;font-weight:700;text-align:center}
 .phase-desc{font-size:13px;font-weight:600;color:var(--ppt-text-1);text-align:center;line-height:1.35}
 .phase-detail{font-size:12px;color:var(--ppt-text-3);text-align:center;line-height:1.35}
 .phase-bar{width:100%;display:flex;gap:4px;padding:0 8px;z-index:1}
-.phase-bar span{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.1)}
+.phase-bar span{flex:1;height:4px;border-radius:2px;background:var(--ppt-track-bg)}
 .phase-bar span.on{background:var(--ph)}
 .connector{display:flex;flex-direction:column;align-items:center;justify-content:center;width:52px;flex-shrink:0;position:relative}
 .flow-track{width:100%;height:6px;background:var(--ppt-surface);border-radius:3px;border:1px solid var(--ppt-border);position:relative;overflow:hidden;margin:8px 0}

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
 <link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
-<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-dark.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-theme-fluent-light.css">
 <style>
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
@@ -40,7 +40,7 @@ body {
 }
 .kpi-value-row { display: flex; align-items: baseline; gap: 4px; }
 .kpi-bar-wrap { margin-top: 4px; }
-.kpi-bar-track { height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
+.kpi-bar-track { height: 6px; border-radius: 3px; background: var(--ppt-track-bg); overflow: hidden; }
 .body {
   flex: 1; min-height: 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px;
   padding: 0 36px 12px; position: relative; z-index: 1;
@@ -84,7 +84,7 @@ body {
 .tl-phase.active { color: var(--ppt-chart-3); background: rgba(255, 192, 0, 0.12); border-color: rgba(255, 192, 0, 0.3); font-weight: 700; }
 .prog-pct { color: var(--ppt-accent-light); }
 .donut {
-  background: conic-gradient(var(--ppt-chart-2) 0deg 100deg, var(--ppt-chart-1) 100deg 230deg, rgba(255,255,255,.1) 230deg 360deg);
+  background: conic-gradient(var(--ppt-chart-2) 0deg 100deg, var(--ppt-chart-1) 100deg 230deg, var(--ppt-track-bg) 230deg 360deg);
 }
 .donut::after { background: var(--ppt-surface); }
 .conclusion-item i { color: var(--ppt-accent-2); }
@@ -99,7 +99,7 @@ body {
 .timeline { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; }
 .tl-track {
   position: relative; height: 8px; border-radius: 4px;
-  background: rgba(255,255,255,.06); margin: 4px 0 8px;
+  background: var(--ppt-track-bg); margin: 4px 0 8px;
 }
 .tl-fill {
   position: absolute; left: 0; top: 0; height: 100%; width: 35%;
@@ -131,7 +131,7 @@ body {
 .prog-head { display: flex; justify-content: space-between; align-items: baseline; }
 .prog-name { font-size: 15px; font-weight: 600; }
 .prog-pct { font-size: 15px; font-weight: 800; color: var(--ppt-accent-light); }
-.prog-track { height: 10px; border-radius: 5px; background: rgba(255,255,255,.06); overflow: hidden; }
+.prog-track { height: 10px; border-radius: 5px; background: var(--ppt-track-bg); overflow: hidden; }
 .prog-fill { height: 100%; border-radius: 5px; }
 .prog-note { font-size: 12px; color: var(--gray-400); line-height: 1.35; }
 
@@ -139,7 +139,7 @@ body {
 .donut-row { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 .donut {
   width: 84px; height: 84px; border-radius: 50%; flex-shrink: 0;
-  background: conic-gradient(var(--green) 0deg 100deg, var(--blue-400) 100deg 230deg, rgba(255,255,255,.08) 230deg 360deg);
+  background: conic-gradient(var(--green) 0deg 100deg, var(--blue-400) 100deg 230deg, var(--ppt-track-bg) 230deg 360deg);
   display: flex; align-items: center; justify-content: center;
   position: relative;
 }
@@ -160,7 +160,7 @@ body {
 .conclusion-item {
   display: flex; gap: 10px; align-items: flex-start;
   padding: 8px 10px; border-radius: 10px;
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06);
+  background: var(--ppt-track-bg); border: 1px solid var(--ppt-track-bg);
 }
 .conclusion-item i { color: var(--gold); font-size: 14px; margin-top: 2px; flex-shrink: 0; }
 .conclusion-item p { font-size: 13px; line-height: 1.4; color: var(--gray-100); }
@@ -192,7 +192,7 @@ body {
       </div>
       <span class="header-date">2026년 6월 중간 보고</span>
     </div>
-    <p class="header-sub">차세대 FaSS 플랫폼 — <strong style="color:#fff">일정 · 비용 · 품질</strong> 관점에서 현재 위치와 향후 18개월 로드맵</p>
+    <p class="header-sub">차세대 FaSS 플랫폼 — <strong style="color:var(--ppt-text-1)">일정 · 비용 · 품질</strong> 관점에서 현재 위치와 향후 18개월 로드맵</p>
     <div class="header-line"></div>
   </header>
 
@@ -282,7 +282,7 @@ body {
         <div class="donut-legend">
           <div class="legend-item"><span class="legend-dot" style="background:var(--ppt-chart-2)"></span>완료 — 현황·목표·인프라 (28%)</div>
           <div class="legend-item"><span class="legend-dot" style="background:var(--ppt-chart-1)"></span>진행 — PoC·표준화 (36%)</div>
-          <div class="legend-item"><span class="legend-dot" style="background:rgba(255,255,255,.15)"></span>예정 — 프로토타입~본전환 (36%)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:rgba(0, 0, 0, 0.08)"></span>예정 — 프로토타입~본전환 (36%)</div>
         </div>
       </div>
       <div class="conclusion-list">

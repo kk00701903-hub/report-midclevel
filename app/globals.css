@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --bg: #141414;
-  --surface: #252423;
-  --border: #3B3A39;
-  --text: #ffffff;
-  --text-muted: #C8C6C4;
+  --bg: #FFFFFF;
+  --surface: #F3F2F1;
+  --border: #EDEBE9;
+  --text: #323130;
+  --text-muted: #605E5C;
   --accent: #0078D4;
   --accent-2: #FFB900;
 }
@@ -48,7 +48,7 @@ button {
   padding: 6px 12px;
   min-height: 40px;
   border-bottom: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(243, 242, 241, 0.95);
 }
 
 .presentation-header--compact {
@@ -229,14 +229,14 @@ button {
 .presentation-shell--present .presentation-header {
   top: 0;
   border-bottom: 1px solid rgba(51, 65, 85, 0.7);
-  background: rgba(10, 14, 26, 0.82);
+  background: rgba(243, 242, 241, 0.82);
   backdrop-filter: blur(8px);
 }
 
 .presentation-shell--present .slide-nav {
   bottom: 0;
   border-top: 1px solid rgba(51, 65, 85, 0.7);
-  background: rgba(10, 14, 26, 0.82);
+  background: rgba(243, 242, 241, 0.82);
   backdrop-filter: blur(8px);
 }
 
@@ -290,7 +290,7 @@ button {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: rgba(10, 14, 26, 0.92);
+  background: rgba(243, 242, 241, 0.92);
 }
 
 .slide-viewer__stage {
@@ -312,7 +312,7 @@ button {
   padding: 4px 10px;
   min-height: 36px;
   border-top: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(243, 242, 241, 0.95);
 }
 
 .slide-nav--compact {
@@ -388,7 +388,7 @@ button {
   right: 0;
   width: min(420px, 100vw);
   height: 100vh;
-  background: rgba(10, 14, 26, 0.98);
+  background: rgba(243, 242, 241, 0.98);
   border-left: 1px solid var(--border);
   z-index: 1000;
   display: flex;
@@ -584,7 +584,7 @@ button {
 .options-panel {
   width: min(640px, 100%);
   max-height: min(90vh, 820px);
-  background: #141414;
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   display: flex;
@@ -719,7 +719,7 @@ button {
   padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid var(--border);
-  background: #141414;
+  background: var(--bg);
   color: var(--text);
   font: inherit;
   font-size: 13px;
@@ -815,7 +815,7 @@ button {
 .detail-panel {
   width: min(720px, 100vw);
   height: 100vh;
-  background: #141414;
+  background: var(--bg);
   border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -828,7 +828,7 @@ button {
   justify-content: space-between;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.98);
+  background: rgba(243, 242, 241, 0.98);
 }
 
 .detail-panel__toolbar-left {
@@ -1473,7 +1473,7 @@ button {
 .detail-milestones__bar {
   position: absolute;
   border-radius: 4px;
-  background: color-mix(in srgb, var(--phase-accent, var(--accent)) 75%, #141414);
+  background: color-mix(in srgb, var(--phase-accent, var(--accent)) 75%, var(--bg));
   border: 1px solid color-mix(in srgb, var(--phase-accent, var(--accent)) 50%, transparent);
   display: flex;
   align-items: center;
@@ -1945,7 +1945,7 @@ button {
   gap: 16px;
   padding: 20px 24px;
   border-bottom: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.98);
+  background: rgba(243, 242, 241, 0.98);
 }
 
 .detail-page__header h1 {
@@ -2044,7 +2044,7 @@ button {
   border: 1px solid var(--border);
   border-left: none;
   border-radius: 0 8px 8px 0;
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(243, 242, 241, 0.95);
   color: var(--accent);
   cursor: pointer;
   transition: left 0.25s ease;
@@ -2068,7 +2068,7 @@ button {
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background: rgba(10, 14, 26, 0.98);
+  background: rgba(243, 242, 241, 0.98);
   border-right: 1px solid transparent;
   transition: width 0.25s ease, border-color 0.25s ease;
   display: flex;
@@ -2296,7 +2296,7 @@ button {
   width: 44px;
   height: 72px;
   border: 1px solid rgba(51, 65, 85, 0.8);
-  background: rgba(10, 14, 26, 0.75);
+  background: rgba(243, 242, 241, 0.75);
   color: var(--text);
   font-size: 20px;
   cursor: pointer;
@@ -2337,7 +2337,7 @@ button {
   padding: 6px 12px;
   min-height: 44px;
   border-top: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(243, 242, 241, 0.95);
 }
 
 .projector-footer__btn--settings {
@@ -2441,7 +2441,7 @@ button {
   padding: 6px 12px;
   border-radius: 8px;
   border: 1px solid rgba(0, 120, 212, 0.35);
-  background: rgba(10, 14, 26, 0.82);
+  background: rgba(243, 242, 241, 0.82);
   backdrop-filter: blur(6px);
   pointer-events: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
@@ -2520,7 +2520,7 @@ button {
   padding: 8px 14px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.9);
+  background: rgba(243, 242, 241, 0.9);
   color: var(--text-muted);
   cursor: pointer;
   font-size: 13px;

@@ -1,0 +1,192 @@
+/**
+ * Microsoft Fluent Light / PowerPoint presentation theme.
+ * Single source of truth for slide color tokens and shared UI primitives.
+ */
+:root {
+  --ppt-font: "Noto Sans KR", "Segoe UI", sans-serif;
+  --ppt-font-display: "Noto Sans KR", "Segoe UI", sans-serif;
+  --ppt-font-body: "Noto Sans KR", "Segoe UI", sans-serif;
+
+  /* Fluent Neutral Light */
+  --ppt-bg: #FFFFFF;
+  --ppt-bg-soft: #F3F2F1;
+  --ppt-surface: #FFFFFF;
+  --ppt-surface-2: #FAFAFA;
+  --ppt-border: #EDEBE9;
+
+  /* Text */
+  --ppt-text-1: #323130;
+  --ppt-text-2: #605E5C;
+  --ppt-text-3: #8A8886;
+
+  /* Fluent accents */
+  --ppt-accent: #0078D4;
+  --ppt-accent-light: #0078D4;
+  --ppt-accent-2: #FFB900;
+  --ppt-good: #107C10;
+  --ppt-warn: #FFB900;
+  --ppt-bad: #E81123;
+  --ppt-purple: #8764B8;
+  --ppt-orange: #ED7D31;
+  --ppt-teal: #00B294;
+
+  /* Light-only helpers */
+  --ppt-track-bg: rgba(0, 0, 0, 0.06);
+  --ppt-overlay: rgba(255, 255, 255, 0.92);
+
+  /* Office chart palette */
+  --ppt-chart-1: #5B9BD5;
+  --ppt-chart-2: #70AD47;
+  --ppt-chart-3: #FFC000;
+  --ppt-chart-4: #8E6BBE;
+  --ppt-chart-5: #ED7D31;
+  --p1: #5B9BD5;
+  --p2: #70AD47;
+  --p3: #FFC000;
+  --p4: #8E6BBE;
+  --p5: #00B294;
+  --p6: #E81123;
+  --p7: #ED7D31;
+
+  /* Shape & elevation */
+  --ppt-radius-sm: 4px;
+  --ppt-radius-md: 6px;
+  --ppt-radius-lg: 8px;
+  --ppt-shadow-soft: 0 1.6px 3.6px rgba(0, 0, 0, 0.13), 0 0.3px 0.9px rgba(0, 0, 0, 0.11);
+  --ppt-shadow-strong: 0 6.4px 14.4px rgba(0, 0, 0, 0.15), 0 1.2px 3.6px rgba(0, 0, 0, 0.1);
+
+  /* Legacy aliases */
+  --navy-900: #FFFFFF;
+  --navy-800: #F3F2F1;
+  --navy-700: #FAFAFA;
+  --blue-500: #0078D4;
+  --blue-400: #0078D4;
+  --blue-300: #0078D4;
+  --gray-100: #605E5C;
+  --gray-300: #605E5C;
+  --gray-400: #8A8886;
+  --green: #107C10;
+  --amber: #FFB900;
+  --gold: #FFB900;
+  --white: #FFFFFF;
+}
+
+/* ── Fluent background decoration ── */
+.fluent-bg-deco::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 92% 8%, rgba(0, 120, 212, 0.06) 0%, transparent 42%),
+    radial-gradient(ellipse at 8% 92%, rgba(0, 120, 212, 0.03) 0%, transparent 40%);
+}
+
+.fluent-bg-shape {
+  position: absolute;
+  pointer-events: none;
+  border-radius: var(--ppt-radius-lg);
+  opacity: 0.08;
+  background: var(--ppt-accent);
+}
+
+/* ── Cards (SmartArt-style) ── */
+.fluent-card {
+  background: var(--ppt-surface);
+  border: 1px solid var(--ppt-border);
+  border-radius: var(--ppt-radius-lg);
+  box-shadow: var(--ppt-shadow-soft);
+  border-top: 3px solid var(--ppt-accent);
+}
+
+.fluent-kpi {
+  background: var(--ppt-surface);
+  border: 1px solid var(--ppt-border);
+  border-radius: var(--ppt-radius-lg);
+  padding: 12px 14px;
+  box-shadow: var(--ppt-shadow-soft);
+}
+
+.fluent-kpi__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ppt-text-2);
+}
+
+.fluent-kpi__value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--ppt-text-1);
+}
+
+/* ── Progress bars ── */
+.fluent-progress__track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ppt-track-bg);
+  overflow: hidden;
+}
+
+.fluent-progress__fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--ppt-accent);
+}
+
+.fluent-progress__fill--good { background: var(--ppt-good); }
+.fluent-progress__fill--warn { background: var(--ppt-warn); }
+.fluent-progress__fill--chart1 { background: var(--ppt-chart-1); }
+.fluent-progress__fill--chart2 { background: var(--ppt-chart-2); }
+
+/* ── Donut chart (CSS) ── */
+.fluent-donut {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--ppt-chart-2) 0deg 100deg,
+    var(--ppt-chart-1) 100deg 230deg,
+    var(--ppt-track-bg) 230deg 360deg
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.fluent-donut::after {
+  content: "";
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ppt-surface);
+  position: absolute;
+}
+
+.fluent-donut__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ppt-text-1);
+}
+
+/* ── Title bar ── */
+.fluent-title-bar {
+  width: 4px;
+  height: 32px;
+  background: var(--ppt-accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.fluent-badge {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--ppt-radius-sm);
+  background: rgba(0, 120, 212, 0.08);
+  border: 1px solid rgba(0, 120, 212, 0.25);
+  color: var(--ppt-accent);
+}
