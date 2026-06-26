@@ -15,7 +15,7 @@ export const SLIDES: Slide[] = [
   { id: 7, title: "시스템 3대 핵심 요소" },
   { id: 8, title: "차세대 3계층 구조 — 왜 분리하나?" },
   { id: 9, title: "레거시 탈피 — 모듈형으로 전환" },
-  { id: 10, title: "Executive Summary - FaSS 플랫폼 구축" },
+  { id: 10, title: "경영진 핵심 요약 — FaSS 플랫폼 구축" },
   { id: 11, title: "PART 2 - 프로젝트 진행 경과 및 방향성" },
   { id: 12, title: "스프린트 운영현황" },
   { id: 13, title: "타사 프로젝트 비교" },
