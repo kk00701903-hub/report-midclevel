@@ -1,269 +1,72 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>비즈니스 혁신4: 프로토타입 엔진을 통한 아키텍처 내재화</title>
+<title>PART 4 - 혁신 및 검증</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font-body: "Noto Sans KR", sans-serif;
   --ppt-font-display: "Noto Sans KR", sans-serif;
 
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-surface-2:#2A344A;
-  --ppt-border:#334155; --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
-  --ppt-font: "Noto Sans KR", sans-serif;
+  --ppt-bg: #0A0E1A; --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15;
+  --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-font: "Noto Sans KR", sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
-.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
-.title-r{flex-shrink:0;padding:22px 36px 6px;position:relative;z-index:1}
-.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
-h1.title-main{font-size:26px;font-weight:700;line-height:1.3;margin:0}
-.sub{font-size:13px;color:var(--ppt-text-2);margin-top:4px;padding-left:14px;line-height:1.4}
-.sub strong{color:var(--ppt-text-2);font-weight:700}
-.line{height:1px;margin-top:8px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
-.body{flex:1;min-height:0;padding:6px 32px 10px;display:grid;grid-template-columns:1fr 1.15fr 1fr;grid-template-rows:1fr auto;gap:8px}
-/* Cards */
-.col{display:flex;flex-direction:column;gap:6px;min-height:0}
-.col-head{font-size:13px;font-weight:700;color:var(--ppt-accent);display:flex;align-items:center;gap:5px;flex-shrink:0}
-.card{background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:10px;padding:8px 10px;flex:1;display:flex;flex-direction:column;gap:6px;min-height:0}
-.item{display:flex;gap:8px;align-items:flex-start}
-.item-ico{width:30px;height:30px;border-radius:7px;background:var(--ppt-surface-2);display:flex;align-items:center;justify-content:center;color:var(--ppt-accent);font-size:13px;flex-shrink:0}
-.item-t{font-size:11.5px;font-weight:700;line-height:1.25}
-.item-d{font-size:13px;color:var(--ppt-text-2);line-height:1.38;margin-top:2px}
-/* Center diagram */
-.visual{grid-row:1;grid-column:2;display:flex;flex-direction:column;gap:6px;min-height:0}
-.diagram-frame{
-  flex:1;min-height:0;border-radius:12px;border:1px solid var(--ppt-border);
-  background:linear-gradient(165deg,rgba(20,27,45,.95),var(--ppt-bg-soft));
-  padding:10px 12px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body{ width:100vw; height:100vh; overflow:hidden; background:#0A0E1A; display:flex; justify-content:center; align-items:center; ;font-family:var(--ppt-font-body,var(--ppt-font))}
+.section-slide-root {
+  width:960px; height:720px; background:var(--ppt-bg); font-family:var(--ppt-font);
+  position:relative; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+  padding:0 80px; overflow:hidden;
 }
-.diagram-frame::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 0%,rgba(0,240,255,.08) 0%,transparent 55%);
-}
-.diag-label{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--ppt-accent);text-align:center;position:relative;z-index:1}
-.diag-sandbox{
-  position:relative;z-index:1;flex:1;min-height:0;border:1px dashed rgba(0,240,255,.35);border-radius:10px;
-  background:rgba(0,240,255,.04);padding:8px 10px;display:flex;flex-direction:column;gap:6px;
-}
-.sandbox-tag{font-size:13px;font-weight:800;color:var(--ppt-accent-2);display:flex;align-items:center;justify-content:center;gap:5px}
-.sandbox-tag i{font-size:13px}
-.diag-stack{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:4px;align-items:center;flex:1;min-height:0}
-.diag-box{
-  background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:8px;
-  padding:6px 5px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:0;
-}
-.diag-box.highlight{border-color:rgba(250,204,21,.45);background:rgba(250,204,21,.08)}
-.diag-box i{font-size:14px;color:var(--ppt-accent)}
-.diag-box.highlight i{color:var(--ppt-accent-2)}
-.diag-box-t{font-size:8.5px;font-weight:700;line-height:1.25;color:var(--ppt-text-1)}
-.diag-box-s{font-size:7.5px;color:var(--ppt-text-3);line-height:1.2}
-.diag-arrow{color:var(--ppt-text-3);font-size:13px}
-.diag-mid{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:center}
-.diag-pipeline{
-  position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:3px;flex-wrap:wrap;
-  padding:6px 4px;border-radius:8px;background:rgba(30,38,56,.6);border:1px solid var(--ppt-border);
-}
-.pipe-node{font-size:13px;font-weight:700;padding:4px 7px;border-radius:6px;background:var(--ppt-surface);border:1px solid var(--ppt-border);text-align:center;line-height:1.2;white-space:nowrap}
-.pipe-node.accent{border-color:rgba(0,240,255,.45);color:var(--ppt-accent)}
-.pipe-node.gold{border-color:rgba(250,204,21,.45);color:var(--ppt-accent-2)}
-.pipe-node.good{border-color:rgba(34,197,94,.45);color:var(--ppt-good)}
-.pipe-arrow{color:var(--ppt-text-3);font-size:13px}
-.diag-expand{
-  position:relative;z-index:1;display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:stretch;
-}
-.expand-from,.expand-to{
-  border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;
-}
-.expand-from{background:rgba(100,116,139,.12);border:1px solid var(--ppt-border)}
-.expand-to{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35)}
-.expand-from i{color:var(--ppt-text-3);font-size:13px}
-.expand-to i{color:var(--ppt-good);font-size:13px}
-.expand-t{font-size:8.5px;font-weight:700;line-height:1.25}
-.expand-s{font-size:7.5px;color:var(--ppt-text-3);line-height:1.2}
-.expand-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--ppt-accent-2)}
-.expand-mid i{font-size:14px}
-.expand-mid span{font-size:13px;font-weight:700}
-.visual-caption{font-size:13px;color:var(--ppt-text-2);line-height:1.4;text-align:center;position:relative;z-index:1}
-.visual-caption strong{color:var(--ppt-accent)}
-.value-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex-shrink:0}
-.value-card{padding:6px 5px;border-radius:8px;background:rgba(0,240,255,.06);border:1px solid rgba(0,240,255,.2);text-align:center}
-.value-card.gold{background:rgba(250,204,21,.06);border-color:rgba(250,204,21,.25)}
-.value-card i{font-size:14px;margin-bottom:3px;display:block}
-.value-card.accent i{color:var(--ppt-accent)}
-.value-card.gold i{color:var(--ppt-accent-2)}
-.value-card.good i{color:var(--ppt-good)}
-.value-card span{font-size:13px;font-weight:700;line-height:1.25;color:var(--ppt-text-2)}
-/* Bottom bar */
-.bottom{grid-column:1/4;flex-shrink:0;display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;background:linear-gradient(90deg,var(--ppt-surface-2),var(--ppt-surface));border-left:4px solid var(--ppt-accent-2);border-radius:10px;padding:8px 14px}
-.bottom-date{font-size:16px;font-weight:800;color:var(--ppt-accent-2);white-space:nowrap;display:flex;align-items:center;gap:6px}
-.bottom-text{font-size:13px;color:var(--ppt-text-1);line-height:1.45}
-.bottom-text span{color:var(--ppt-accent);font-weight:600}
-html{overflow:hidden;margin:0;padding:0}
-</style>
-</head>
+.bg-grid-overlay { position:absolute; inset:0; background-image:linear-gradient(rgba(0,240,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
+.bg-glow-circle { position:absolute; right:-120px; top:50%; transform:translateY(-50%); width:500px; height:500px; background:radial-gradient(circle,rgba(0,240,255,0.07) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
+.bg-left-bar { position:absolute; left:0; top:0; bottom:0; width:6px; background:linear-gradient(180deg,transparent 0%,var(--ppt-accent) 40%,var(--ppt-accent) 60%,transparent 100%); }
+.section-part-number { font-size:120px; font-weight:700; line-height:1; color:transparent; -webkit-text-stroke:1px rgba(0,240,255,0.2); position:absolute; right:60px; bottom:40px; }
+.section-part-label { font-size:14px; font-weight:700; color:var(--ppt-accent); letter-spacing:4px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.section-part-label::after { content:''; display:block; width:60px; height:1px; background:var(--ppt-accent); opacity:0.5; }
+.section-title-ko { font-size:26px; font-weight:700; color:var(--ppt-text-1); line-height:1.2; margin-bottom:8px; }
+.section-title-en { font-size:18px; color:var(--ppt-accent-2); letter-spacing:1px; margin-bottom:40px; }
+.section-divider-line { width:80px; height:3px; background:linear-gradient(90deg,var(--ppt-accent),transparent); margin-bottom:36px; border-radius:2px; }
+.section-topics-list { display:flex; flex-direction:column; gap:14px; }
+.section-topic-item { display:flex; align-items:center; gap:14px; }
+.topic-dot { width:8px; height:8px; border-radius:50%; background:var(--ppt-accent); flex-shrink:0; box-shadow:0 0 8px var(--ppt-accent); }
+.topic-text { font-size:17px; color:var(--ppt-text-2); line-height:1.4; }
+</style></head>
 <body>
-<div class="slide" data-motion="innovation" data-motion-tier="medium">
-  <div class="title-r">
-    <div class="title-row">
-      <div class="bar"></div>
-      <span class="badge">BUSINESS INNOVATION</span>
-      <h1 class="title-main">비즈니스 혁신4: 프로토타입 엔진을 통한 아키텍처 내재화</h1>
-    </div>
-    <p class="sub"><strong>JTGS 통합 프로토타입</strong> — 제한된 환경에서 차세대 스택을 검증하고, 당사 기술 업그레이드와 시행착오를 최소화하는 내재화 과정</p>
-    <div class="line"></div>
-  </div>
-
-  <div class="body">
-    <div class="col">
-      <div class="col-head"><i class="fas fa-bullseye"></i> 전략적 선정 배경</div>
-      <div class="card">
-        <div class="item">
-          <div class="item-ico"><i class="fas fa-shield-halved"></i></div>
-          <div>
-            <div class="item-t">비즈니스 리스크 격리</div>
-            <p class="item-d">주유소(JTGS) 제한 환경 — 장애 시에도 전사 핵심 물류·유통망에 파급 최소</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-ico"><i class="fas fa-gears"></i></div>
-          <div>
-            <div class="item-t">차세대 스택 검증 대상</div>
-            <p class="item-d">정산·재고·외부 연동 등 FaSS V3.0 핵심 기능을 실전 프로토타입으로 검증</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="visual">
-      <div class="diagram-frame">
-        <div class="diag-label">ARCHITECTURE INTERNALIZATION FLOW</div>
-
-        <div class="diag-sandbox">
-          <div class="sandbox-tag"><i class="fas fa-shield-halved"></i> JTGS 격리 샌드박스 — 비즈니스 리스크 최소화</div>
-          <div class="diag-stack">
-            <div class="diag-box">
-              <i class="fab fa-react"></i>
-              <div class="diag-box-t">Next.js UI</div>
-              <div class="diag-box-s">RSC · RealGrid</div>
-            </div>
-            <span class="diag-arrow"><i class="fas fa-chevron-right"></i></span>
-            <div class="diag-box highlight">
-              <i class="fas fa-layer-group"></i>
-              <div class="diag-box-t">SiteFramework</div>
-              <div class="diag-box-s">공통 모듈</div>
-            </div>
-            <span class="diag-arrow"><i class="fas fa-chevron-right"></i></span>
-            <div class="diag-box">
-              <i class="fas fa-server"></i>
-              <div class="diag-box-t">API · 정산</div>
-              <div class="diag-box-s">재고 · 연동</div>
-            </div>
-          </div>
-          <div class="diag-mid">
-            <div class="diag-box" style="grid-column:1">
-              <i class="fas fa-shuffle"></i>
-              <div class="diag-box-t">API Gateway</div>
-            </div>
-            <span class="diag-arrow"><i class="fas fa-arrows-left-right"></i></span>
-            <div class="diag-box" style="grid-column:3">
-              <i class="fas fa-database"></i>
-              <div class="diag-box-t">PostgreSQL</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="diag-pipeline">
-          <div class="pipe-node">프로토타입 PoC</div>
-          <span class="pipe-arrow"><i class="fas fa-chevron-right"></i></span>
-          <div class="pipe-node accent">기술 검증·학습</div>
-          <span class="pipe-arrow"><i class="fas fa-chevron-right"></i></span>
-          <div class="pipe-node gold">아키텍처 내재화</div>
-          <span class="pipe-arrow"><i class="fas fa-chevron-right"></i></span>
-          <div class="pipe-node good">본 사업 확산</div>
-        </div>
-
-        <div class="diag-expand">
-          <div class="expand-from">
-            <i class="fas fa-flask"></i>
-            <div class="expand-t">제한 환경 실험</div>
-            <div class="expand-s">JTGS 프로토타입</div>
-          </div>
-          <div class="expand-mid">
-            <i class="fas fa-angles-down"></i>
-            <span>검증·표준화</span>
-          </div>
-          <div class="expand-to">
-            <i class="fas fa-building"></i>
-            <div class="expand-t">전사 표준 적용</div>
-            <div class="expand-s">물류·유통 확산</div>
-          </div>
-        </div>
-
-        <p class="visual-caption">통합 프로토타입으로 <strong>차세대 스택을 안전하게 검증</strong>하고,<br>조직에 <strong>아키텍처·운영 노하우를 내재화</strong>한 뒤 본 사업으로 확산</p>
-      </div>
-      <div class="value-cards">
-        <div class="value-card accent"><i class="fas fa-arrow-trend-up"></i><span>기술<br>업그레이드</span></div>
-        <div class="value-card gold"><i class="fas fa-shield-halved"></i><span>시행착오<br>최소화</span></div>
-        <div class="value-card good"><i class="fas fa-sitemap"></i><span>아키텍처<br>내재화</span></div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="col-head"><i class="fas fa-vial"></i> 핵심 목표 및 의의</div>
-      <div class="card">
-        <div class="item">
-          <div class="item-ico"><i class="fas fa-gauge-high"></i></div>
-          <div>
-            <div class="item-t">프로토타입 개발 로드맵</div>
-            <p class="item-d">2026.10 착수 → 2027.03 완성 → 2027.06 안정화. 완성형 스택 최초 적용의 시작점</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-ico"><i class="fas fa-display"></i></div>
-          <div>
-            <div class="item-t">설계 표준 · 스토리보드 확정</div>
-            <p class="item-d">UI·기능 스토리보드 표본 확정 → 향후 전사 시스템 개발의 공통 설계 기준</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-ico"><i class="fas fa-flask"></i></div>
-          <div>
-            <div class="item-t">Learn before Scale</div>
-            <p class="item-d">본격 확산 전 아키텍처·프레임워크·운영 노하우를 조직에 내재화하여 리스크 선제 제거</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="bottom">
-      <div class="bottom-date"><i class="fas fa-calendar-check"></i> 2026. 10.</div>
-      <p class="bottom-text">
-        2026년 10월 차세대 서버에서 <span>FaSS V1.0 통합 프로토타입 개발 착수</span> (런칭·시연 아닌 개발 Start).
-        프로토타입 단계에서 검증·학습을 마친 뒤 본 사업으로 확산함으로써, <span>기술 업그레이드 속도는 높이고 시행착오 비용은 줄입니다.</span>
-      </p>
-    </div>
+<div class="section-slide-root" data-motion="part" data-motion-tier="medium">
+  <div class="bg-grid-overlay"></div>
+  <div class="bg-glow-circle"></div>
+  <div class="bg-left-bar"></div>
+  <div class="section-part-number">04</div>
+  <div class="section-part-label">PART 04</div>
+  <div class="section-title-ko">혁신 및 검증</div>
+  <div class="section-title-en">Innovation &amp; Validation</div>
+  <div class="section-divider-line"></div>
+  <div class="section-topics-list" style="gap:10px;">
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신1: 차세대 영업 핵심 IT 엔진 보유</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신2: AI 지능형 물류 플랫폼으로의 전환</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신3: 전략적 수익화 IT 플랫폼 확보</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신4: 프로토타입 엔진을 통한 아키텍처 내재화</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신5: Zero-Defect 코드 품질 통제 체계</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신6: FinOps 관점에서의 클라우드 전환 대비</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신7: DGX·Claude Code 오케스트레이션 및 프로세스 지침</span></div>
+    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신8: 빌더형 인재 육성을 위한 전환</span></div>
   </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight;
-    var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
-    el.style.position='absolute';
-    el.style.left=Math.round((sw-960*scale)/2)+'px';
+    var el=document.querySelector('body>div'); if(!el)return;
+    var sw=window.innerWidth,sh=window.innerHeight,scale=Math.min(sw/960,sh/720);
+    el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
+    el.style.position='absolute'; el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();window.addEventListener('resize',applyScale);
+  applyScale(); window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

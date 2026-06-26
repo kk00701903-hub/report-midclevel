@@ -1,260 +1,147 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>비즈니스 혁신3: 전략적 수익화 IT 플랫폼 확보</title>
+<title>아키텍처 원칙 3 — 자동화된 배포</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<style>:root {
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root {
+  --ppt-font-body: "Noto Sans KR", sans-serif;
+  --ppt-font-display: "Noto Sans KR", sans-serif;
+  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
+  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B; --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
   --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    /* Deep Midnight Navy */
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    /* Electric Cyan for Tech */
-    --ppt-accent-2: #FACC15;
-    /* Gold for Value/ROI */
-    --ppt-good: #22C55E;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --ppt-shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.5);
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0
-    }
-body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--ppt-font-body)}
-.roi-asset-slide-root {
-    width: 960px;
-    height: 720px;
-    background-color: var(--ppt-bg);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    color: var(--ppt-text-1)
-    }
-/* Title Region — match slide 19 */
-.title-r{flex-shrink:0;padding:22px 36px 6px;position:relative;z-index:1}
-.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
-h1.title-main{font-size:26px;font-weight:700;line-height:1.3;margin:0}
-.sub{font-size:13px;color:var(--ppt-text-2);margin-top:4px;padding-left:14px;line-height:1.4}
-.line{height:1px;margin-top:8px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
-/* Main Content */
-.roi-asset-main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 0 40px 24px 40px;
-    gap: 24px
-    }
-.roi-asset-focus-wrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 32px
-    }
-.roi-asset-highlight-left {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center
-    }
-.roi-asset-label-top {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--ppt-accent);
-    margin-bottom: 8px
-    }
-.roi-asset-value-main {
-    font-family: var(--ppt-font-display);
-    font-size: 90px;
-    font-weight: 700;
-    color: var(--ppt-accent-2);
-    line-height: 1;
-    display: flex;
-    align-items: baseline;
-    gap: 12px
-    }
-.roi-asset-value-unit {
-    font-size: 48px;
-    color: var(--ppt-text-1)
-    }
-.roi-asset-tagline {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--ppt-text-1);
-    margin-top: 16px
-    }
-.roi-asset-description-right {
-    flex: 2;
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 2px solid var(--ppt-accent);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px
-    }
-.roi-asset-desc-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.roi-asset-desc-body {
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--ppt-text-2)
-    }
-/* Evidence Strip */
-.roi-asset-evidence-strip {
-    display: flex;
-    gap: 20px;
-    margin-top: auto
-    }
-.roi-asset-evidence-card {
-    flex: 1;
-    background: var(--ppt-surface);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-md);
-    padding: 14px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    transition: transform 0.3s ease
-    }
-.roi-asset-card-icon-box {
-    width: 48px;
-    height: 48px;
-    background: rgba(0, 240, 255, 0.1);
-    border-radius: var(--ppt-radius-sm);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--ppt-accent);
-    font-size: 20px
-    }
-.roi-asset-card-text-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px
-    }
-.roi-asset-card-heading {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.roi-asset-card-subtext {
-    font-size: 16px;
-    color: var(--ppt-text-2)
-    }
-.roi-asset-card-accent-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ppt-good);
-    margin-top: 4px
-    }
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse at 20% 10%,rgba(0,240,255,.07) 0%,transparent 45%),
+  radial-gradient(ellipse at 80% 90%,rgba(252,109,38,.06) 0%,transparent 40%)}
+.title-wrap{flex-shrink:0;padding:22px 40px 6px;position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
+.title-header{display:flex;align-items:center;gap:12px}
+.title-bar{width:4px;height:32px;background:var(--ppt-accent);border-radius:2px}
+.title-text{font-family:var(--ppt-font-display);font-size:28px;font-weight:700;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:16px;line-height:1.4}
+.title-line{height:1px;width:100%;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.3;margin-top:4px}
+.body{flex:1;min-height:0;padding:10px 40px 8px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1;justify-content:center}
+.pipeline{display:flex;align-items:stretch;gap:0;flex:1;min-height:0;max-height:340px}
+.phase{flex:1;background:linear-gradient(160deg,rgba(30,38,56,.95),var(--ppt-bg-soft));border:1px solid var(--ppt-border);
+  border-radius:16px;padding:16px 14px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:8px;position:relative;overflow:hidden}
+.phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ph);border-radius:16px 16px 0 0}
+.phase::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(180deg,transparent,rgba(0,0,0,.15));pointer-events:none}
+.phase-content{display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1}
+.phase-num{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:2px solid var(--ph);
+  color:var(--ph);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.phase-icon{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--ph);position:relative}
+.phase-icon::before{content:'';position:absolute;inset:-6px;border-radius:20px;border:2px dashed var(--ph);opacity:.25}
+.phase-title{font-size:18px;font-weight:700;text-align:center}
+.phase-desc{font-size:13px;font-weight:600;color:var(--ppt-text-1);text-align:center;line-height:1.35}
+.phase-detail{font-size:12px;color:var(--ppt-text-3);text-align:center;line-height:1.35}
+.phase-bar{width:100%;display:flex;gap:4px;padding:0 8px;z-index:1}
+.phase-bar span{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.1)}
+.phase-bar span.on{background:var(--ph)}
+.connector{display:flex;flex-direction:column;align-items:center;justify-content:center;width:52px;flex-shrink:0;position:relative}
+.flow-track{width:100%;height:6px;background:var(--ppt-surface);border-radius:3px;border:1px solid var(--ppt-border);position:relative;overflow:hidden;margin:8px 0}
+.flow-track::after{content:'';position:absolute;top:0;left:-40%;width:40%;height:100%;border-radius:3px;background:linear-gradient(90deg,transparent,var(--ppt-accent),transparent);animation:flow 3s linear infinite}
+@keyframes flow{0%{left:-40%}100%{left:100%}}
+.connector svg{width:20px;height:20px;color:var(--ppt-accent)}
+.outcome-strip{display:flex;gap:10px;flex-shrink:0}
+.outcome-item{flex:1;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:10px;
+  padding:12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.outcome-item i{font-size:22px;color:var(--ppt-accent)}
+.outcome-val{font-size:22px;font-weight:800;color:var(--ppt-accent-2);line-height:1}
+.outcome-label{font-size:12px;font-weight:600;color:var(--ppt-text-2);line-height:1.35}
+.footer{flex-shrink:0;margin:0 40px 12px;padding:9px 16px;font-size:14px;color:var(--ppt-text-2);
+  border-left:3px solid var(--ppt-accent-2);background:rgba(250,204,21,.05);border-radius:0 8px 8px 0;line-height:1.45;position:relative;z-index:1}
+.footer strong{color:var(--ppt-accent-2)}
+html{overflow:hidden;margin:0;padding:0}
+</style>
+</head>
 <body>
-<div class="roi-asset-slide-root" data-motion="innovation" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Non-Cover-Page Title Region -->
-<div class="title-r">
-<div class="title-row">
-<div class="bar"></div>
-<span class="badge">BUSINESS INNOVATION</span>
-<h1 class="title-main">비즈니스 혁신3: 전략적 수익화 IT 플랫폼 확보</h1>
-</div>
-<p class="sub">내재화 기술 자산 가치 극대화 — ASP 수익화를 위한 전략적 IT 플랫폼</p>
-<div class="line"></div>
-</div>
-<!-- Main Content Body -->
-<div class="roi-asset-main-content">
-<!-- Top Focus Statement Section -->
-<div class="roi-asset-focus-wrapper">
-<div class="roi-asset-highlight-left">
-<div class="roi-asset-label-top">내재화 기술 자산 가치</div>
-<div class="roi-asset-value-main">
-            100 <span class="roi-asset-value-unit">억 원+</span>
-</div>
-<p class="roi-asset-tagline">IT 부서를 넘어, 회사의 핵심 수익 파이프라인(Profit Center)으로 격상</p>
-</div>
-<div class="roi-asset-description-right">
-<h2 class="roi-asset-desc-title">비즈니스 모델의 근본적 전환</h2>
-<p class="roi-asset-desc-body">
-            대규모 외주 SI에 의존하던 과거 방식에서 탈피하여, 독자적인 기술 스택과 AI 에이전트를 결합한 차세대 FaSS 플랫폼을 완성했습니다. 이는 단순한 시스템 구축을 넘어, 유관 기업 및 중소 물류사에 즉각 공급 가능한 '패키지형 자산'을 확보했음을 의미합니다.
-          </p>
-</div>
-</div>
-<!-- Bottom Evidence Strip -->
-<div class="roi-asset-evidence-strip">
-<div class="roi-asset-evidence-card">
-<div class="roi-asset-card-icon-box">
-<i class="fas fa-shield-halved"></i>
-</div>
-<div class="roi-asset-card-text-group">
-<div class="roi-asset-card-heading">외주 SI 비용 방어</div>
-<div class="roi-asset-card-subtext">약 80억 원 규모의 SI 외주비를 내부 인력 및 AI로 대체</div>
-<div class="roi-asset-card-accent-label">비용 절감 효과 극대화</div>
-</div>
-</div>
-<div class="roi-asset-evidence-card">
-<div class="roi-asset-card-icon-box">
-<i class="fas fa-database"></i>
-</div>
-<div class="roi-asset-card-text-group">
-<div class="roi-asset-card-heading">라이선스 비용 영구 절감</div>
-<div class="roi-asset-card-subtext">Oracle → PostgreSQL 마이그레이션 및 오픈소스 표준화</div>
-<div class="roi-asset-card-accent-label">수억 원 단위 고정비 제거</div>
-</div>
-</div>
-<div class="roi-asset-evidence-card">
-<div class="roi-asset-card-icon-box">
-<i class="fas fa-money-bill-trend-up"></i>
-</div>
-<div class="roi-asset-card-text-group">
-<div class="roi-asset-card-heading">ASP 수익화 모델 확보</div>
-<div class="roi-asset-card-subtext">완성된 플랫폼을 구독형(ASP) 솔루션으로 패키지화</div>
-<div class="roi-asset-card-accent-label">신규 매출 파이프라인 창출</div>
-</div>
-</div>
-</div>
-</div>
+<div class="slide" data-motion="pipeline" data-motion-tier="medium">
+  <div class="title-wrap">
+    <div class="title-header">
+      <div class="title-bar"></div>
+      <h1 class="title-text">아키텍처 원칙 3 — 자동화된 배포</h1>
+    </div>
+    <div class="title-sub">코드 변경부터 서비스 반영까지 전 과정 자동화</div>
+    <div class="title-line"></div>
+  </div>
+
+  <div class="body">
+    <div class="pipeline">
+      <div class="phase" style="--ph:var(--ppt-accent-2)">
+        <div class="phase-content">
+          <div class="phase-num">1</div>
+          <div class="phase-icon"><i class="fas fa-code"></i></div>
+          <div class="phase-title">코드 작성</div>
+          <div class="phase-desc">변경 사항 등록</div>
+          <div class="phase-detail">변경 이력 추적 · 협업 기반 개발</div>
+        </div>
+        <div class="phase-bar"><span class="on"></span><span></span><span></span></div>
+      </div>
+
+      <div class="connector">
+        <div class="flow-track"></div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </div>
+
+      <div class="phase" style="--ph:var(--ppt-accent)">
+        <div class="phase-content">
+          <div class="phase-num">2</div>
+          <div class="phase-icon"><i class="fas fa-magnifying-glass"></i></div>
+          <div class="phase-title">자동 검증</div>
+          <div class="phase-desc">품질·보안 검사</div>
+          <div class="phase-detail">품질·보안 기준 미달 시 자동 차단</div>
+        </div>
+        <div class="phase-bar"><span class="on"></span><span class="on"></span><span></span></div>
+      </div>
+
+      <div class="connector">
+        <div class="flow-track"></div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </div>
+
+      <div class="phase" style="--ph:var(--ppt-good)">
+        <div class="phase-content">
+          <div class="phase-num">3</div>
+          <div class="phase-icon"><i class="fas fa-rocket"></i></div>
+          <div class="phase-title">자동 배포</div>
+          <div class="phase-desc">무중단 서비스 반영</div>
+          <div class="phase-detail">승인된 변경만 운영 환경 반영</div>
+        </div>
+        <div class="phase-bar"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      </div>
+    </div>
+
+    <div class="outcome-strip">
+      <div class="outcome-item"><i class="fas fa-clock"></i><div class="outcome-val">90%↓</div><div class="outcome-label">배포 시간 단축</div></div>
+      <div class="outcome-item"><i class="fas fa-user-shield"></i><div class="outcome-val">Zero</div><div class="outcome-label">휴먼 에러 감소</div></div>
+      <div class="outcome-item"><i class="fas fa-clipboard-check"></i><div class="outcome-val">100%</div><div class="outcome-label">감사 추적</div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>핵심:</strong> 사람 개입 없이 품질 통과 후 배포 — 변경 이력·감사 추적으로 경영 투명성 확보
+  </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
+    var el=document.querySelector('body>div');if(!el)return;
     var sw=window.innerWidth,sh=window.innerHeight;
     var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
+    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
     el.style.position='absolute';
     el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();
-  window.addEventListener('resize',applyScale);
+  applyScale();window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

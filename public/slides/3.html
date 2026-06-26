@@ -1,16 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>디지털 트렌드 — MSA · Cloud · Open Source · AI</title>
+<title>글로벌 디지털 4대 축</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font: "Noto Sans KR", sans-serif;
-
   --ppt-bg: #0A0E1A; --ppt-bg-soft: #141B2D; --ppt-surface: #1E2638;
   --ppt-border: #334155; --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-text-3: #64748B;
   --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15; --ppt-good: #22C55E;
@@ -43,9 +42,8 @@ body {
   border:1px solid rgba(250,204,21,0.3); white-space:nowrap;
 }
 .title-main {
-  font-family:var(--ppt-font-display); font-size:26px; font-weight:700; line-height:1.22; margin:0;
+  font-family:var(--ppt-font-display); font-size:28px; font-weight:700; line-height:1.22; margin:0;
 }
-.title-main em { color:var(--ppt-orange); font-style:normal; }
 .title-sub { font-size:15px; color:var(--ppt-text-2); padding-left:16px; line-height:1.4; }
 .title-line {
   height:1px; width:100%;
@@ -53,14 +51,27 @@ body {
   opacity:0.3; margin-top:4px;
 }
 .trend-grid {
-  flex:1; min-height:0; padding:4px 28px 4px;
-  display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:8px;
+  flex:1; min-height:0; padding:8px 32px 6px;
+  display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:12px;
+  position:relative;
 }
+.hub-svg { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:80px; height:80px; pointer-events:none; z-index:0; opacity:.35; }
 .trend-card {
   background:var(--ppt-bg-soft); border:1px solid var(--ppt-border);
-  border-radius:var(--ppt-radius-lg); padding:8px 10px;
-  display:flex; flex-direction:column; gap:5px; position:relative; overflow:hidden;
+  border-radius:var(--ppt-radius-lg); padding:16px 14px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; position:relative; overflow:hidden; text-align:center; z-index:1;
 }
+.watermark { position:absolute; bottom:-10px; right:-10px; font-size:80px; opacity:.06; pointer-events:none; }
+.trend-card.cyan .watermark { color:var(--ppt-accent); }
+.trend-card.green .watermark { color:var(--ppt-good); }
+.trend-card.purple .watermark { color:var(--ppt-purple); }
+.trend-card.gold .watermark { color:var(--ppt-accent-2); }
+.accent-bar { position:absolute; bottom:0; left:0; right:0; height:3px; }
+.trend-card.cyan .accent-bar { background:var(--ppt-accent); }
+.trend-card.green .accent-bar { background:var(--ppt-good); }
+.trend-card.purple .accent-bar { background:var(--ppt-purple); }
+.trend-card.gold .accent-bar { background:var(--ppt-accent-2); }
 .trend-card::before {
   content:''; position:absolute; top:0; left:0; right:0; height:3px;
 }
@@ -68,47 +79,27 @@ body {
 .trend-card.green::before  { background:var(--ppt-good); }
 .trend-card.purple::before { background:var(--ppt-purple); }
 .trend-card.gold::before   { background:var(--ppt-accent-2); }
-.card-head { display:flex; align-items:center; gap:8px; }
 .card-icon {
-  width:34px; height:34px; border-radius:var(--ppt-radius-md);
-  display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0;
+  width:60px; height:60px; border-radius:var(--ppt-radius-lg);
+  display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0;
 }
 .card-icon.cyan   { background:rgba(0,240,255,0.12); color:var(--ppt-accent); }
 .card-icon.green  { background:rgba(34,197,94,0.12); color:var(--ppt-good); }
 .card-icon.purple { background:rgba(167,139,250,0.12); color:var(--ppt-purple); }
 .card-icon.gold   { background:rgba(250,204,21,0.12); color:var(--ppt-accent-2); }
-.card-title { font-size:15px; font-weight:700; line-height:1.28; }
-.card-en { font-size:13px; color:var(--ppt-text-3); margin-top:1px; }
-.card-divider { height:1px; background:var(--ppt-border); }
-.card-points { flex:1; display:flex; flex-direction:column; gap:5px; min-height:0; }
-.point {
-  display:flex; gap:6px; align-items:flex-start;
-  padding:3px 6px; border-radius:var(--ppt-radius-md);
-  background:rgba(255,255,255,0.025);
-}
-.point-dot { width:5px; height:5px; border-radius:50%; margin-top:7px; flex-shrink:0; }
-.point-dot.cyan   { background:var(--ppt-accent); }
-.point-dot.green  { background:var(--ppt-good); }
-.point-dot.purple { background:var(--ppt-purple); }
-.point-dot.gold   { background:var(--ppt-accent-2); }
-.point p { font-size:13px; color:var(--ppt-text-2); line-height:1.45; }
-.point strong { color:var(--ppt-text-1); }
-.card-tags { display:flex; flex-wrap:wrap; gap:3px; }
-.ctag {
-  font-size:13px; font-weight:600; padding:2px 6px; border-radius:12px;
-  background:var(--ppt-surface); border:1px solid var(--ppt-border); color:var(--ppt-text-3);
-}
+.card-title { font-size:20px; font-weight:700; line-height:1.28; }
+.card-msg { font-size:15px; font-weight:600; color:var(--ppt-text-1); line-height:1.4; }
+.card-detail { font-size:13px; color:var(--ppt-text-3); line-height:1.45; max-width:280px; }
 .bottom-bar {
-  flex-shrink:0; margin:0 28px 8px;
-  padding:6px 12px; border-radius:var(--ppt-radius-md);
+  flex-shrink:0; margin:0 32px 14px;
+  padding:10px 16px; border-radius:var(--ppt-radius-md);
   background:linear-gradient(90deg,rgba(251,146,60,0.1),rgba(0,240,255,0.06),transparent);
   border:1px solid rgba(251,146,60,0.25);
   display:flex; align-items:center; gap:12px;
 }
-.bottom-bar i { color:var(--ppt-orange); font-size:15px; flex-shrink:0; }
-.bottom-bar p { font-size:14px; color:var(--ppt-text-2); line-height:1.38; }
+.bottom-bar i { color:var(--ppt-orange); font-size:18px; flex-shrink:0; }
+.bottom-bar p { font-size:15px; color:var(--ppt-text-2); line-height:1.38; }
 .bottom-bar strong { color:var(--ppt-orange); }
-.bottom-bar em { color:var(--ppt-accent); font-style:normal; font-weight:600; }
 html { overflow:hidden; margin:0; padding:0; }
 </style>
 </head>
@@ -118,115 +109,54 @@ html { overflow:hidden; margin:0; padding:0; }
     <div class="title-header">
       <div class="title-bar"></div>
       <span class="title-badge">FUTURE VISION</span>
-      <h1 class="title-main">디지털 트렌드 — MSA · Cloud · Open Source · AI</h1>
+      <h1 class="title-main">글로벌 디지털 4대 축</h1>
     </div>
-    <div class="title-sub">MSA · Cloud · Open Source · AI — 글로벌 선도 기업이 동시에 채택하는 산업 표준입니다.</div>
+    <div class="title-sub">글로벌 선도 기업이 동시에 투자하는 4대 디지털 전략</div>
     <div class="title-line"></div>
   </div>
 
   <div class="trend-grid">
+    <svg class="hub-svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="8" fill="none" stroke="#00F0FF" stroke-width="1.5"/><line x1="40" y1="8" x2="40" y2="32" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="40" y1="48" x2="40" y2="72" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="8" y1="40" x2="32" y2="40" stroke="#00F0FF" stroke-width="1" opacity=".5"/><line x1="48" y1="40" x2="72" y2="40" stroke="#00F0FF" stroke-width="1" opacity=".5"/></svg>
     <div class="trend-card cyan">
-      <div class="card-head">
-        <div class="card-icon cyan"><i class="fas fa-cubes"></i></div>
-        <div>
-          <div class="card-title">MSA · 모듈러 아키텍처</div>
-          <div class="card-en">Microservices &amp; Modular Monolith</div>
-        </div>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-points">
-        <div class="point">
-          <div class="point-dot cyan"></div>
-          <p><strong>차세대 정부 비딩 RFP</strong> — 도메인 분리·독립 배포가 핵심 평가 항목</p>
-        </div>
-        <div class="point">
-          <div class="point-dot cyan"></div>
-          <p><strong>Modular Monolith → MSA</strong> 점진 전환, 토스·카카오뱅크 등 핀테크 표준</p>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="ctag">DDD</span><span class="ctag">Bounded Context</span><span class="ctag">API-First</span><span class="ctag">Modular Monolith</span>
-      </div>
+      <i class="fas fa-cubes watermark"></i>
+      <div class="card-icon cyan"><i class="fas fa-cubes"></i></div>
+      <div class="card-title">모듈형 구조</div>
+      <div class="card-msg">빠른 기능 출시</div>
+      <div class="card-detail">독립 배포로 시장 변화에 즉각 대응</div>
+      <div class="accent-bar"></div>
     </div>
 
     <div class="trend-card green">
-      <div class="card-head">
-        <div class="card-icon green"><i class="fas fa-cloud"></i></div>
-        <div>
-          <div class="card-title">Cloud Native · Kubernetes</div>
-          <div class="card-en">Cloud-Ready &amp; Hybrid Ops</div>
-        </div>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-points">
-        <div class="point">
-          <div class="point-dot green"></div>
-          <p><strong>Kubernetes</strong> — 컨테이너 오케스트레이션 de facto 표준</p>
-        </div>
-        <div class="point">
-          <div class="point-dot green"></div>
-          <p><strong>GitOps · FinOps</strong>로 배포·비용 코드화, 금융·공공 K8s 전환 가속</p>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="ctag">K8s</span><span class="ctag">GitOps</span><span class="ctag">FinOps</span><span class="ctag">Cloud-Ready</span>
-      </div>
+      <i class="fas fa-cloud watermark"></i>
+      <div class="card-icon green"><i class="fas fa-cloud"></i></div>
+      <div class="card-title">클라우드</div>
+      <div class="card-msg">비용·운영 효율</div>
+      <div class="card-detail">사용량 기반 확장으로 IT 투자 최적화</div>
+      <div class="accent-bar"></div>
     </div>
 
     <div class="trend-card purple">
-      <div class="card-head">
-        <div class="card-icon purple"><i class="fab fa-github"></i></div>
-        <div>
-          <div class="card-title">Open Source · CNCF 표준</div>
-          <div class="card-en">Vendor-Neutral Infrastructure</div>
-        </div>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-points">
-        <div class="point">
-          <div class="point-dot purple"></div>
-          <p><strong>PostgreSQL · Kafka · Prometheus</strong> — 엔터프라이즈 인프라 표준</p>
-        </div>
-        <div class="point">
-          <div class="point-dot purple"></div>
-          <p><strong>벤더 Lock-in 탈피</strong>, 국내 금융권 Oracle → PostgreSQL 전환 확산</p>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="ctag">CNCF</span><span class="ctag">Kafka</span><span class="ctag">PostgreSQL</span><span class="ctag">Debezium</span>
-      </div>
+      <i class="fab fa-github watermark"></i>
+      <div class="card-icon purple"><i class="fab fa-github"></i></div>
+      <div class="card-title">오픈소스</div>
+      <div class="card-msg">벤더 종속 탈피</div>
+      <div class="card-detail">표준 기술 채택으로 장기 비용·유연성 확보</div>
+      <div class="accent-bar"></div>
     </div>
 
     <div class="trend-card gold">
-      <div class="card-head">
-        <div class="card-icon gold"><i class="fas fa-robot"></i></div>
-        <div>
-          <div class="card-title">AI Native · Agentic Development</div>
-          <div class="card-en">LLM · RAG · Digital Worker</div>
-        </div>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-points">
-        <div class="point">
-          <div class="point-dot gold"></div>
-          <p><strong>AI Agent</strong> — 코드·테스트·MR까지 CI/CD 파이프라인 통합</p>
-        </div>
-        <div class="point">
-          <div class="point-dot gold"></div>
-          <p><strong>LangGraph · RAG · Digital Worker</strong> — 24/7 자동화 + Human-in-the-loop</p>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="ctag">LLM</span><span class="ctag">LangGraph</span><span class="ctag">Copilot</span><span class="ctag">AI Agent</span>
-      </div>
+      <i class="fas fa-robot watermark"></i>
+      <div class="card-icon gold"><i class="fas fa-robot"></i></div>
+      <div class="card-title">AI</div>
+      <div class="card-msg">개발·운영 자동화</div>
+      <div class="card-detail">반복 업무 자동화로 생산성·품질 동시 향상</div>
+      <div class="accent-bar"></div>
     </div>
   </div>
 
   <div class="bottom-bar">
     <i class="fas fa-bullseye"></i>
-    <p>
-      <strong>시사점:</strong> 네 축은 글로벌 선도 기업이 검증한 <em>동시 투자 패러다임</em> — 물류·유통에서도 적용이 가속화되고 있습니다.
-    </p>
+    <p><strong>시사점:</strong> 4축 동시 투자는 글로벌 선도 기업의 표준 패러다임 — 물류·유통 분야에서도 경쟁력의 핵심 축입니다.</p>
   </div>
 </div>
 <script>

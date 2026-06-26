@@ -1,72 +1,232 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>PART 4 - 혁신 및 검증</title>
+<title>핵심 기술 스택</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font-body: "Noto Sans KR", sans-serif;
   --ppt-font-display: "Noto Sans KR", sans-serif;
 
-  --ppt-bg: #0A0E1A; --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15;
-  --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-font: "Noto Sans KR", sans-serif;
+  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
+  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
+  --c-infra:#38BDF8; --c-fw:#FACC15; --c-sec:#A78BFA; --c-data:#34D399;
+  --ppt-font: "Noto Sans KR", sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body{ width:100vw; height:100vh; overflow:hidden; background:#0A0E1A; display:flex; justify-content:center; align-items:center; ;font-family:var(--ppt-font-body,var(--ppt-font))}
-.section-slide-root {
-  width:960px; height:720px; background:var(--ppt-bg); font-family:var(--ppt-font);
-  position:relative; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
-  padding:0 80px; overflow:hidden;
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse at 15% 0%,rgba(0,240,255,.06) 0%,transparent 50%),
+  radial-gradient(ellipse at 85% 100%,rgba(250,204,21,.05) 0%,transparent 45%)}
+.title-r{flex-shrink:0;padding:22px 36px 6px;position:relative;z-index:1}
+.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bar{width:4px;height:28px;background:var(--ppt-accent);border-radius:2px}
+.badge{font-size:13px;font-weight:700;padding:3px 9px;border-radius:12px;background:rgba(0,240,255,.1);border:1px solid rgba(0,240,255,.3);color:var(--ppt-accent)}
+h1{font-size:26px;font-weight:700;line-height:1.3}
+.sub{font-size:13px;color:var(--ppt-text-2);margin-top:4px;padding-left:14px}
+.line{height:1px;margin-top:6px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.std-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;padding-left:14px}
+.std-pill{font-size:13px;font-weight:600;padding:4px 10px;border-radius:14px;background:var(--ppt-surface);border:1px solid var(--ppt-border);color:var(--ppt-text-2);display:inline-flex;align-items:center;gap:5px}
+.std-pill i{color:var(--ppt-accent);font-size:13px}
+.body{flex:1;min-height:0;padding:8px 32px 6px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.flow-strip{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 12px;background:rgba(20,27,45,.85);border:1px solid var(--ppt-border);border-radius:10px}
+.flow-node{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);font-size:13px;font-weight:700;white-space:nowrap}
+.flow-node i{font-size:13px}
+.flow-node.n1{color:var(--c-infra);border-color:rgba(56,189,248,.35)} .flow-node.n1 i{color:var(--c-infra)}
+.flow-node.n2{color:var(--c-fw);border-color:rgba(250,204,21,.4);background:rgba(250,204,21,.08)} .flow-node.n2 i{color:var(--c-fw)}
+.flow-node.n3{color:var(--c-sec);border-color:rgba(167,139,250,.35)} .flow-node.n3 i{color:var(--c-sec)}
+.flow-node.n4{color:var(--c-data);border-color:rgba(52,211,153,.35)} .flow-node.n4 i{color:var(--c-data)}
+.flow-arrow{color:var(--ppt-text-3);font-size:13px}
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+.cat-card{background:linear-gradient(145deg,rgba(30,38,56,.95),var(--ppt-bg-soft));border:1px solid var(--ppt-border);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-height:0;border-top:3px solid var(--cat-color);position:relative;overflow:hidden}
+.cat-card.core{border-color:rgba(250,204,21,.5);box-shadow:0 0 28px rgba(250,204,21,.1)}
+.cat-head{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cat-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(255,255,255,.07);color:var(--cat-color);border:1px solid rgba(255,255,255,.08)}
+.cat-title{font-size:15px;font-weight:700}
+.cat-count{margin-left:auto;font-size:13px;color:var(--ppt-text-3);background:var(--ppt-surface);padding:3px 8px;border-radius:8px;border:1px solid var(--ppt-border)}
+.cat-core-tag{font-size:13px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(250,204,21,.2);color:var(--ppt-accent-2);border:1px solid rgba(250,204,21,.35)}
+.cat-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:13px;font-weight:600;padding:4px 9px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);color:var(--ppt-text-2);display:inline-flex;align-items:center;gap:4px}
+.chip i{font-size:13px;color:var(--cat-color);opacity:.9}
+.chip.spot{
+  color:var(--ppt-text-1);font-weight:700;
+  animation:chipSpotPulse 4.var(--motion-duration,6s) ease-in-out infinite;
 }
-.bg-grid-overlay { position:absolute; inset:0; background-image:linear-gradient(rgba(0,240,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
-.bg-glow-circle { position:absolute; right:-120px; top:50%; transform:translateY(-50%); width:500px; height:500px; background:radial-gradient(circle,rgba(0,240,255,0.07) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
-.bg-left-bar { position:absolute; left:0; top:0; bottom:0; width:6px; background:linear-gradient(180deg,transparent 0%,var(--ppt-accent) 40%,var(--ppt-accent) 60%,transparent 100%); }
-.section-part-number { font-size:120px; font-weight:700; line-height:1; color:transparent; -webkit-text-stroke:1px rgba(0,240,255,0.2); position:absolute; right:60px; bottom:40px; }
-.section-part-label { font-size:14px; font-weight:700; color:var(--ppt-accent); letter-spacing:4px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
-.section-part-label::after { content:''; display:block; width:60px; height:1px; background:var(--ppt-accent); opacity:0.5; }
-.section-title-ko { font-size:26px; font-weight:700; color:var(--ppt-text-1); line-height:1.2; margin-bottom:8px; }
-.section-title-en { font-size:18px; color:var(--ppt-accent-2); letter-spacing:1px; margin-bottom:40px; }
-.section-divider-line { width:80px; height:3px; background:linear-gradient(90deg,var(--ppt-accent),transparent); margin-bottom:36px; border-radius:2px; }
-.section-topics-list { display:flex; flex-direction:column; gap:14px; }
-.section-topic-item { display:flex; align-items:center; gap:14px; }
-.topic-dot { width:8px; height:8px; border-radius:50%; background:var(--ppt-accent); flex-shrink:0; box-shadow:0 0 8px var(--ppt-accent); }
-.topic-text { font-size:17px; color:var(--ppt-text-2); line-height:1.4; }
-</style></head>
+.chip.spot-infra{
+  border-color:rgba(56,189,248,.5);background:rgba(56,189,248,.1);
+  box-shadow:0 0 10px rgba(56,189,248,.12);
+}
+.chip.spot-infra i{color:#7DD3FC}
+.chip.spot-sec{
+  border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.1);
+  box-shadow:0 0 10px rgba(167,139,250,.12);
+}
+.chip.spot-sec i{color:#C4B5FD}
+.chip.spot-data{
+  border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.1);
+  box-shadow:0 0 10px rgba(52,211,153,.12);
+}
+.chip.spot-data i{color:#6EE7B7}
+@keyframes chipSpotPulse{
+  0%,100%{filter:brightness(1);transform:scale(1)}
+  50%{filter:brightness(1.15);transform:scale(1.02)}
+}
+.core-visual{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:rgba(250,204,21,.06);border:1px dashed rgba(250,204,21,.25)}
+.layer-box{flex:1;text-align:center;padding:6px 4px;border-radius:6px;font-size:13px;font-weight:700;line-height:1.3}
+.layer-box.l1{background:rgba(97,218,251,.12);color:#7DD3FC;border:1px solid rgba(97,218,251,.25)}
+.layer-box.l2{background:rgba(250,204,21,.12);color:#FDE68A;border:1px solid rgba(250,204,21,.3)}
+.layer-box.l3{background:rgba(109,179,63,.12);color:#BBF7D0;border:1px solid rgba(109,179,63,.25)}
+.layer-arrow{color:var(--ppt-text-3);font-size:13px}
+.footer{flex-shrink:0;margin:4px 32px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;z-index:1}
+.footer-note{flex:1;padding:9px 12px;font-size:13px;color:var(--ppt-text-2);line-height:1.45;border-left:3px solid var(--ppt-accent-2);background:rgba(250,204,21,.05);border-radius:0 8px 8px 0}
+.footer-note strong{color:var(--ppt-accent-2)}
+.footer-stats{display:flex;gap:8px;flex-shrink:0}
+.stat-box{text-align:center;padding:7px 14px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);min-width:68px}
+.stat-val{font-size:20px;font-weight:700;color:var(--ppt-accent);line-height:1}
+.stat-lbl{font-size:13px;color:var(--ppt-text-3);margin-top:2px}
+html{overflow:hidden;margin:0;padding:0}
+</style>
+</head>
 <body>
-<div class="section-slide-root" data-motion="part" data-motion-tier="medium">
-  <div class="bg-grid-overlay"></div>
-  <div class="bg-glow-circle"></div>
-  <div class="bg-left-bar"></div>
-  <div class="section-part-number">04</div>
-  <div class="section-part-label">PART 04</div>
-  <div class="section-title-ko">혁신 및 검증</div>
-  <div class="section-title-en">Innovation &amp; Validation</div>
-  <div class="section-divider-line"></div>
-  <div class="section-topics-list" style="gap:10px;">
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신1: 차세대 영업 핵심 IT 엔진 보유</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신2: AI 지능형 물류 플랫폼으로의 전환</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신3: 전략적 수익화 IT 플랫폼 확보</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신4: 프로토타입 엔진을 통한 아키텍처 내재화</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신5: Zero-Defect 코드 품질 통제 체계</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신6: FinOps 관점에서의 클라우드 전환 대비</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신7: DGX·Claude Code 오케스트레이션 및 프로세스 지침</span></div>
-    <div class="section-topic-item"><div class="topic-dot"></div><span class="topic-text" style="font-size:15px;">비즈니스 혁신8: 빌더형 인재 육성을 위한 전환</span></div>
+<div class="slide" data-motion="cards" data-motion-tier="medium">
+  <div class="title-r">
+    <div class="title-row">
+      <div class="bar"></div>
+      <span class="badge">Tech Stack</span>
+      <h1>핵심 기술 스택</h1>
+    </div>
+    <p class="sub">차세대 FaSS 플랫폼 — 4개 영역 · 선정 기술 스택</p>
+    <div class="std-pills">
+      <span class="std-pill"><i class="fab fa-java"></i> Java 21</span>
+      <span class="std-pill"><i class="fab fa-react"></i> Next.js · React 19</span>
+      <span class="std-pill"><i class="fas fa-database"></i> PostgreSQL</span>
+      <span class="std-pill"><i class="fab fa-docker"></i> Docker · K8s Ready</span>
+    </div>
+    <div class="line"></div>
+  </div>
+
+  <div class="body">
+    <div class="flow-strip">
+      <div class="flow-node n1"><i class="fas fa-server"></i> DevOps · 인프라</div>
+      <span class="flow-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="flow-node n2"><i class="fas fa-layer-group"></i> 프레임워크 · UI</div>
+      <span class="flow-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="flow-node n3"><i class="fas fa-shield-halved"></i> 보안 · 연동</div>
+      <span class="flow-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="flow-node n4"><i class="fas fa-chart-line"></i> 데이터 · BI · AI</div>
+    </div>
+
+    <div class="grid">
+      <div class="cat-card" style="--cat-color:var(--c-infra)">
+        <div class="cat-head">
+          <div class="cat-icon"><i class="fas fa-server"></i></div>
+          <span class="cat-title">DevOps · 인프라</span>
+          <span class="cat-count">8종</span>
+        </div>
+        <div class="cat-body">
+          <div class="chips">
+            <span class="chip spot spot-infra"><i class="fab fa-docker"></i>Docker</span>
+            <span class="chip"><i class="fas fa-ship"></i>K8s</span>
+            <span class="chip spot spot-infra" style="animation-delay:.8s"><i class="fab fa-gitlab"></i>GitLab CI</span>
+            <span class="chip"><i class="fas fa-rotate"></i>ArgoCD</span>
+            <span class="chip"><i class="fas fa-magnifying-glass-chart"></i>SonarQube</span>
+            <span class="chip"><i class="fas fa-cube"></i>Nexus</span>
+            <span class="chip"><i class="fas fa-leaf"></i>Spring Cloud Config</span>
+            <span class="chip"><i class="fas fa-bolt"></i>Redis</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card core" style="--cat-color:var(--c-fw)">
+        <div class="cat-head">
+          <div class="cat-icon"><i class="fas fa-layer-group"></i></div>
+          <span class="cat-title">프레임워크 · UI</span>
+          <span class="cat-core-tag">핵심 축</span>
+        </div>
+        <div class="core-visual">
+          <div class="layer-box l1">Presentation<br>Next.js · React</div>
+          <span class="layer-arrow">▶</span>
+          <div class="layer-box l2">Component<br>RealGrid · Tailwind</div>
+          <span class="layer-arrow">▶</span>
+          <div class="layer-box l3">Batch<br>Spring Batch</div>
+        </div>
+        <div class="cat-body">
+          <div class="chips">
+            <span class="chip"><i class="fas fa-n"></i>Next.js</span>
+            <span class="chip"><i class="fab fa-react"></i>React 19</span>
+            <span class="chip"><i class="fas fa-wind"></i>Tailwind CSS</span>
+            <span class="chip"><i class="fas fa-table"></i>RealGrid</span>
+            <span class="chip"><i class="fas fa-atom"></i>Atomic Design</span>
+            <span class="chip"><i class="fas fa-leaf"></i>Spring Batch</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card" style="--cat-color:var(--c-sec)">
+        <div class="cat-head">
+          <div class="cat-icon"><i class="fas fa-shield-halved"></i></div>
+          <span class="cat-title">보안 · 연동</span>
+          <span class="cat-count">6종</span>
+        </div>
+        <div class="cat-body">
+          <div class="chips">
+            <span class="chip"><i class="fas fa-key"></i>Keycloak</span>
+            <span class="chip"><i class="fas fa-id-card"></i>JWT</span>
+            <span class="chip"><i class="fas fa-lock"></i>Spring Security</span>
+            <span class="chip spot spot-sec" style="animation-delay:.4s"><i class="fas fa-shield-halved"></i>API Gateway</span>
+            <span class="chip"><i class="fas fa-plug"></i>REST / gRPC</span>
+            <span class="chip"><i class="fas fa-users-rectangle"></i>Multi-tenancy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card" style="--cat-color:var(--c-data)">
+        <div class="cat-head">
+          <div class="cat-icon"><i class="fas fa-chart-pie"></i></div>
+          <span class="cat-title">데이터 · BI · AI</span>
+          <span class="cat-count">6종</span>
+        </div>
+        <div class="cat-body">
+          <div class="chips">
+            <span class="chip spot spot-data" style="animation-delay:1.2s"><i class="fas fa-database"></i>Debezium</span>
+            <span class="chip"><i class="fas fa-stream"></i>Kafka</span>
+            <span class="chip"><i class="fas fa-print"></i>ClipReport</span>
+            <span class="chip"><i class="fas fa-chart-bar"></i>Superset</span>
+            <span class="chip"><i class="fas fa-chart-line"></i>Grafana</span>
+            <span class="chip"><i class="fas fa-robot"></i>LangChain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-note"><strong>핵심 축</strong> Next.js · React 19 프레임워크 중심 — DevOps 안정화 → UI 표준화 → 연동·보안 → BI·AI 순 단계 구축</div>
+    <div class="footer-stats">
+      <div class="stat-box"><div class="stat-val">4</div><div class="stat-lbl">영역</div></div>
+      <div class="stat-box"><div class="stat-val">26</div><div class="stat-lbl">기술</div></div>
+    </div>
   </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div'); if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight,scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
-    el.style.position='absolute'; el.style.left=Math.round((sw-960*scale)/2)+'px';
+    var el=document.querySelector('body>div');if(!el)return;
+    var sw=window.innerWidth,sh=window.innerHeight;
+    var scale=Math.min(sw/960,sh/720);
+    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
+    el.style.position='absolute';
+    el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale(); window.addEventListener('resize',applyScale);
+  applyScale();window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

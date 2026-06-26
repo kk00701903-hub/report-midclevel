@@ -2,204 +2,86 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>타사 프로젝트 비교</title>
+<title>레거시 탈피 — 모듈형으로 전환</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-  --ppt-bg: #0A0E1A;
-  --ppt-bg-soft: #141B2D;
-  --ppt-surface: #1E2638;
-  --ppt-border: #334155;
-  --ppt-text-1: #FFF;
-  --ppt-text-2: #94A3B8;
-  --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF;
-  --ppt-accent-2: #FACC15;
-  --ppt-good: #22C55E;
-  --ppt-radius-md: 8px;
-  --ppt-radius-lg: 16px;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 100vw; height: 100vh; overflow: hidden;
-  background: #0A0E1A;
-  display: flex; justify-content: center; align-items: center;
-  font-family: var(--ppt-font-body);
-}
-.slide-root {
-  width: 960px; height: 720px;
-  background: var(--ppt-bg);
-  color: var(--ppt-text-1);
-  display: flex; flex-direction: column;
-  overflow: hidden;
-}
-.title-region { padding: 28px 40px 10px; }
-.title-row { display: flex; align-items: center; gap: 12px; }
-.title-bar { width: 4px; height: 32px; background: var(--ppt-accent-2); border-radius: 2px; }
-.title-text { font-family: var(--ppt-font-display); font-size:26px; font-weight: 700; }
-.title-sub { font-size: 14px; color: var(--ppt-text-2); margin-top: 8px; padding-left: 16px; }
-.title-line {
-  height: 1px; margin-top: 10px;
-  background: linear-gradient(90deg, var(--ppt-accent-2) 0%, transparent 100%);
-  opacity: 0.35;
-}
-.main-body { flex: 1; padding: 8px 40px 20px; display: flex; flex-direction: column; gap: 12px; }
-.ref-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 14px; border-radius: var(--ppt-radius-md);
-  background: rgba(250,204,21,0.08); border: 1px solid rgba(250,204,21,0.25);
-  font-size: 13px; color: var(--ppt-accent-2); width: fit-content;
-}
-.compare-grid { flex: 1; display: grid; grid-template-columns: 1fr 56px 1fr; gap: 10px; align-items: stretch; }
-.compare-card {
-  background: var(--ppt-bg-soft); border: 1px solid var(--ppt-border);
-  border-radius: var(--ppt-radius-lg); padding: 16px 18px;
-  display: flex; flex-direction: column; gap: 12px;
-}
-.compare-card--peer { border-top: 3px solid var(--ppt-accent-2); }
-.compare-card--ours { border-top: 3px solid var(--ppt-accent); }
-.compare-label { font-size:13px; font-weight: 700; color: var(--ppt-text-3); letter-spacing: 1px; text-transform: uppercase; }
-.compare-company { font-size: 20px; font-weight: 700; }
-.compare-company.peer { color: var(--ppt-accent-2); }
-.compare-company.ours { color: var(--ppt-accent); }
-.compare-scope { font-size: 13px; color: var(--ppt-text-2); line-height: 1.5; }
-.metric-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-.metric-item {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 10px; border-radius: var(--ppt-radius-md);
-  background: rgba(30,38,56,0.55); border: 1px solid var(--ppt-border);
-  font-size: 13px;
-}
-.metric-item span:first-child { color: var(--ppt-text-2); }
-.metric-item strong { color: var(--ppt-text-1); font-size: 14px; }
-.vs-col { display: flex; align-items: center; justify-content: center; }
-.vs-badge {
-  width: 44px; height: 44px; border-radius: 50%;
-  border: 1px solid var(--ppt-border); background: var(--ppt-surface);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: var(--ppt-text-3);
-}
-.table-wrap {
-  border: 1px solid var(--ppt-border); border-radius: var(--ppt-radius-lg);
-  overflow: hidden; background: var(--ppt-bg-soft);
-}
-.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.compare-table th {
-  padding: 10px 14px; text-align: left;
-  background: rgba(30,38,56,0.85); color: var(--ppt-text-2);
-  border-bottom: 1px solid var(--ppt-border); font-weight: 600;
-}
-.compare-table td {
-  padding: 9px 14px; border-bottom: 1px solid rgba(51,65,85,0.55);
-  color: var(--ppt-text-2); vertical-align: top;
-}
-.compare-table tr:last-child td { border-bottom: none; }
-.compare-table td strong { color: var(--ppt-text-1); }
-.footnote {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size:13px; color: var(--ppt-text-3); line-height: 1.45;
-}
-.footnote i { color: var(--ppt-accent-2); margin-top: 2px; }
-html { overflow: hidden; margin: 0; padding: 0; }
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root{--ppt-font:"Noto Sans KR",sans-serif;--ppt-bg:#0A0E1A;--ppt-bg-soft:#141B2D;--ppt-surface:#1E2638;--ppt-border:#334155;--ppt-text-1:#FFF;--ppt-text-2:#94A3B8;--ppt-text-3:#64748B;--ppt-accent:#00F0FF;--ppt-accent-2:#FACC15;--ppt-good:#22C55E;--ppt-bad:#EF4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
+.title-r{flex-shrink:0;padding:22px 40px 6px;display:flex;flex-direction:column;gap:6px}
+.title-row{display:flex;align-items:center;gap:10px}
+.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
+h1{font-size:26px;font-weight:700;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
+.line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.main{flex:1;min-height:0;padding:10px 36px 8px;display:grid;grid-template-columns:1fr 52px 1fr;gap:12px;align-items:stretch}
+.box{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:10px}
+.box.old{border-top:3px solid var(--ppt-text-3)}
+.box.new{border-top:3px solid var(--ppt-good);background:linear-gradient(160deg,rgba(34,197,94,.08),var(--ppt-bg-soft))}
+.box-label{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ppt-text-3)}
+.box.new .box-label{color:var(--ppt-good)}
+.box-title{font-size:17px;font-weight:700;line-height:1.35}
+.box-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.box-list li{font-size:14px;line-height:1.4;color:var(--ppt-text-2)}
+.box-list strong{color:var(--ppt-text-1);display:block;font-size:15px;margin-bottom:2px}
+.mono-vis{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:12px 0}
+.mono-block{flex:1;height:48px;background:rgba(100,116,139,.35);border:1px solid rgba(100,116,139,.5);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ppt-text-3)}
+.mod-vis{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;padding:8px 0}
+.mod-block{width:28%;height:44px;background:rgba(0,240,255,.12);border:1px solid rgba(0,240,255,.35);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ppt-accent);font-weight:600}
+.arrow-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ppt-good);font-size:13px;font-weight:700}
+.arrow-col i{font-size:22px}
+.hero-stat{margin:0 36px 8px;padding:14px 18px;background:linear-gradient(135deg,rgba(0,240,255,.08),rgba(250,204,21,.06));border:1px solid rgba(0,240,255,.25);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:16px;flex-shrink:0}
+.stat-num{font-size:42px;font-weight:800;color:var(--ppt-accent-2);line-height:1}
+.stat-body{font-size:14px;color:var(--ppt-text-2);line-height:1.45}
+.stat-body strong{color:var(--ppt-text-1);display:block;font-size:15px;margin-bottom:2px}
+.insight{flex-shrink:0;margin:0 36px 12px;padding:9px 16px;background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.4}
+.insight strong{color:var(--ppt-accent-2)}
+html{overflow:hidden;margin:0;padding:0}
 </style>
 </head>
 <body>
-<div class="slide-root" data-motion="compare" data-motion-tier="medium">
-  <div class="title-region">
-    <div class="title-row">
-      <div class="title-bar"></div>
-      <h1 class="title-text">타사 프로젝트 비교</h1>
-    </div>
-    <p class="title-sub">동일 시기·유사 범위 엔터프라이즈 플랫폼 구축 사례를 벤치마크로 참고합니다. (내부 전략 수립용)</p>
-    <div class="title-line"></div>
+<div class="slide" data-motion="compare" data-motion-tier="medium">
+  <div class="title-r">
+    <div class="title-row"><div class="bar"></div><h1>레거시 탈피 — 모듈형으로 전환</h1></div>
+    <div class="title-sub">왜 '덩어리 시스템'에서 '모듈형'으로 바꿔야 하나?</div>
+    <div class="line"></div>
   </div>
-
-  <div class="main-body">
-    <div class="ref-badge">
-      <i class="fa-solid fa-bookmark"></i>
-      벤치마크 참고 자료 — 기술 스택·AI 오케스트레이션과는 별도로 검토
+  <div class="main">
+    <div class="box old">
+      <span class="box-label">Before · 일체형</span>
+      <div class="box-title">Monolithic — 하나의 덩어리</div>
+      <div class="mono-vis"><div class="mono-block">화면</div><div class="mono-block">업무</div><div class="mono-block">데이터</div></div>
+      <ul class="box-list">
+        <li><strong>작은 수정에도 전체 재배포</strong>변경 리스크·다운타임 증가</li>
+        <li><strong>장애 시 전체 마비</strong>한 곳 문제가 시스템 전체로 확산</li>
+      </ul>
     </div>
-
-    <div class="compare-grid">
-      <div class="compare-card compare-card--peer">
-        <div class="compare-label">타사 사례 (참고)</div>
-        <div class="compare-company peer">삼성E&amp;A (삼성엔지니어링)</div>
-        <p class="compare-scope">70명 규모 인력이 2년간 진행한 대규모 엔지니어링·플랫폼 프로젝트</p>
-        <ul class="metric-list">
-          <li class="metric-item"><span>총 투입 인력</span><strong>70명</strong></li>
-          <li class="metric-item"><span>진행 기간</span><strong>2년</strong></li>
-          <li class="metric-item"><span>총 투입 규모</span><strong>1,680 M/M</strong></li>
-          <li class="metric-item"><span>조직 형태</span><strong>대형 전담 조직</strong></li>
-        </ul>
+    <div class="arrow-col"><span>전환</span><i class="fas fa-arrow-right"></i></div>
+    <div class="box new">
+      <span class="box-label">After · 모듈형 (FaSS)</span>
+      <div class="box-title">기능 단위 분리 — 필요한 부분만 업데이트</div>
+      <div class="mod-vis">
+        <div class="mod-block">수주</div><div class="mod-block">발주</div><div class="mod-block">정산</div>
+        <div class="mod-block">재고</div><div class="mod-block">정산</div><div class="mod-block">연동</div>
       </div>
-
-      <div class="vs-col"><div class="vs-badge">VS</div></div>
-
-      <div class="compare-card compare-card--ours">
-        <div class="compare-label">당사 차세대 FaSS</div>
-        <div class="compare-company ours">소규모 TFT (AI도구 협업)</div>
-        <p class="compare-scope">차세대 웹프레임워크 TFT 중심 · AI 도구로 생산성 보완</p>
-        <ul class="metric-list">
-          <li class="metric-item"><span>총 투입 인력</span><strong>핵심 7명 (+ AI 8)</strong></li>
-          <li class="metric-item"><span>진행 기간</span><strong>1.5년</strong></li>
-          <li class="metric-item"><span>총 투입 규모</span><strong>108 M/M</strong></li>
-          <li class="metric-item"><span>조직 형태</span><strong>소규모 TFT (AI도구 협업)</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="table-wrap">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th>비교 항목</th>
-            <th>삼성E&amp;A (참고)</th>
-            <th>당사 FaSS TFT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>조직 형태</strong></td>
-            <td>대형 전담 조직</td>
-            <td>소규모 TFT (AI도구 협업)</td>
-          </tr>
-          <tr>
-            <td><strong>시사점</strong></td>
-            <td>유사 범위 프로젝트의 규모 감각 확보</td>
-            <td>동일 산출물 대비 M/M·일정 효율 극대화</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="footnote">
-      <i class="fa-solid fa-circle-info"></i>
-      <span>본 슬라이드는 규모 벤치마크 참고용입니다. AI 오케스트레이션·기술 스택 상세는 다음 슬라이드에서 별도로 다룹니다.</span>
+      <ul class="box-list">
+        <li><strong>독립 배포·확장</strong>핵심 업무 안정 + 신규 기능 빠른 추가</li>
+        <li><strong>장애 격리</strong>한 모듈 문제가 전체로 번지지 않음</li>
+      </ul>
     </div>
   </div>
+  <div class="hero-stat">
+    <div class="stat-num">70%+</div>
+    <div class="stat-body"><strong>장애 대응 시간 단축 목표</strong>모듈 단위 수정·배포로 영향 범위 최소화</div>
+  </div>
+  <div class="insight"><strong>경영 시사점:</strong> 모듈형 전환 = 변경 속도와 안정성을 동시에 — 이후 PART 3 설계 원칙의 출발점</div>
 </div>
 <script>
-(function(){
-  function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight;
-    var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
-    el.style.position='absolute';
-    el.style.left=Math.round((sw-960*scale)/2)+'px';
-    el.style.top=Math.round((sh-720*scale)/2)+'px';
-  }
-  applyScale();
-  window.addEventListener('resize',applyScale);
-})();
+(function(){function s(){var e=document.querySelector('body>div');if(!e)return;var w=window.innerWidth,h=window.innerHeight,sc=Math.min(w/960,h/720);e.style.transform='scale('+sc+')';e.style.transformOrigin='top left';e.style.position='absolute';e.style.left=Math.round((w-960*sc)/2)+'px';e.style.top=Math.round((h-720*sc)/2)+'px';}s();window.addEventListener('resize',s);})();
 </script>
 </body>
 </html>

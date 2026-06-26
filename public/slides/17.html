@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>아키텍처 원칙 1: 모듈러 모놀리스 (안정성 극대화)</title>
+<title>최적화 방안 2. 애자일 워룸 운영</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <style>:root {
   --ppt-font: "Noto Sans KR", sans-serif;
 
@@ -27,8 +28,6 @@
     --ppt-radius-sm: 4px;
     --ppt-radius-md: 8px;
     --ppt-radius-lg: 16px;
-    --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --ppt-shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.5);
     --ppt-font-display: "Noto Sans KR", sans-serif;
     --ppt-font-body: "Noto Sans KR", sans-serif
     }
@@ -42,19 +41,18 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     justify-content: center;
     align-items: center;
     font-family: var(--ppt-font-body)}
-.fass-slide-root {
+.war-room-slide-root {
     width: 960px;
     height: 720px;
     background-color: var(--ppt-bg);
     color: var(--ppt-text-1);
-    position: relative;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--ppt-border)
+    position: relative
     }
 /* Title Region */
-.title-region-wrapper {
-    padding: 24px 40px 8px 40px;
+.title-region-container {
+    padding: 28px 40px 8px 40px;
     display: flex;
     flex-direction: column;
     gap: 8px
@@ -84,489 +82,308 @@ body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
     opacity: 0.3;
     margin-top: 8px
     }
-/* Content Layout */
-.fass-architecture-main-container {
+/* Body Layout */
+.war-room-content-wrapper {
     flex: 1;
     min-height: 0;
-    padding: 4px 40px 10px 40px;
     display: flex;
-    flex-direction: column;
-    gap: 8px
-    }
-.fass-architecture-columns-wrapper {
-    display: flex;
-    align-items: stretch;
+    padding: 8px 40px 8px 40px;
     gap: 14px;
-    flex: 1;
-    min-height: 0
+    align-items: stretch
     }
-/* Left Column: Visual Concept */
-.architecture-left-visual-column {
-    flex: 0 0 42%;
+.war-room-left-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 0
+    gap: 16px 20px
     }
-.architecture-visual-card-item {
-    flex: 1;
-    background: var(--ppt-bg-soft);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-lg);
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    box-shadow: var(--ppt-shadow-soft);
-    min-height: 0
-    }
-.architecture-visual-label-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center
-    }
-.architecture-visual-badge-cyan {
-    background: rgba(0, 240, 255, 0.1);
-    color: var(--ppt-accent);
-    padding: 3px 12px;
-    border-radius: var(--ppt-radius-sm);
-    font-size: 14px;
-    font-weight: 600;
-    border: 1px solid rgba(0, 240, 255, 0.3)
-    }
-.architecture-diagram-container {
+.war-room-right-column {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: var(--ppt-radius-md);
-    border: 1px dashed var(--ppt-border);
-    padding: 10px 14px
+    gap: 13px 20px
     }
-.architecture-physical-server-box {
-    width: 90%;
-    padding: 13px 16px;
-    border: 2px solid var(--ppt-accent);
-    border-radius: var(--ppt-radius-md);
-    display: flex;
-    flex-direction: column;
-    gap: 10px 12px;
-    background: rgba(0, 240, 255, 0.05)
-    }
-.architecture-server-title-text {
-    font-size: 14px;
-    color: var(--ppt-accent);
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px
-    }
-.architecture-module-grid-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px 12px
-    }
-.architecture-module-unit-box {
+/* Common Card Styles */
+.war-room-feature-card {
     background: var(--ppt-surface);
     border: 1px solid var(--ppt-border);
-    padding: 6px 6px;
-    border-radius: var(--ppt-radius-sm);
-    text-align: center;
+    border-radius: var(--ppt-radius-lg);
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 5px 6px
+    gap: 10px;
+    flex: 1
     }
-.architecture-module-icon-element {
+.war-room-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px 12px
+    }
+.war-room-card-icon {
+    font-size: 24px;
     color: var(--ppt-accent);
-    font-size: 18px
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 240, 255, 0.1);
+    border-radius: var(--ppt-radius-md)
     }
-.architecture-module-name-text {
-    font-size:13px;
+.war-room-card-title {
+    font-size: 20px;
     font-weight: 600;
     color: var(--ppt-text-1)
     }
-.architecture-mini-strategy {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 4px;
-    padding-top: 8px;
-    border-top: 1px dashed var(--ppt-border)
+.war-room-card-body {
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ppt-text-2)
     }
-.architecture-mini-strategy-item {
+.war-room-highlight-item {
     display: flex;
     align-items: flex-start;
-    gap: 6px;
-    font-size:13px;
-    color: var(--ppt-text-2);
-    line-height: 1.35
+    gap: 8px 10px;
+    margin-bottom: 6px
     }
-.architecture-mini-strategy-item i {
+.war-room-highlight-bullet {
     color: var(--ppt-accent);
-    font-size:13px;
-    margin-top: 2px;
-    flex-shrink: 0
+    margin-top: 5px;
+    font-size: 14px
     }
-/* Right Column: Architecture Comparison */
-.architecture-right-content-column {
-    flex: 1;
+.war-room-badge-container {
     display: flex;
-    flex-direction: column;
-    gap: 7px;
-    min-width: 0;
-    min-height: 0
+    gap: 10px 12px;
+    margin-top: auto
     }
-.arch-compare-panel-title {
-    font-size: 13px;
-    font-weight: 700;
+.war-room-status-badge {
+    background: var(--ppt-surface-2);
+    border: 1px solid var(--ppt-accent);
+    color: var(--ppt-accent);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600
+    }
+.war-room-location-tag {
+    font-size: 14px;
     color: var(--ppt-accent-2);
-    letter-spacing: 0.5px;
-    flex-shrink: 0
+    font-weight: 600;
+    margin-bottom: 3px;
+    display: block
     }
-.arch-compare-list {
-    flex: 1;
+.war-room-dashboard-preview {
     display: flex;
-    flex-direction: column;
-    gap: 7px;
-    min-height: 0
+    gap: 8px 10px;
+    margin-top: 6px
     }
-.arch-compare-card {
+.war-room-dashboard-box {
     flex: 1;
+    height: 60px;
     background: var(--ppt-bg-soft);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-md);
-    padding: 8px 10px;
+    border: 1px dashed var(--ppt-border);
+    border-radius: var(--ppt-radius-sm);
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    min-height: 0
+    align-items: center;
+    justify-content: center;
+    gap: 3px 4px
     }
-.arch-compare-card--highlight {
-    position: relative;
-    flex: 1.14;
-    border: 2px solid rgba(0, 240, 255, 0.55);
-    border-left: 4px solid var(--ppt-accent);
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.14) 0%, rgba(0, 240, 255, 0.05) 45%, var(--ppt-bg-soft) 100%);
-    box-shadow: 0 0 22px rgba(0, 240, 255, 0.16), inset 0 0 0 1px rgba(0, 240, 255, 0.12);
-    animation: archCompareSpotlight 4.5s ease-in-out infinite;
-    z-index: 1;
-    padding: 9px 11px
+.war-room-dashboard-label {
+    font-size:13px;
+    color: var(--ppt-text-3);
+    text-transform: uppercase
     }
-.arch-compare-card--highlight::after {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: var(--ppt-radius-md);
-    pointer-events: none;
-    z-index: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(0, 240, 255, 0.14) 50%, transparent 70%);
-    background-size: 200% 100%;
-    animation: archCompareShine 5s linear infinite
+.war-room-dashboard-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ppt-accent)
     }
-.arch-compare-card--highlight > * {
-    position: relative;
-    z-index: 1
-    }
-.arch-compare-list .arch-compare-card:not(.arch-compare-card--highlight) {
-    opacity: 0.84
-    }
-.arch-compare-card--msa {
-    border-color: rgba(139, 92, 246, 0.35)
-    }
-.arch-compare-header {
+.war-room-dailyscrum-banner {
+    margin: 0 40px 14px 40px;
+    flex-shrink: 0;
+    background: linear-gradient(90deg, rgba(0,240,255,0.08) 0%, rgba(167,139,250,0.06) 100%);
+    border: 1px solid rgba(0,240,255,0.35);
+    border-radius: var(--ppt-radius-lg);
+    padding: 10px 14px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-shrink: 0
+    gap: 12px;
+    min-height: 0;
     }
-.arch-compare-num {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--ppt-surface-2);
-    border: 1px solid var(--ppt-border);
-    font-size:13px;
-    font-weight: 700;
-    color: var(--ppt-text-2);
+.war-room-dailyscrum-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--ppt-radius-md);
+    background: rgba(0,240,255,0.12);
+    color: var(--ppt-accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0
-    }
-.arch-compare-card--highlight .arch-compare-num {
-    width: 22px;
-    height: 22px;
-    font-size: 14px;
-    background: rgba(0, 240, 255, 0.22);
-    border-color: var(--ppt-accent);
-    color: var(--ppt-text-1);
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.45);
-    animation: archCompareNumPulse 3s ease-in-out infinite
-    }
-.arch-compare-card--highlight .arch-compare-title {
-    font-size: 14px;
-    color: var(--ppt-accent)
-    }
-.arch-compare-card--highlight .arch-compare-title em {
-    color: rgba(0, 240, 255, 0.75)
-    }
-.arch-compare-card--highlight .arch-compare-tagline strong {
-    color: var(--ppt-accent)
-    }
-.arch-compare-card--highlight .arch-compare-pros {
-    background: rgba(34, 197, 94, 0.08);
-    border-radius: var(--ppt-radius-sm);
-    padding: 3px 5px
-    }
-.arch-compare-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    line-height: 1.2
-    }
-.arch-compare-title em {
-    font-style: normal;
-    font-size:13px;
-    font-weight: 500;
-    color: var(--ppt-text-3)
-    }
-.arch-compare-tagline {
-    font-size:13px;
-    color: var(--ppt-text-2);
-    line-height: 1.35;
-    flex-shrink: 0
-    }
-.arch-compare-tagline strong {
-    color: var(--ppt-text-1);
-    font-weight: 600
-    }
-.arch-compare-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 8px;
-    flex: 1;
-    min-height: 0
-    }
-.arch-compare-field {
-    font-size:13px;
-    line-height: 1.35;
-    color: var(--ppt-text-3)
-    }
-.arch-compare-field--full {
-    grid-column: 1 / -1
-    }
-.arch-compare-field-label {
-    font-weight: 700;
-    color: var(--ppt-text-2);
-    margin-right: 4px
-    }
-.arch-compare-pros .arch-compare-field-label { color: var(--ppt-good) }
-.arch-compare-cons .arch-compare-field-label { color: var(--ppt-warn) }
-.arch-compare-fass-badge {
-    margin-left: auto;
-    font-size:13px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.22), rgba(0, 240, 255, 0.1));
-    color: var(--ppt-text-1);
-    border: 1px solid rgba(0, 240, 255, 0.55);
+    font-size: 20px;
     flex-shrink: 0;
-    box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
-    animation: archCompareBadgePulse 3s ease-in-out infinite
     }
-@keyframes archCompareSpotlight {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.14), inset 0 0 0 1px rgba(0, 240, 255, 0.1);
-        border-color: rgba(0, 240, 255, 0.5)
+.war-room-dailyscrum-body {
+    flex: 1;
+    min-width: 0;
     }
-    50% {
-        box-shadow: 0 0 34px rgba(0, 240, 255, 0.3), inset 0 0 0 1px rgba(0, 240, 255, 0.2);
-        border-color: rgba(0, 240, 255, 0.9)
-    }
-    }
-@keyframes archCompareShine {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-    }
-@keyframes archCompareNumPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    }
-@keyframes archCompareBadgePulse {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.2); box-shadow: 0 0 18px rgba(0, 240, 255, 0.4); }
-    }
-.architecture-db-isolation-row {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 6px
-    }
-.architecture-db-icon-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px 4px;
-    color: var(--ppt-text-3)
-    }
-.architecture-db-label-caption {
-    font-size:13px
-    }
-/* removed old right column strategy styles — replaced by compare panel */
-/* Bottom Highlight */
-.architecture-impact-highlight-box {
-    background: linear-gradient(90deg, rgba(250, 204, 21, 0.1) 0%, transparent 100%);
-    border-left: 4px solid var(--ppt-accent-2);
-    padding: 8px 14px;
-    border-radius: 0 var(--ppt-radius-md) var(--ppt-radius-md) 0;
-    flex-shrink: 0
-    }
-.architecture-impact-label-text {
+.war-room-dailyscrum-title {
     font-size: 15px;
     font-weight: 700;
-    color: var(--ppt-accent-2)
-    }
-.architecture-impact-desc-text {
-    font-size: 13px;
     color: var(--ppt-text-1);
-    line-height: 1.4
+    margin-bottom: 3px;
     }
-html { overflow: hidden;  margin:0; padding:0; }
+.war-room-dailyscrum-desc {
+    font-size:13px;
+    color: var(--ppt-text-2);
+    line-height: 1.38;
+    }
+.war-room-dailyscrum-link {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: var(--ppt-radius-md);
+    background: rgba(0,240,255,0.12);
+    border: 1px solid var(--ppt-accent);
+    color: var(--ppt-accent);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    }
+.war-room-dailyscrum-link:hover {
+    background: var(--ppt-accent);
+    color: var(--ppt-bg);
+    }
+html { overflow: hidden; margin:0; padding:0; }
 </style></head>
 <body>
-<div class="fass-slide-root" data-motion="architecture" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Non-Cover-Page Title Region -->
-<div class="title-region-wrapper">
+<div class="war-room-slide-root" data-motion="cards" data-motion-tier="medium" style="overflow: hidden;">
+<!-- Title Region -->
+<div class="title-region-container">
 <div class="title-region-header">
 <div class="title-region-bar"></div>
-<h1 class="title-region-text">아키텍처 원칙 1: 모듈러 모놀리스 (안정성 극대화)</h1>
+<h1 class="title-region-text">최적화 방안 2. 애자일 워룸 운영</h1>
 </div>
 <div class="title-region-line"></div>
 </div>
-<div class="fass-architecture-main-container">
-<div class="fass-architecture-columns-wrapper">
-<!-- Left Visual Column -->
-<div class="architecture-left-visual-column">
-<div class="architecture-visual-card-item">
-<div class="architecture-visual-label-group">
-<span class="architecture-visual-badge-cyan">FaSS V3.0 Phase 1 Architecture</span>
-<div style="font-size: 14px;color: var(--ppt-text-3);">
-<i class="fas fa-microchip"></i> On-Premise Optimized
-              </div>
+<!-- Main Content -->
+<div class="war-room-content-wrapper">
+<!-- Left Column: Infrastructure & Strategy -->
+<div class="war-room-left-column">
+<div class="war-room-feature-card">
+<div class="war-room-card-header">
+<div class="war-room-card-icon"><i class="fas fa-users-rectangle"></i></div>
+<div class="war-room-card-title">일체형 조직 운영 (All-in-One)</div>
 </div>
-<div class="architecture-diagram-container">
-<div style="margin-bottom: 8px;font-size:13px;font-weight: 600;color: var(--ppt-text-2);">
-                [ 논리적 MSA 구현 ]
-              </div>
-<div class="architecture-physical-server-box">
-<div class="architecture-server-title-text">Single Physical Server (On-Premise)<br/><span style="font-size:13px;color:var(--ppt-accent);font-weight:600;">유통물류 시스템</span></div>
-<div class="architecture-module-grid-wrapper">
-<div class="architecture-module-unit-box">
-<i class="fa-solid fa-file-invoice architecture-module-icon-element"></i>
-<span class="architecture-module-name-text">수주</span>
+<div class="war-room-card-body">
+<span class="war-room-location-tag"><i class="fas fa-location-dot"></i> 남양주 1공장 2층 프로젝트룸</span>
+<div class="war-room-highlight-item">
+<i class="fas fa-check war-room-highlight-bullet"></i>
+<span>단독 프로젝트 룸 운영을 통한 커뮤니케이션 사일로(silo) 제거</span>
 </div>
-<div class="architecture-module-unit-box">
-<i class="fa-solid fa-cart-shopping architecture-module-icon-element"></i>
-<span class="architecture-module-name-text">발주</span>
-</div>
-<div class="architecture-module-unit-box">
-<i class="fa-solid fa-calculator architecture-module-icon-element"></i>
-<span class="architecture-module-name-text">정산</span>
+<div class="war-room-highlight-item">
+<i class="fas fa-check war-room-highlight-bullet"></i>
+<span>이슈 발생 시 그 자리에서 즉시 토론하고 의사결정하여 '결재 및 대기 시간'을 완벽하게 삭제</span>
 </div>
 </div>
-<div style="height: 1px;background: var(--ppt-accent);opacity: 0.3;"></div>
-<div style="text-align: center;font-size:13px;color: var(--ppt-accent);">API-First Communication Only</div>
-</div>
-<div class="architecture-db-isolation-row">
-<div class="architecture-db-icon-item">
-<i class="fas fa-database"></i>
-<span class="architecture-db-label-caption">Schema A</span>
-</div>
-<div class="architecture-db-icon-item" style="color: var(--ppt-accent);">
-<i class="fa-solid fa-shield"></i>
-<span class="architecture-db-label-caption">격리벽</span>
-</div>
-<div class="architecture-db-icon-item">
-<i class="fas fa-database"></i>
-<span class="architecture-db-label-caption">Schema B</span>
-</div>
-<div class="architecture-db-icon-item" style="color: var(--ppt-accent);">
-<i class="fa-solid fa-shield-cat"></i>
-<span class="architecture-db-label-caption">격리벽</span>
-</div>
-<div class="architecture-db-icon-item">
-<i class="fas fa-database"></i>
-<span class="architecture-db-label-caption">Schema C</span>
+<div class="war-room-badge-container">
+<div class="war-room-status-badge">물리적 통합 완료</div>
+<div class="war-room-status-badge">Agile 스프린트 최적화</div>
 </div>
 </div>
+<div class="war-room-feature-card">
+<div class="war-room-card-header">
+<div class="war-room-card-icon"><i class="fas fa-bolt"></i></div>
+<div class="war-room-card-title">의사결정 리드타임 제로화</div>
 </div>
-<div style="font-size:13px;color: var(--ppt-text-3);text-align: center;">
-              * 물리적 통합 운영 + 논리적 격리로 안정성·비용 동시 확보
-            </div>
-<div class="architecture-mini-strategy">
-<div class="architecture-mini-strategy-item"><i class="fas fa-server"></i><span>물리적 서버 단일화 — 인프라 비용·운영 포인트 일원화</span></div>
-<div class="architecture-mini-strategy-item"><i class="fas fa-layer-group"></i><span>도메인별 DB 스키마 격리 — 수주·발주·정산 데이터 간섭 차단</span></div>
-<div class="architecture-mini-strategy-item"><i class="fa-solid fa-diagram-project"></i><span>API-First 통신 — MSA 전환·AI 에이전트 연동 기반</span></div>
+<div class="war-room-card-body">
+<div class="war-room-highlight-item">
+<i class="fas fa-circle-arrow-right war-room-highlight-bullet"></i>
+<span>현장 즉결 처리 체계 도입으로 프로젝트 지연 요소 선제적 차단</span>
 </div>
-</div>
-</div>
-<!-- Right: Architecture Comparison -->
-<div class="architecture-right-content-column">
-<div class="arch-compare-panel-title"><i class="fas fa-scale-balanced"></i> 아키텍처 패턴 비교 — FaSS는 모듈러 모놀리스를 선택</div>
-<div class="arch-compare-list">
-<div class="arch-compare-card">
-<div class="arch-compare-header">
-<span class="arch-compare-num">1</span>
-<div class="arch-compare-title">모놀리스 <em>Monolithic</em></div>
-</div>
-<p class="arch-compare-tagline"><strong>전체를 하나의 덩어리</strong>로 개발·배포하는 방식</p>
-<div class="arch-compare-body">
-<div class="arch-compare-field arch-compare-field--full"><span class="arch-compare-field-label">구조</span>단일 코드베이스·단일 프로세스·모든 기능 통합 실행</div>
-<div class="arch-compare-field arch-compare-pros"><span class="arch-compare-field-label">장점</span>초기 개발·테스트·배포 단순, 단일 DB 트랜잭션으로 데이터 일관성 용이</div>
-<div class="arch-compare-field arch-compare-cons"><span class="arch-compare-field-label">단점</span>규모 확대 시 빅 볼 오브 머드, 소규모 수정에도 전체 재배포, 부하 전파</div>
+<div class="war-room-highlight-item">
+<i class="fas fa-circle-arrow-right war-room-highlight-bullet"></i>
+<span>부서 간 업무 이관 단계 축소를 통한 개발 생산성 극대화</span>
 </div>
 </div>
-<div class="arch-compare-card arch-compare-card--highlight">
-<div class="arch-compare-header">
-<span class="arch-compare-num">2</span>
-<div class="arch-compare-title">모듈러 모놀리스 <em>Modular Monolith</em></div>
-<span class="arch-compare-fass-badge">FaSS V3.0</span>
+<div class="war-room-dashboard-preview">
+<div class="war-room-dashboard-box">
+<span class="war-room-dashboard-label">Wait Time</span>
+<span class="war-room-dashboard-value">0s</span>
 </div>
-<p class="arch-compare-tagline"><strong>물리적으로는 모놀리스</strong>, 내부는 모듈 단위로 철저히 격리</p>
-<div class="arch-compare-body">
-<div class="arch-compare-field arch-compare-field--full"><span class="arch-compare-field-label">구조</span>단일 프로세스 내 주문·결제·재고 등 독립 모듈, 정해진 인터페이스(API)로만 통신</div>
-<div class="arch-compare-field arch-compare-pros"><span class="arch-compare-field-label">장점</span>모놀리스 단순함 + 낮은 결합도, 유지보수성 높음, MSA 전환 최적 중간 단계</div>
-<div class="arch-compare-field arch-compare-cons"><span class="arch-compare-field-label">단점</span>모듈 경계·인터페이스 준수를 위한 강한 개발 규율 필요</div>
-</div>
-</div>
-<div class="arch-compare-card arch-compare-card--msa">
-<div class="arch-compare-header">
-<span class="arch-compare-num">3</span>
-<div class="arch-compare-title">MSA <em>Microservices</em></div>
-</div>
-<p class="arch-compare-tagline"><strong>기능별 완전 분리 서비스</strong>를 네트워크로 연결하는 방식</p>
-<div class="arch-compare-body">
-<div class="arch-compare-field arch-compare-field--full"><span class="arch-compare-field-label">구조</span>서비스별 독립 프로세스·고유 DB, REST·gRPC·MQ로 통신</div>
-<div class="arch-compare-field arch-compare-pros"><span class="arch-compare-field-label">장점</span>독립 배포·확장, 기술 스택 자유, 장애 격리</div>
-<div class="arch-compare-field arch-compare-cons"><span class="arch-compare-field-label">단점</span>분산 복잡성, 분산 트랜잭션 어려움, K8s·모니터링 등 인프라 비용 막대</div>
+<div class="war-room-dashboard-box">
+<span class="war-room-dashboard-label">Decision Speed</span>
+<span class="war-room-dashboard-value">Real-time</span>
 </div>
 </div>
 </div>
 </div>
+<!-- Right Column: Monitoring & Visualization -->
+<div class="war-room-right-column">
+<div class="war-room-feature-card">
+<div class="war-room-card-header">
+<div class="war-room-card-icon"><i class="fas fa-desktop"></i></div>
+<div class="war-room-card-title">실시간 가시성 대시보드</div>
 </div>
-<!-- Business Impact Footer -->
-<div class="architecture-impact-highlight-box">
-<div class="architecture-impact-content-row" style="display:flex;align-items:center;gap:10px;">
-<div class="architecture-impact-label-text">경영 임팩트</div>
-<div class="architecture-impact-desc-text">
-            성급한 MSA 대신 <span style="color: var(--ppt-accent);font-weight: 700;">모듈러 모놀리스</span>로 논리적 MSA 효과를 온프레미스에서 실현 — 안정성·비용·전환 용이성을 동시에 확보합니다.
-          </div>
+<div class="war-room-card-body">
+<div class="war-room-highlight-item">
+<i class="fas fa-chart-line war-room-highlight-bullet"></i>
+<span><a href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="color:var(--ppt-accent);font-weight:600;">FASS 데일리 스크럼 Analytics</a>으로 일단위 업무·스프린트 진척도를 점검하고 워룸에서 공유</span>
+</div>
+<div class="war-room-highlight-item">
+<i class="fas fa-bug war-room-highlight-bullet"></i>
+<span>태스크 완료율·블로커·버그 지표 시각화로 품질 리스크 상시 모니터링</span>
 </div>
 </div>
+<div class="war-room-dashboard-preview">
+<a class="war-room-dashboard-box" href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="border-color:var(--ppt-accent);text-decoration:none;cursor:pointer;">
+<span class="war-room-dashboard-label">Daily Scrum</span>
+<span class="war-room-dashboard-value">Analytics</span>
+</a>
+<div class="war-room-dashboard-box" style="border-color: var(--ppt-good);">
+<span class="war-room-dashboard-label">Sprint</span>
+<span class="war-room-dashboard-value">Progress</span>
+</div>
+</div>
+</div>
+<div class="war-room-feature-card">
+<div class="war-room-card-header">
+<div class="war-room-card-icon"><i class="fas fa-gauge-high"></i></div>
+<div class="war-room-card-title">프로젝트 성공 속도 가속화</div>
+</div>
+<div class="war-room-card-body">
+<div class="war-room-highlight-item">
+<i class="fas fa-shield-halved war-room-highlight-bullet"></i>
+<span>이슈 감지부터 해결까지의 MTTR(평균 복구 시간) 70% 이상 단축</span>
+</div>
+<div class="war-room-highlight-item">
+<i class="fas fa-shield-halved war-room-highlight-bullet"></i>
+<span>전 팀원이 동일한 목표 지표를 실시간으로 인지하여 성과 중심 조직으로 변모</span>
+</div>
+</div>
+<div class="war-room-badge-container">
+<div class="war-room-status-badge" style="border-color: var(--ppt-accent-2);color: var(--ppt-accent-2);">핵심 성과 지표(KPI) 연동</div>
+<div class="war-room-status-badge" style="border-color: var(--ppt-good);color: var(--ppt-good);">무결점 배포 보장</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FASS Daily Scrum -->
+<div class="war-room-dailyscrum-banner">
+<div class="war-room-dailyscrum-icon"><i class="fas fa-clipboard-list"></i></div>
+<div class="war-room-dailyscrum-body">
+<div class="war-room-dailyscrum-title">FASS 데일리 스크럼 — TFT 애자일 운영 허브</div>
+<p class="war-room-dailyscrum-desc">일일 스크럼·태스크·스프린트 데이터를 기록하고 Analytics로 진척·블로커·완료율을 워룸 대형 화면에 공유합니다.</p>
+</div>
+<a class="war-room-dailyscrum-link" href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer">
+<i class="fas fa-chart-line"></i> Analytics
+</a>
 </div>
 </div>
 <script>

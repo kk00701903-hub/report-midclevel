@@ -194,7 +194,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 6,
+    slideId: 10,
     topics: [
       {
         id: "executive-kpi",
@@ -210,7 +210,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 7,
+    slideId: 11,
     topics: [
       {
         id: "progress-tracking",
@@ -226,7 +226,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 8,
+    slideId: 12,
     topics: [
       {
         id: "active-sprint-portfolio",
@@ -250,7 +250,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 9,
+    slideId: 13,
     topics: [
       {
         id: "peer-benchmark",
@@ -267,7 +267,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 10,
+    slideId: 14,
     topics: [
       {
         id: "ai-augmented-workflow",
@@ -285,7 +285,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 11,
+    slideId: 15,
     topics: [
       {
         id: "project-schedule",
@@ -303,7 +303,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 12,
+    slideId: 16,
     topics: [
       {
         id: "ai-digital-worker",
@@ -320,7 +320,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 13,
+    slideId: 17,
     topics: [
       {
         id: "fass-daily-scrum",
@@ -368,7 +368,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 14,
+    slideId: 18,
     topics: [
       {
         id: "poc-cdc-validation",
@@ -385,7 +385,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 16,
+    slideId: 20,
     topics: [
       {
         id: "tech-stack-overview",
@@ -403,7 +403,7 @@ export const SLIDE_DETAILS: SlideDetailSet[] = [
     ],
   },
   {
-    slideId: 17,
+    slideId: 21,
     topics: [
       {
         id: "api-first",
@@ -549,7 +549,7 @@ public class OrderController {
     ],
   },
   {
-    slideId: 18,
+    slideId: 22,
     topics: [
       {
         id: "cdc-sync",
@@ -591,7 +591,7 @@ public class OrderController {
     ],
   },
   {
-    slideId: 19,
+    slideId: 23,
     topics: [
       {
         id: "cicd-gitops",
@@ -615,7 +615,7 @@ public class OrderController {
     ],
   },
   {
-    slideId: 20,
+    slideId: 24,
     topics: [
       {
         id: "realgrid-ui",
@@ -677,7 +677,7 @@ public void importDailyShipments() {
     ],
   },
   {
-    slideId: 21,
+    slideId: 25,
     topics: [
       {
         id: "business-innovation-engine",
@@ -696,7 +696,7 @@ public void importDailyShipments() {
     ],
   },
   {
-    slideId: 22,
+    slideId: 26,
     topics: [
       {
         id: "finops",
@@ -726,7 +726,7 @@ public void importDailyShipments() {
     ],
   },
   {
-    slideId: 23,
+    slideId: 27,
     topics: [
       {
         id: "sonarqube-gate",
@@ -762,7 +762,7 @@ deploy_prod:
     ],
   },
   {
-    slideId: 24,
+    slideId: 28,
     topics: [
       {
         id: "jtgs-prototype-start",
@@ -780,7 +780,7 @@ deploy_prod:
     ],
   },
   {
-    slideId: 25,
+    slideId: 29,
     topics: [
       {
         id: "mm-tool-investment",
@@ -896,7 +896,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 26,
+    slideId: 30,
     topics: [
       {
         id: "framework-builder-role",
@@ -938,7 +938,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 28,
+    slideId: 32,
     topics: [
       {
         id: "builder-talent-definition",
@@ -956,7 +956,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 29,
+    slideId: 33,
     topics: [
       {
         id: "risk-management",
@@ -972,7 +972,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 30,
+    slideId: 34,
     topics: [
       {
         id: "rollout-roadmap",
@@ -989,7 +989,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 31,
+    slideId: 35,
     topics: [
       {
         id: "cdc-sync",
@@ -1044,7 +1044,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 32,
+    slideId: 36,
     topics: [
       {
         id: "msa-migration",
@@ -1086,7 +1086,7 @@ quality_gate:
     ],
   },
   {
-    slideId: 33,
+    slideId: 37,
     topics: [
       {
         id: "completion-vision",

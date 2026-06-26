@@ -1,401 +1,528 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>최적화 방안 3. 사전 POC 운영</title>
+<title>AI-Augmented 개발 워크플로우</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root {
+  --ppt-font-body: "Noto Sans KR", sans-serif;
+  --ppt-font-display: "Noto Sans KR", sans-serif;
 
-    --ppt-bg: #0A0E1A;
-    /* Deep Midnight Navy */
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    /* Electric Cyan for Tech */
-    --ppt-accent-2: #FACC15;
-    /* Gold for Value/ROI */
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
-* {
-    box-sizing: border-box;
-    margin: 0 0;
-    padding: 0 0
-    }
-body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
-    justify-content: center;
-    align-items: center;font-family:var(--ppt-font-body,var(--ppt-font))}
-.poc-slide-root {
-    width: 960px;
-    height: 720px;
-    background-color: var(--ppt-bg);
-    font-family: var(--ppt-font-body);
-    color: var(--ppt-text-1);
-    display: flex;
-    flex-direction: column;
-    position: relative
-    }
-/* Non-Cover-Page Title Region */
-.title-region-wrapper {
-    padding: 32px 40px 12px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px
-    }
-.title-region-header {
-    display: flex;
-    align-items: center;
-    gap: 12px
-    }
-.title-region-bar {
-    width: 4px;
-    height: 32px;
-    background: var(--ppt-accent);
-    border-radius: 2px
-    }
-.title-region-text {
-    font-family: var(--ppt-font-display);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    margin: 0
-    }
-.title-region-line {
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--ppt-accent) 0%, transparent 100%);
-    opacity: 0.3;
-    margin-top: 8px
-    }
-/* Main Content Area */
-.poc-content-main-layout {
-    padding: 6px 40px 12px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-    min-height: 0
-    }
-.poc-top-grid-wrapper {
-    display: flex;
-    gap: 12px;
-    align-items: stretch
-    }
-/* Left Column: Target System Info */
-.poc-left-target-card {
-    flex: 1;
-    background: var(--ppt-bg-soft);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-lg);
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px
-    }
-.poc-target-header {
-    display: flex;
-    align-items: center;
-    gap: 16px
-    }
-.poc-target-icon {
-    width: 56px;
-    height: 56px;
-    background: rgba(0, 240, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--ppt-accent);
-    font-size: 24px
-    }
-.poc-target-label {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ppt-accent);
-    text-transform: uppercase;
-    letter-spacing: 1px
-    }
-.poc-target-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    line-height: 1.3
-    }
-.poc-target-description {
-    font-size: 15px;
-    color: var(--ppt-text-2);
-    line-height: 1.45
-    }
-/* Right Column: Technical Flow */
-.poc-right-tech-card {
-    flex: 1.2;
-    background: var(--ppt-surface);
-    border-radius: var(--ppt-radius-lg);
-    padding: 14px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px
-    }
-.poc-tech-section-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--ppt-text-1);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 5px
-    }
-.poc-tech-section-title i {
-    color: var(--ppt-accent-2)
-    }
-.poc-cdc-definition {
-    font-size: 13px;
-    color: var(--ppt-text-2);
-    line-height: 1.45;
-    padding: 8px 12px;
-    background: rgba(0, 240, 255, 0.06);
-    border-radius: var(--ppt-radius-md);
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    margin-bottom: 2px
-    }
-.poc-cdc-definition strong {
-    color: var(--ppt-accent);
-    font-weight: 700
-    }
-.poc-migration-flow-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px 16px
-    }
-.poc-flow-item {
-    display: flex;
-    align-items: center;
-    gap: 12px 20px;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 10px 16px;
-    border-radius: var(--ppt-radius-md);
-    border-left: 3px solid var(--ppt-accent)
-    }
-.poc-flow-icon {
-    font-size: 20px;
-    color: var(--ppt-accent);
-    width: 30px;
-    text-align: center
-    }
-.poc-flow-text-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px 4px
-    }
-.poc-flow-main-text {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.poc-flow-sub-text {
-    font-size: 14px;
-    color: var(--ppt-text-3)
-    }
-/* Bottom: Risk Mitigation Banner */
-.poc-risk-impact-banner {
-    background: linear-gradient(90deg, #1E2638 0%, #0A0E1A 100%);
-    border: 1px solid var(--ppt-border);
-    border-left: 6px solid var(--ppt-good);
-    border-radius: var(--ppt-radius-md);
-    padding: 10px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between
-    }
-.poc-impact-label-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px 4px
-    }
-.poc-impact-main-msg {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.poc-impact-sub-msg {
-    font-size: 13px;
-    color: var(--ppt-text-2)
-    }
-.poc-metrics-container {
-    display: flex;
-    gap: 20px
-    }
-.poc-metric-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center
-    }
-.poc-metric-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--ppt-accent);
-    line-height: 1
-    }
-.poc-metric-unit {
-    font-size: 18px;
-    margin-left: 2px
-    }
-.poc-metric-label {
-    font-size: 14px;
-    font-weight: 600;
+  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
+  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
+  --c-jira:#4C9AFF; --c-gitlab:#FC6D26; --c-idea:#FE315D; --c-figma:#A259FF;
+  --c-cursor:#00F0FF; --c-adobe:#FF4B4B; --c-claude:#D97757; --c-dgx:#76B900;
+  --ppt-font: "Noto Sans KR", sans-serif;
+  --wf-cycle: 10s;
+  --wf-step: 1.6s;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
+.title-region{padding:28px 40px 10px;flex-shrink:0}
+.title-row{display:flex;align-items:center;gap:12px}
+.title-bar{width:4px;height:32px;background:var(--ppt-accent-2);border-radius:2px}
+.title-text{font-family:var(--ppt-font-display);font-size:26px;font-weight:700;line-height:1.3;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);margin-top:8px;padding-left:16px;line-height:1.45}
+.title-line{height:1px;margin-top:10px;background:linear-gradient(90deg,var(--ppt-accent-2) 0%,transparent 100%);opacity:.35}
+.body{flex:1;min-height:0;padding:8px 40px 14px;display:flex;flex-direction:column;gap:8px}
+
+/* Phase strip */
+.phase-strip{display:flex;align-items:center;gap:0;flex-shrink:0}
+.phase-step{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:7px 4px;border-radius:8px;font-size:13px;font-weight:700;color:var(--ppt-text-3);
+  background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);position:relative;
+}
+.phase-step.active{color:var(--ppt-accent);border-color:rgba(0,240,255,.4);background:rgba(0,240,255,.06)}
+.phase-step .num{
+  width:18px;height:18px;border-radius:50%;font-size:13px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ppt-surface);color:var(--ppt-text-3);
+}
+.phase-step.active .num{background:var(--ppt-accent);color:#0A0E1A}
+.phase-arrow{color:var(--ppt-text-3);font-size:13px;padding:0 2px;flex-shrink:0}
+
+/* Main flow */
+.flow-main{flex:1;min-height:0;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:stretch}
+.flow-col{
+  display:flex;flex-direction:column;gap:6px;min-height:0;
+  background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:12px;
+  padding:8px 8px 10px;position:relative;
+}
+.flow-col::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;
+  background:var(--col-accent,var(--ppt-border));
+}
+.col-plan{--col-accent:var(--c-jira)}
+.col-design{--col-accent:var(--c-figma)}
+.col-design .tool-card{padding:6px 7px;flex:1;min-height:0}
+.col-design .tool-icon{width:28px;height:28px;font-size:13px}
+.col-design .tool-use{font-size:12px;line-height:1.35}
+.col-dev{--col-accent:var(--c-dgx)}
+.col-dev .dgx-hub{padding:6px 8px}
+.col-dev .dgx-icon{width:32px;height:32px;font-size:15px}
+.col-dev .dgx-sub{font-size:11.5px;line-height:1.3}
+.col-dev .tool-card.claude{padding:5px 6px;flex-shrink:0}
+.col-dev .tool-card.claude .tool-icon{width:28px;height:28px;font-size:13px}
+.col-dev .tool-card.claude .tool-use{font-size:11.5px;line-height:1.3;margin-top:2px}
+.col-git{--col-accent:var(--c-gitlab)}
+.col-done{--col-accent:var(--ppt-good)}
+.col-label{font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--ppt-text-3);text-align:center;padding-bottom:2px}
+.tool-card{
+  background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:10px;
+  padding:8px 8px;display:flex;gap:8px;align-items:flex-start;flex:1;min-height:0;
+  border-left:3px solid var(--tool-color,var(--ppt-accent));
+}
+.tool-icon{
+  width:34px;height:34px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+  background:rgba(255,255,255,.06);color:var(--tool-color);
+}
+.tool-name{font-size:13px;font-weight:700;line-height:1.25;color:var(--ppt-text-1)}
+.tool-use{font-size:13px;color:var(--ppt-text-2);line-height:1.4;margin-top:3px}
+.tool-card.jira{--tool-color:var(--c-jira)}
+.tool-card.figma{--tool-color:var(--c-figma)}
+.tool-card.adobe{--tool-color:var(--c-adobe)}
+.tool-card.idea{--tool-color:var(--c-idea)}
+.tool-card.cursor{--tool-color:var(--c-cursor)}
+.tool-card.claude{--tool-color:var(--c-claude)}
+.tool-card.gitlab{--tool-color:var(--c-gitlab)}
+.tool-card.done{--tool-color:var(--ppt-good)}
+
+/* Dev column — stacked + DGX hub */
+.col-dev{grid-row:span 1}
+.dev-stack{display:flex;flex-direction:column;gap:5px;flex:1;min-height:0}
+.dgx-hub{
+  border:1px solid rgba(118,185,0,.45);border-radius:10px;padding:8px 10px;
+  background:linear-gradient(135deg,rgba(118,185,0,.14),rgba(118,185,0,.04));
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.dgx-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:rgba(118,185,0,.2);border:1px solid rgba(118,185,0,.5);
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--c-dgx);
+}
+.dgx-title{font-size:13px;font-weight:800;color:var(--c-dgx)}
+.dgx-sub{font-size:13px;color:var(--ppt-text-2);line-height:1.35;margin-top:2px}
+.dev-ides{display:grid;grid-template-columns:1fr 1fr;gap:5px;flex:1;min-height:0}
+.dev-ides .tool-card{padding:6px 7px}
+.dev-ides .tool-icon{width:28px;height:28px;font-size:13px}
+.dev-ides .tool-name{font-size:13px}
+.dev-ides .tool-use{font-size:13px}
+
+/* Horizontal connectors between columns */
+.flow-connectors{
+  position:absolute;left:36px;right:36px;top:50%;height:0;pointer-events:none;z-index:2;
+}
+/* Arrow row below cards */
+.arrow-row{display:flex;align-items:center;justify-content:center;gap:0;flex-shrink:0;padding:0 4px}
+.arrow-seg{flex:1;display:flex;align-items:center;justify-content:center;gap:4px}
+.arrow-line{flex:1;height:2px;background:linear-gradient(90deg,var(--ppt-border),var(--ppt-accent));opacity:.5}
+.arrow-icon{color:var(--ppt-accent);font-size:13px;flex-shrink:0}
+
+/* Bottom pipeline diagram */
+.pipeline{
+  flex-shrink:0;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);
+  border-radius:12px;padding:10px 14px;
+}
+.pipe-head{font-size:13px;font-weight:700;color:var(--ppt-accent-2);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.pipe-flow{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.pipe-node{
+  flex:1;text-align:center;padding:6px 4px;border-radius:8px;
+  background:var(--ppt-surface);border:1px solid var(--ppt-border);min-width:0;
+}
+.pipe-node strong{display:block;font-size:13px;font-weight:700;color:var(--ppt-text-1);line-height:1.25}
+.pipe-node span{font-size:13px;color:var(--ppt-text-2);line-height:1.3;margin-top:2px;display:block}
+.pipe-node.highlight{border-color:rgba(0,240,255,.45);background:rgba(0,240,255,.06)}
+.pipe-node.ai{border-color:rgba(118,185,0,.45);background:rgba(118,185,0,.08)}
+.pipe-arrow{color:var(--ppt-accent);font-size:13px;flex-shrink:0;opacity:.7}
+.pipe-loop{
+  margin-top:8px;padding-top:8px;border-top:1px dashed var(--ppt-border);
+  font-size:13px;color:var(--ppt-text-2);text-align:center;line-height:1.45;
+}
+.pipe-loop strong{color:var(--ppt-accent)}
+
+/* ── Sequential workflow animation (slide 10) ── */
+.slide[data-motion="pipeline" data-motion-tier="medium"] .phase-step,
+.slide[data-motion="pipeline"] .flow-col,
+.slide[data-motion="pipeline"] .pipe-node,
+.slide[data-motion="pipeline"] .arrow-seg {
+  animation: none;
+}
+.slide[data-motion="pipeline"] .phase-step.active {
+  animation: none;
+}
+.phase-step {
+  animation: wfPhasePulse var(--wf-cycle) ease-in-out infinite;
+}
+.phase-step:nth-child(1) { animation-delay: 0s; }
+.phase-step:nth-child(3) { animation-delay: var(--wf-step); }
+.phase-step:nth-child(5) { animation-delay: calc(var(--wf-step) * 2); }
+.phase-step:nth-child(7) { animation-delay: calc(var(--wf-step) * 3); }
+.phase-step:nth-child(9) { animation-delay: calc(var(--wf-step) * 4); }
+.phase-step .num {
+  animation: wfPhaseNumPulse var(--wf-cycle) ease-in-out infinite;
+}
+.phase-step:nth-child(1) .num { animation-delay: 0s; }
+.phase-step:nth-child(3) .num { animation-delay: var(--wf-step); }
+.phase-step:nth-child(5) .num { animation-delay: calc(var(--wf-step) * 2); }
+.phase-step:nth-child(7) .num { animation-delay: calc(var(--wf-step) * 3); }
+.phase-step:nth-child(9) .num { animation-delay: calc(var(--wf-step) * 4); }
+@keyframes wfPhasePulse {
+  0%, 10%, 100% {
     color: var(--ppt-text-3);
-    margin-top: 2px;
-    text-transform: uppercase
-    }
-ul.poc-feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 0
-    }
-li.poc-feature-item {
-    font-size: 14px;
-    color: var(--ppt-text-2);
-    margin-bottom: 4px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px
-    }
-li.poc-feature-item::before {
-    content: "•";
+    border-color: var(--ppt-border);
+    background: var(--ppt-bg-soft);
+    box-shadow: none;
+  }
+  3%, 8% {
     color: var(--ppt-accent);
-    font-weight: bold
-    }
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+    border-color: rgba(0, 240, 255, 0.55);
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.2);
+  }
+}
+@keyframes wfPhaseNumPulse {
+  0%, 10%, 100% { background: var(--ppt-surface); color: var(--ppt-text-3); }
+  3%, 8% { background: var(--ppt-accent); color: #0A0E1A; }
+}
+.phase-arrow i {
+  animation: wfArrowNudge var(--wf-cycle) ease-in-out infinite;
+}
+.phase-arrow:nth-child(2) i { animation-delay: calc(var(--wf-step) * 0.5); }
+.phase-arrow:nth-child(4) i { animation-delay: calc(var(--wf-step) * 1.5); }
+.phase-arrow:nth-child(6) i { animation-delay: calc(var(--wf-step) * 2.5); }
+.phase-arrow:nth-child(8) i { animation-delay: calc(var(--wf-step) * 3.5); }
+@keyframes wfArrowNudge {
+  0%, 10%, 100% { transform: translateX(0); opacity: 0.35; color: var(--ppt-text-3); }
+  3%, 8% { transform: translateX(3px); opacity: 1; color: var(--ppt-accent); }
+}
+.flow-main {
+  position: relative;
+  overflow: hidden;
+}
+.flow-main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.14), transparent);
+  animation: wfFlowSweep var(--wf-cycle) linear infinite;
+}
+@keyframes wfFlowSweep {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+.flow-col {
+  animation: wfColPulse var(--wf-cycle) ease-in-out infinite;
+}
+.flow-col:nth-child(1) { animation-delay: calc(var(--wf-step) * 0 + 0.2s); }
+.flow-col:nth-child(2) { animation-delay: calc(var(--wf-step) * 1 + 0.2s); }
+.flow-col:nth-child(3) { animation-delay: calc(var(--wf-step) * 2 + 0.2s); }
+.flow-col:nth-child(4) { animation-delay: calc(var(--wf-step) * 3 + 0.2s); }
+.flow-col:nth-child(5) { animation-delay: calc(var(--wf-step) * 4 + 0.2s); }
+@keyframes wfColPulse {
+  0%, 10%, 100% {
+    opacity: 0.78;
+    box-shadow: none;
+    border-color: var(--ppt-border);
+  }
+  3%, 8% {
+    opacity: 1;
+    border-color: rgba(0, 240, 255, 0.45);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.16);
+  }
+}
+.col-dev .dgx-hub {
+  animation: wfDgxPulse var(--wf-cycle) ease-in-out infinite;
+  animation-delay: calc(var(--wf-step) * 2 + 0.2s);
+}
+@keyframes wfDgxPulse {
+  0%, 10%, 100% { box-shadow: none; border-color: rgba(118, 185, 0, 0.45); }
+  3%, 8% { box-shadow: 0 0 18px rgba(118, 185, 0, 0.35); border-color: rgba(118, 185, 0, 0.85); }
+}
+.arrow-row { position: relative; }
+.arrow-seg {
+  animation: wfArrowSegPulse var(--wf-cycle) ease-in-out infinite;
+}
+.arrow-seg:nth-child(1) { animation-delay: calc(var(--wf-step) * 0.6); }
+.arrow-seg:nth-child(2) { animation-delay: calc(var(--wf-step) * 1.6); }
+.arrow-seg:nth-child(3) { animation-delay: calc(var(--wf-step) * 2.6); }
+.arrow-seg:nth-child(4) { animation-delay: calc(var(--wf-step) * 3.6); }
+@keyframes wfArrowSegPulse {
+  0%, 10%, 100% { opacity: 0.45; }
+  3%, 8% { opacity: 1; }
+}
+.arrow-row::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--ppt-accent);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.65);
+  animation: wfTravelDot var(--wf-cycle) linear infinite;
+  pointer-events: none;
+}
+@keyframes wfTravelDot {
+  0% { left: 0; opacity: 0; }
+  4% { opacity: 1; }
+  96% { opacity: 1; }
+  100% { left: calc(100% - 10px); opacity: 0; }
+}
+.pipeline .pipe-flow {
+  position: relative;
+  overflow: hidden;
+}
+.pipeline .pipe-flow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -25%;
+  width: 25%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.12), transparent);
+  animation: wfFlowSweep var(--wf-cycle) linear infinite;
+  animation-delay: 0.4s;
+}
+.pipe-node {
+  animation: wfPipePulse var(--wf-cycle) ease-in-out infinite;
+}
+.pipe-node:nth-child(1) { animation-delay: calc(var(--wf-step) * 0 + 0.35s); }
+.pipe-node:nth-child(3) { animation-delay: calc(var(--wf-step) * 1 + 0.35s); }
+.pipe-node:nth-child(5) { animation-delay: calc(var(--wf-step) * 2 + 0.35s); }
+.pipe-node:nth-child(7) { animation-delay: calc(var(--wf-step) * 3 + 0.35s); }
+.pipe-node:nth-child(9) { animation-delay: calc(var(--wf-step) * 4 + 0.35s); }
+.pipe-node:nth-child(11) { animation-delay: calc(var(--wf-step) * 5 + 0.35s); }
+@keyframes wfPipePulse {
+  0%, 10%, 100% {
+    opacity: 0.72;
+    box-shadow: none;
+    transform: scale(1);
+  }
+  3%, 8% {
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(0, 240, 255, 0.18);
+    transform: scale(1.02);
+  }
+}
+.pipe-node.ai:nth-child(5) {
+  animation-name: wfPipeAiPulse;
+}
+@keyframes wfPipeAiPulse {
+  0%, 10%, 100% { opacity: 0.72; box-shadow: none; transform: scale(1); border-color: rgba(118, 185, 0, 0.45); }
+  3%, 8% { opacity: 1; box-shadow: 0 0 16px rgba(118, 185, 0, 0.3); transform: scale(1.03); border-color: rgba(118, 185, 0, 0.85); }
+}
+.pipe-node.highlight:nth-child(7) {
+  animation-name: wfPipeHiPulse;
+}
+@keyframes wfPipeHiPulse {
+  0%, 10%, 100% { opacity: 0.72; box-shadow: none; transform: scale(1); }
+  3%, 8% { opacity: 1; box-shadow: 0 0 16px rgba(0, 240, 255, 0.28); transform: scale(1.03); border-color: rgba(0, 240, 255, 0.65); }
+}
+.pipe-arrow i {
+  animation: wfPipeArrowNudge var(--wf-cycle) ease-in-out infinite;
+}
+.pipe-flow .pipe-arrow:nth-child(2) i { animation-delay: calc(var(--wf-step) * 0.5 + 0.35s); }
+.pipe-flow .pipe-arrow:nth-child(4) i { animation-delay: calc(var(--wf-step) * 1.5 + 0.35s); }
+.pipe-flow .pipe-arrow:nth-child(6) i { animation-delay: calc(var(--wf-step) * 2.5 + 0.35s); }
+.pipe-flow .pipe-arrow:nth-child(8) i { animation-delay: calc(var(--wf-step) * 3.5 + 0.35s); }
+.pipe-flow .pipe-arrow:nth-child(10) i { animation-delay: calc(var(--wf-step) * 4.5 + 0.35s); }
+@keyframes wfPipeArrowNudge {
+  0%, 10%, 100% { transform: translateX(0); opacity: 0.4; }
+  3%, 8% { transform: translateX(2px); opacity: 1; }
+}
+
+html{overflow:hidden;margin:0;padding:0}
+</style>
+</head>
 <body>
-<div class="poc-slide-root" data-motion="cards" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Title Region -->
-<div class="title-region-wrapper">
-<div class="title-region-header">
-<div class="title-region-bar"></div>
-<h1 class="title-region-text">최적화 방안 3. 사전 POC 운영</h1>
-</div>
-<div class="title-region-line"></div>
-</div>
-<!-- Main Content -->
-<div class="poc-content-main-layout">
-<div class="poc-top-grid-wrapper">
-<!-- PoC Target Details -->
-<div class="poc-left-target-card">
-<div class="poc-target-header">
-<div class="poc-target-icon">
-<i class="fas fa-flask"></i>
-</div>
-<span class="poc-target-label">Phase 1: Proof of Concept</span>
-</div>
-<h2 class="poc-target-title">
-            AI 아이디어 스파크<br/>포인트 관리 시스템
-          </h2>
-<p class="poc-target-description">
-            가장 치명적인 리스크 요소인 '데이터 마이그레이션' 기술을 선제적으로 검증하기 위해 선정된 핵심 PoC 과제입니다.
-          </p>
-<ul class="poc-feature-list">
-<li class="poc-feature-item">이기종 DB(Oracle → PostgreSQL) 간 데이터 무결성 검증</li>
-<li class="poc-feature-item">실시간 트랜잭션 복제 성능 및 부하 테스트 완료</li>
-<li class="poc-feature-item">차세대 데이터 모델 아키텍처 적합성 확인</li>
-</ul>
-</div>
-<!-- Technical Achievement -->
-<div class="poc-right-tech-card">
-<div class="poc-tech-section-title">
-<i class="fas fa-microchip"></i>
-            기술적 성취: 실시간 CDC 파이프라인 구축
+<div class="slide" data-motion="pipeline">
+  <div class="title-region">
+    <div class="title-row">
+      <div class="title-bar"></div>
+      <h1 class="title-text">AI-Augmented 개발 워크플로우</h1>
+    </div>
+    <p class="title-sub">기획·설계·AI 개발·통합·배포·검증까지 AI 도구가 연결된 End-to-End 개발 파이프라인</p>
+    <div class="title-line"></div>
+  </div>
+
+  <div class="body">
+    <div class="phase-strip">
+      <div class="phase-step"><span class="num">1</span>기획·관리</div>
+      <span class="phase-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="phase-step"><span class="num">2</span>설계·UI/UX</div>
+      <span class="phase-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="phase-step"><span class="num">3</span>AI 개발</div>
+      <span class="phase-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="phase-step"><span class="num">4</span>통합·배포</div>
+      <span class="phase-arrow"><i class="fas fa-chevron-right"></i></span>
+      <div class="phase-step"><span class="num">5</span>검증·완료</div>
+    </div>
+
+    <div class="flow-main">
+      <!-- 1. Plan -->
+      <div class="flow-col col-plan">
+        <div class="col-label">PLAN</div>
+        <div class="tool-card jira">
+          <div class="tool-icon"><i class="fab fa-jira"></i></div>
+          <div>
+            <div class="tool-name">Jira</div>
+            <p class="tool-use">프로젝트·업무 관리<br/>스프린트·백로그·이슈 추적</p>
           </div>
-<p class="poc-cdc-definition">
-<strong>CDC</strong>(Change Data Capture, 변경 데이터 캡처) — DB에 발생한 INSERT·UPDATE·DELETE 변경분을 트랜잭션 로그에서 실시간으로 감지·추출하여 타 시스템에 전송하는 데이터 동기화 방식
-          </p>
-<div class="poc-migration-flow-container">
-<div class="poc-flow-item">
-<div class="poc-flow-icon"><i class="fas fa-database"></i></div>
-<div class="poc-flow-text-group">
-<div class="poc-flow-main-text">Legacy Source Data (Oracle)</div>
-<div class="poc-flow-sub-text">기존 그룹웨어 및 포인트 데이터 트랜잭션 감지</div>
-</div>
-</div>
-<div class="poc-flow-item">
-<div class="poc-flow-icon"><i class="fas fa-bolt"></i></div>
-<div class="poc-flow-text-group">
-<div class="poc-flow-main-text">Debezium &amp; Kafka Streaming</div>
-<div class="poc-flow-sub-text">CDC 기반 변경 이벤트 캡처 및 실시간 메시지 브로커링</div>
-</div>
-</div>
-<div class="poc-flow-item" style="border-left-color: var(--ppt-good);">
-<div class="poc-flow-icon"><i class="fas fa-server"></i></div>
-<div class="poc-flow-text-group">
-<div class="poc-flow-main-text">Target Next-Gen DB (PostgreSQL)</div>
-<div class="poc-flow-sub-text">0.1초 내 실시간 동기화 및 데이터 적재 완료</div>
-</div>
-</div>
-</div>
-<div style="margin-top: 5px;padding: 10px 16px;background: rgba(0, 240, 255, 0.05);border-radius: var(--ppt-radius-md);border: 1px dashed var(--ppt-accent);">
-<div style="font-size: 15px;color: var(--ppt-text-1);font-weight: 600;margin-bottom: 2px;">기술적 의의</div>
-<div style="font-size: 14px;color: var(--ppt-text-2);line-height: 1.5;">
-              이기종 DB 간의 제약을 극복하고 실시간 스트리밍 아키텍처를 완벽히 구현함으로써, 향후 대규모 시스템 이관 시 발생할 수 있는 데이터 정합성 이슈를 원천 차단했습니다.
+        </div>
+        <div style="font-size:13px;color:var(--ppt-text-3);text-align:center;line-height:1.35;padding:2px 0">
+          Epic → Story → Task<br/>애자일 보드 운영
+        </div>
+      </div>
+
+      <!-- 2. Design -->
+      <div class="flow-col col-design">
+        <div class="col-label">DESIGN</div>
+        <div class="tool-card figma">
+          <div class="tool-icon"><i class="fab fa-figma"></i></div>
+          <div>
+            <div class="tool-name">Figma</div>
+            <p class="tool-use">화면설계·스토리북 편집<br/>UI 컴포넌트·프로토타입</p>
+          </div>
+        </div>
+        <div class="tool-card adobe">
+          <div class="tool-icon"><i class="fab fa-adobe"></i></div>
+          <div>
+            <div class="tool-name">Adobe</div>
+            <p class="tool-use">디자인·영상·문서 편집<br/>브랜드·가이드·산출물</p>
+          </div>
+        </div>
+        <div class="tool-card claude">
+          <div class="tool-icon"><i class="fas fa-robot"></i></div>
+          <div>
+            <div class="tool-name">Claude Code</div>
+            <p class="tool-use">Figma 스펙 → UI 코드 생성<br/>컴포넌트·스토리북 초안</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. AI Dev -->
+      <div class="flow-col col-dev">
+        <div class="col-label">AI DEVELOP</div>
+        <div class="dgx-hub">
+          <div class="dgx-icon"><i class="fas fa-microchip"></i></div>
+          <div>
+            <div class="dgx-title">DGX Spark</div>
+            <p class="dgx-sub">RAG·GPU 추론<br/>레거시·문서 컨텍스트</p>
+          </div>
+        </div>
+        <div class="dev-ides">
+          <div class="tool-card cursor">
+            <div class="tool-icon"><i class="fas fa-code"></i></div>
+            <div>
+              <div class="tool-name">Cursor</div>
+              <p class="tool-use">개발 전용 AI IDE</p>
             </div>
-</div>
-</div>
-</div>
-<!-- Business Impact Banner -->
-<div class="poc-risk-impact-banner">
-<div class="poc-impact-label-group">
-<div class="poc-impact-main-msg">무결점 비즈니스 전환을 위한 안전망 확보</div>
-<div class="poc-impact-sub-msg">PoC 성공을 통해 오픈 당일 시스템 중단 및 데이터 유실 리스크를 혁신적으로 제거</div>
-</div>
-<div class="poc-metrics-container">
-<div class="poc-metric-item">
-<div class="poc-metric-value">0<span class="poc-metric-unit">%</span></div>
-<div class="poc-metric-label">Downtime Risk</div>
-</div>
-<div class="poc-metric-item">
-<div class="poc-metric-value">100<span class="poc-metric-unit">%</span></div>
-<div class="poc-metric-label">Data Consistency</div>
-</div>
-<div class="poc-metric-item">
-<div class="poc-metric-value">0.1<span class="poc-metric-unit">s</span></div>
-<div class="poc-metric-label">Sync Latency</div>
-</div>
-</div>
-</div>
-</div>
+          </div>
+          <div class="tool-card idea">
+            <div class="tool-icon">IJ</div>
+            <div>
+              <div class="tool-name">IntelliJ</div>
+              <p class="tool-use">웹 개발 전용 IDE</p>
+            </div>
+          </div>
+        </div>
+        <div class="tool-card claude">
+          <div class="tool-icon"><i class="fas fa-robot"></i></div>
+          <div>
+            <div class="tool-name">Claude Code</div>
+            <p class="tool-use">코드 생성·리팩터링<br/>RAG 기반 개발</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Git -->
+      <div class="flow-col col-git">
+        <div class="col-label">INTEGRATE</div>
+        <div class="tool-card gitlab">
+          <div class="tool-icon"><i class="fab fa-gitlab"></i></div>
+          <div>
+            <div class="tool-name">GitLab</div>
+            <p class="tool-use">소스코드 버전 관리<br/>MR·Code Review·CI/CD</p>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--ppt-text-3);text-align:center;line-height:1.4;padding:4px 0">
+          Feature Branch → MR<br/>Quality Gate → Merge
+        </div>
+      </div>
+
+      <!-- 5. Done -->
+      <div class="flow-col col-done">
+        <div class="col-label">DONE</div>
+        <div class="tool-card done">
+          <div class="tool-icon"><i class="fas fa-check-double"></i></div>
+          <div>
+            <div class="tool-name">Jira 완료 처리</div>
+            <p class="tool-use">스프린트 리뷰·회고<br/>다음 스프린트 피드백</p>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--ppt-good);text-align:center;line-height:1.35;padding:2px 0">
+          <i class="fas fa-rotate"></i> 애자일 순환
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-row">
+      <div class="arrow-seg"><div class="arrow-line"></div><i class="fas fa-caret-right arrow-icon"></i></div>
+      <div class="arrow-seg"><div class="arrow-line"></div><i class="fas fa-caret-right arrow-icon"></i></div>
+      <div class="arrow-seg"><div class="arrow-line"></div><i class="fas fa-caret-right arrow-icon"></i></div>
+      <div class="arrow-seg"><div class="arrow-line"></div><i class="fas fa-caret-right arrow-icon"></i></div>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipe-head"><i class="fas fa-diagram-project"></i> End-to-End 개발 흐름</div>
+      <div class="pipe-flow">
+        <div class="pipe-node"><strong>Jira 이슈 등록</strong><span>요구사항·스프린트 할당</span></div>
+        <span class="pipe-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="pipe-node"><strong>Figma·Adobe<br/>+ Claude Code</strong><span>UI/UX 설계·코드 초안</span></div>
+        <span class="pipe-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="pipe-node ai"><strong>DGX Spark</strong><span>RAG·GPU 추론</span></div>
+        <span class="pipe-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="pipe-node highlight"><strong>Cursor · IntelliJ<br/>+ Claude Code</strong><span>AI 협업 코딩</span></div>
+        <span class="pipe-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="pipe-node"><strong>GitLab Push/MR</strong><span>리뷰·CI/CD·배포</span></div>
+        <span class="pipe-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="pipe-node"><strong>Jira Done</strong><span>검증·회고·다음 Sprint</span></div>
+      </div>
+      <div class="pipe-loop">
+        <strong>Human + AI 협업 루프</strong> — 기획(Jira) → 설계(Figma·Adobe·<strong>Claude Code</strong>) →
+        <strong>DGX Spark</strong>가 RAG 컨텍스트를 제공하고 <strong>Claude Code</strong>·<strong>Cursor</strong>가 코드를 생성 →
+        <strong>GitLab</strong> MR·CI/CD → <strong>Jira</strong> 완료 후 다음 스프린트 반복
+      </div>
+    </div>
+  </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
+    var el=document.querySelector('body>div');if(!el)return;
     var sw=window.innerWidth,sh=window.innerHeight;
     var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
+    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
     el.style.position='absolute';
     el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();
-  window.addEventListener('resize',applyScale);
+  applyScale();window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

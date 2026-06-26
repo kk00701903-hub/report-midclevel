@@ -1,326 +1,57 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>Executive Summary - FaSS 플랫폼 구축</title>
+<title>아키텍처의 이해 — Web · WAS · DB란?</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<style>:root {
-  --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    --ppt-accent-2: #FACC15;
-    --ppt-chart-1: #00F0FF;
-    --ppt-chart-2: #3B82F6;
-    --ppt-chart-3: #8B5CF6;
-    --ppt-chart-4: #FACC15;
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --ppt-shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.5);
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
-* {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased
-    }
-body{width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
-    justify-content: center;
-    align-items: center;font-family:var(--ppt-font-body,var(--ppt-font))}
-.fass-summary-slide-root {
-    width: 960px;
-    height: 720px;
-    background-color: var(--ppt-bg);
-    position: relative;
-    font-family: var(--ppt-font-body);
-    color: var(--ppt-text-1);
-    display: flex;
-    flex-direction: column
-    }
-/* Non-Cover-Page Title Region */
-.title-region-container {
-    padding: 28px 40px 8px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px
-    }
-.title-region-header {
-    display: flex;
-    align-items: center;
-    gap: 12px
-    }
-.title-region-bar {
-    width: 4px;
-    height: 32px;
-    background: var(--ppt-accent);
-    border-radius: 2px
-    }
-.title-region-text {
-    font-family: var(--ppt-font-display);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    margin: 0
-    }
-.title-region-line {
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--ppt-accent) 0%, transparent 100%);
-    opacity: 0.3;
-    margin-top: 8px
-    }
-/* Main Content */
-.summary-content-wrapper {
-    flex: 1;
-    min-height: 0;
-    padding: 8px 36px 20px 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 0
-    }
-.summary-grid-container {
-    display: flex;
-    align-items: stretch;
-    gap: 16px;
-    flex: 1;
-    min-height: 0
-    }
-.summary-column-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: var(--ppt-surface);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-lg);
-    padding: 18px 18px 16px 18px;
-    gap: 12px;
-    box-shadow: var(--ppt-shadow-soft);
-    min-height: 0
-    }
-.summary-column-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0
-    }
-.summary-column-icon {
-    font-size: 22px;
-    color: var(--ppt-accent);
-    width: 44px;
-    height: 44px;
-    background: rgba(0, 240, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--ppt-radius-md);
-    flex-shrink: 0
-    }
-.summary-column-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.summary-list-container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-    min-height: 0
-    }
-.summary-list-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    min-height: 0;
-    padding: 12px 14px;
-    background: var(--ppt-surface-2);
-    border-radius: var(--ppt-radius-md);
-    border: 1px solid rgba(51, 65, 85, 0.6)
-    }
-.summary-item-tag {
-    display: inline-block;
-    padding: 3px 10px;
-    font-size:13px;
-    font-weight: 600;
-    border-radius: var(--ppt-radius-sm);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    align-self: flex-start
-    }
-.tag-completed {
-    background: var(--ppt-good);
-    color: #000
-    }
-.tag-ongoing {
-    background: var(--ppt-accent);
-    color: #000
-    }
-.tag-planned {
-    background: var(--ppt-accent-2);
-    color: #000
-    }
-.summary-item-text {
-    font-size: 16px;
-    line-height: 1.45;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.summary-item-subtext {
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--ppt-text-2);
-    margin-top: 5px
-    }
-.summary-highlight-box {
-    margin-top: auto;
-    flex-shrink: 0;
-    padding: 12px 14px;
-    border-left: 3px solid var(--ppt-accent-2);
-    background: rgba(250, 204, 21, 0.06);
-    border-radius: 0 var(--ppt-radius-sm) var(--ppt-radius-sm) 0
-    }
-.summary-highlight-text {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.45;
-    color: var(--ppt-accent-2)
-    }
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root{--ppt-font:"Noto Sans KR",sans-serif;--ppt-bg:#0A0E1A;--ppt-bg-soft:#141B2D;--ppt-surface:#1E2638;--ppt-border:#334155;--ppt-text-1:#FFF;--ppt-text-2:#94A3B8;--ppt-text-3:#64748B;--ppt-accent:#00F0FF;--ppt-accent-2:#FACC15}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 12% 20%,rgba(0,240,255,.06) 0%,transparent 50%)}
+.title-r{flex-shrink:0;padding:24px 40px 8px;position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
+.title-row{display:flex;align-items:center;gap:10px}
+.bar{width:4px;height:32px;background:var(--ppt-accent);border-radius:2px}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(0,240,255,.1);border:1px solid rgba(0,240,255,.3);color:var(--ppt-accent)}
+h1{font-size:28px;font-weight:700;margin:0}
+.title-sub{font-size:15px;color:var(--ppt-text-2);padding-left:14px;line-height:1.45}
+.line{height:1px;margin-top:6px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.body{flex:1;min-height:0;padding:16px 40px 12px;display:flex;flex-direction:column;justify-content:center;gap:20px;position:relative;z-index:1}
+.hero-msg{text-align:center;font-size:20px;font-weight:700;color:var(--ppt-text-1);line-height:1.45;max-width:720px;margin:0 auto}
+.hero-msg em{font-style:normal;color:var(--ppt-accent-2)}
+.preview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.prev-card{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:14px;padding:18px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.prev-card i{font-size:32px;color:var(--ppt-accent)}
+.prev-title{font-size:16px;font-weight:700}
+.prev-sub{font-size:13px;color:var(--ppt-text-3);line-height:1.4}
+.insight{flex-shrink:0;margin:0 40px 14px;padding:10px 16px;background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.45;position:relative;z-index:1}
+.insight strong{color:var(--ppt-accent-2)}
+html{overflow:hidden;margin:0;padding:0}
+</style>
+</head>
 <body>
-<div class="fass-summary-slide-root" data-motion="cards" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Title Region -->
-<div class="title-region-container">
-<div class="title-region-header">
-<div class="title-region-bar"></div>
-<h1 class="title-region-text">Executive Summary - FaSS 플랫폼 구축</h1>
-</div>
-<div class="title-region-line"></div>
-</div>
-<!-- Content Area -->
-<div class="summary-content-wrapper">
-<div class="summary-grid-container">
-<!-- Column 1: Progress Status -->
-<div class="summary-column-item">
-<div class="summary-column-header">
-<div class="summary-column-icon"><i class="fas fa-chart-line"></i></div>
-<div class="summary-column-title">진척 현황</div>
-</div>
-<div class="summary-list-container">
-<div class="summary-list-item">
-<span class="summary-item-tag tag-completed">6월 현재</span>
-<div class="summary-item-text">기반 프레임워크 표준 확립</div>
-<div class="summary-item-subtext">Java 21, React, Next.js 표준 아키텍처 구축</div>
-</div>
-<div class="summary-list-item">
-<span class="summary-item-tag tag-completed">인프라</span>
-<div class="summary-item-text">LangGraph 기반 AI 코드 마이그레이션 환경 완료</div>
-<div class="summary-item-subtext">DGX Spark 기반 RAG 및 코드 자동화 환경 완료</div>
-</div>
-<div class="summary-list-item">
-<span class="summary-item-tag tag-ongoing">진행 중</span>
-<div class="summary-item-text">UI/UX 및 기술스택 정립 단계 진입</div>
-<div class="summary-item-subtext">디자인 시스템·기술스택 표준화 및 핵심 화면 개발 착수</div>
-</div>
-</div>
-<div class="summary-highlight-box">
-<div class="summary-highlight-text">기술 내재화를 통한 SI 비용 80억 방어</div>
-</div>
-</div>
-<!-- Column 2: Roadmap -->
-<div class="summary-column-item">
-<div class="summary-column-header">
-<div class="summary-column-icon"><i class="fa-solid fa-map"></i></div>
-<div class="summary-column-title">전략 로드맵</div>
-</div>
-<div class="summary-list-container">
-<div class="summary-list-item">
-<span class="summary-item-tag tag-completed">검증 완료</span>
-<div class="summary-item-text">PoC 및 프로토타입 격리 검증</div>
-<div class="summary-item-subtext">AI 아이디어 스파크 PoC 데이터 무결성 검증 완료</div>
-</div>
-<div class="summary-list-item">
-<span class="summary-item-tag tag-planned">26년 10월</span>
-<div class="summary-item-text">주유소(JTGS) 프로토타입 개발 착수</div>
-<div class="summary-item-subtext">2026.10 차세대 서버에서 개발 Start — 완성형 기술스택 최초 적용 (2027.03 완성 목표)</div>
-</div>
-<div class="summary-list-item">
-<span class="summary-item-tag tag-planned">최종 단계</span>
-<div class="summary-item-text">유통물류 시스템 완전 전환</div>
-<div class="summary-item-subtext">리스크 제로 기반의 Phased Roll-out 전략</div>
-</div>
-</div>
-<div class="summary-highlight-box">
-<div class="summary-highlight-text">빅뱅 방식 지양을 통한 무중단 비즈니스 보장</div>
-</div>
-</div>
-<!-- Column 3: Infrastructure -->
-<div class="summary-column-item">
-<div class="summary-column-header">
-<div class="summary-column-icon"><i class="fas fa-cloud"></i></div>
-<div class="summary-column-title">인프라 방향성</div>
-</div>
-<div class="summary-list-container">
-<div class="summary-list-item">
-<span class="summary-item-tag tag-ongoing">설계 원칙</span>
-<div class="summary-item-text">100% Cloud-Ready 아키텍처</div>
-<div class="summary-item-subtext">컨테이너 기반 설계로 즉각적인 클라우드 배포</div>
-</div>
-<div class="summary-list-item">
-<span class="summary-item-tag tag-ongoing">비용 최적화</span>
-<div class="summary-item-text">온프레미스 기반 리스크 관리</div>
-<div class="summary-item-subtext">무리한 초기 전환 유보 및 인프라 비용 낭비 방지</div>
-</div>
-<div class="summary-list-item">
-<span class="summary-item-tag tag-planned">수익화 모델</span>
-<div class="summary-item-text">솔루션 패키지화 (ASP) 공급</div>
-<div class="summary-item-subtext">외부 확장이 용이한 멀티 테넌시 구조 확보</div>
-</div>
-</div>
-<div class="summary-highlight-box">
-<div class="summary-highlight-text">IT를 '비용 부서'에서 '수익 파이프라인'으로 격상</div>
-</div>
-</div>
-</div>
-</div>
+<div class="slide" data-motion="cards" data-motion-tier="medium">
+  <div class="title-r">
+    <div class="title-row"><div class="bar"></div><span class="badge">아키텍처 기초</span><h1>아키텍처의 이해</h1></div>
+    <div class="title-sub">Web, WAS, DB의 역할과 차세대 구조가 왜 필요한가?</div>
+    <div class="line"></div>
+  </div>
+  <div class="body">
+    <div class="hero-msg">IT 시스템은 크게 <em>화면 · 업무 · 데이터</em> 세 층으로 나뉩니다.<br/>이후 설계·진행 내용을 이해하는 기준이 됩니다.</div>
+    <div class="preview">
+      <div class="prev-card"><i class="fas fa-desktop"></i><div class="prev-title">Web (화면)</div><div class="prev-sub">사용자가 보는 창구</div></div>
+      <div class="prev-card"><i class="fas fa-gears"></i><div class="prev-title">WAS (업무)</div><div class="prev-sub">비즈니스를 처리하는 두뇌</div></div>
+      <div class="prev-card"><i class="fas fa-database"></i><div class="prev-title">DB (데이터)</div><div class="prev-sub">정보를 보관하는 창고</div></div>
+    </div>
+  </div>
+  <div class="insight"><strong>경영 시사점:</strong> 기술 용어보다 역할 이해가 먼저 — 이후 FaSS 설계·전환 논의의 공통 언어</div>
 </div>
 <script>
-(function(){
-  function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight;
-    var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
-    el.style.position='absolute';
-    el.style.left=Math.round((sw-960*scale)/2)+'px';
-    el.style.top=Math.round((sh-720*scale)/2)+'px';
-  }
-  applyScale();
-  window.addEventListener('resize',applyScale);
-})();
+(function(){function s(){var e=document.querySelector('body>div');if(!e)return;var w=window.innerWidth,h=window.innerHeight,sc=Math.min(w/960,h/720);e.style.transform='scale('+sc+')';e.style.transformOrigin='top left';e.style.position='absolute';e.style.left=Math.round((w-960*sc)/2)+'px';e.style.top=Math.round((h-720*sc)/2)+'px';}s();window.addEventListener('resize',s);})();
 </script>
 </body>
 </html>

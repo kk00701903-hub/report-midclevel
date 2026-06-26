@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>중장기 목표 2 — 단계적 시스템 분리</title>
+<script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root {
+  --ppt-font: "Noto Sans KR", sans-serif;
+  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
+  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
+  --ppt-radius-sm:4px; --ppt-radius-md:8px; --ppt-radius-lg:16px;
+  --ppt-font-display:"Noto Sans KR", sans-serif;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+  display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font); }
+.slide { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
+  display:flex; flex-direction:column; overflow:hidden; }
+.title-region { padding:22px 40px 6px; display:flex; flex-direction:column; gap:6px; }
+.title-header { display:flex; align-items:center; gap:12px; }
+.title-bar { width:4px; height:32px; background:var(--ppt-accent); border-radius:2px; }
+.title-badge { background:rgba(0,240,255,.12); color:var(--ppt-accent); padding:3px 12px;
+  border-radius:var(--ppt-radius-sm); font-size:13px; font-weight:600; border:1px solid rgba(0,240,255,.3); }
+.title-text { font-family:var(--ppt-font-display); font-size:26px; font-weight:700; margin:0; }
+.title-sub { font-size:14px; color:var(--ppt-text-2); padding-left:16px; line-height:1.4; }
+.title-line { height:1px; width:100%; background:linear-gradient(90deg,var(--ppt-accent),transparent); opacity:.3; margin-top:4px; }
+.main { flex:1; padding:6px 40px 8px; display:flex; gap:16px; min-height:0; }
+.diagram-col { flex:1.3; display:flex; flex-direction:column; }
+.diagram-card { flex:1; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border);
+  border-radius:var(--ppt-radius-lg); padding:14px; display:flex; flex-direction:column; gap:8px; justify-content:center; }
+.diag-label { font-size:13px; font-weight:700; color:var(--ppt-accent); display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.stage { display:flex; align-items:center; gap:8px; }
+.stage-label { width:52px; font-size:11px; font-weight:700; color:var(--ppt-text-2); text-align:center; line-height:1.3; flex-shrink:0; }
+.stage-sublabel { display:block; font-size:10px; color:var(--ppt-text-3); font-weight:400; }
+.blocks { flex:1; display:flex; gap:6px; align-items:center; }
+.block { flex:1; padding:10px 6px; border-radius:var(--ppt-radius-sm); font-size:12px; font-weight:600;
+  text-align:center; line-height:1.3; min-height:44px; display:flex; align-items:center; justify-content:center; }
+.block-lg { background:rgba(100,116,139,.25); border:1px solid rgba(100,116,139,.4); color:#94A3B8; }
+.block-new { background:rgba(0,240,255,.12); border:1px solid rgba(0,240,255,.35); color:var(--ppt-accent); }
+.block-ai { background:rgba(250,204,21,.12); border:1px solid rgba(250,204,21,.4); color:var(--ppt-accent-2); }
+.block-msa { background:rgba(34,197,94,.12); border:1px solid rgba(34,197,94,.4); color:var(--ppt-good); }
+.arrow { color:var(--ppt-accent); font-size:14px; flex-shrink:0; opacity:.7; }
+.stage-arrow { text-align:center; color:var(--ppt-accent); opacity:.7; font-size:14px; padding:2px 0; }
+.reason-icon{width:40px;height:40px;border-radius:50%;background:rgba(0,240,255,.1);border:2px solid rgba(0,240,255,.3);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.reason-icon i{font-size:18px;color:var(--ppt-accent);width:auto}
+.reason { background:var(--ppt-surface); border:1px solid var(--ppt-border); border-left:3px solid var(--ppt-accent);
+  border-radius:var(--ppt-radius-md); padding:12px 12px; display:flex; align-items:center; gap:12px; }
+.reason > i { display:none; }
+.reasons-col { flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center; }
+.reason-body { flex:1; min-width:0; }
+.reason-title { font-size:14px; font-weight:700; line-height:1.35; margin-bottom:2px; }
+.reason-desc { font-size:12px; color:var(--ppt-text-3); line-height:1.35; }
+.tradeoff { background:rgba(250,204,21,.06); border-left:3px solid var(--ppt-accent-2);
+  border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; padding:10px 12px;
+  font-size:13px; color:var(--ppt-text-2); line-height:1.45; }
+.tradeoff strong { color:var(--ppt-accent-2); }
+.bottom-bar { flex-shrink:0; margin:0 40px 10px; padding:9px 16px;
+  background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);
+  border-left:3px solid var(--ppt-accent-2); border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; }
+.bottom-bar p { font-size:14px; color:var(--ppt-text-2); line-height:1.4; }
+.bottom-bar strong { color:var(--ppt-accent-2); }
+html { overflow:hidden; margin:0; padding:0; }
+</style>
+</head>
+<body>
+<div class="slide" data-motion="architecture" data-motion-tier="medium">
+  <div class="title-region">
+    <div class="title-header">
+      <div class="title-bar"></div>
+      <span class="title-badge">ULTIMATE GOAL</span>
+      <h1 class="title-text">중장기 목표 2 — 단계적 시스템 분리</h1>
+    </div>
+    <div class="title-sub">한 번에 교체하지 않고, 신규 시스템을 점진적으로 확대</div>
+    <div class="title-line"></div>
+  </div>
+  <div class="main">
+    <div class="diagram-col">
+      <div class="diagram-card">
+        <div class="diag-label"><i class="fas fa-project-diagram"></i> 점진적 전환 — 단계별 확대</div>
+        <div class="stage">
+          <div class="stage-label">1단계<span class="stage-sublabel">FaSS 도입</span></div>
+          <div class="blocks">
+            <div class="block block-lg" style="flex:2">기존 시스템</div>
+            <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            <div class="block block-new">FaSS</div>
+          </div>
+        </div>
+        <div class="stage-arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="stage">
+          <div class="stage-label">2단계<span class="stage-sublabel">AI 분리</span></div>
+          <div class="blocks">
+            <div class="block block-lg">기존</div>
+            <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            <div class="block block-new">FaSS</div>
+            <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            <div class="block block-ai">AI</div>
+          </div>
+        </div>
+        <div class="stage-arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="stage">
+          <div class="stage-label">3단계<span class="stage-sublabel">전면 분리</span></div>
+          <div class="blocks">
+            <div class="block block-msa">유통물류</div>
+            <div class="block block-msa">3PL</div>
+            <div class="block block-msa">주유소</div>
+            <div class="block block-ai">AI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reasons-col">
+      <div class="reason">
+        <div class="reason-icon"><i class="fas fa-clock"></i></div>
+        <div class="reason-body">
+          <div class="reason-title">365일 가동</div>
+          <div class="reason-desc">모듈별 독립 배포로 서비스 중단 없음</div>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="reason-body">
+          <div class="reason-title">부분 장애 격리</div>
+          <div class="reason-desc">한 영역 장애가 전체 마비로 번지지 않음</div>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-icon"><i class="fas fa-microchip"></i></div>
+        <div class="reason-body">
+          <div class="reason-title">AI 자원 분리</div>
+          <div class="reason-desc">AI 연산과 업무 시스템 자원 충돌 방지</div>
+        </div>
+      </div>
+      <div class="tradeoff"><strong>전략:</strong> 점진 전환으로 리스크 최소화 — 각 단계 검증 후 확대</div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <p><strong>경영 시사점:</strong> 단계적 분리 = 무중단 운영 + 장기적 아키텍처 진화</p>
+  </div>
+</div>
+<script>
+(function(){
+  function applyScale(){
+    var el=document.querySelector('body>div'); if(!el)return;
+    var sw=window.innerWidth,sh=window.innerHeight,scale=Math.min(sw/960,sh/720);
+    el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
+    el.style.position='absolute'; el.style.left=Math.round((sw-960*scale)/2)+'px';
+    el.style.top=Math.round((sh-720*scale)/2)+'px';
+  }
+  applyScale(); window.addEventListener('resize',applyScale);
+})();
+</script>
+</body>
+</html>

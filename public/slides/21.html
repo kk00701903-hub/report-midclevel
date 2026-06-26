@@ -1,152 +1,172 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>비즈니스 혁신1: 차세대 영업 핵심 IT 엔진 보유</title>
+<title>아키텍처 원칙 1 — 안정적 시작, 점진적 확장</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
-  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
-  --c1:#38BDF8; --c2:#A78BFA; --c3:#34D399; --c4:#F472B6; --c5:#FB923C;
   --ppt-font: "Noto Sans KR", sans-serif;
+  --ppt-bg: #0A0E1A; --ppt-bg-soft: #141B2D; --ppt-surface: #1E2638;
+  --ppt-border: #334155; --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-text-3: #64748B;
+  --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15; --ppt-good: #22C55E;
+  --ppt-radius-sm: 4px; --ppt-radius-md: 8px; --ppt-radius-lg: 16px;
+  --ppt-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --ppt-font-display: "Noto Sans KR", sans-serif;
+  --ppt-font-body: "Noto Sans KR", sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
-.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
-.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(ellipse at 0% 0%,rgba(0,240,255,.08) 0%,transparent 50%),
-  radial-gradient(ellipse at 100% 100%,rgba(250,204,21,.07) 0%,transparent 45%)}
-.title-r{flex-shrink:0;padding:22px 36px 6px;position:relative;z-index:1}
-.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
-h1.title-main{font-size:26px;font-weight:700;line-height:1.3}
-.sub{font-size:13px;color:var(--ppt-text-2);margin-top:4px;padding-left:14px}
-.line{height:1px;margin-top:8px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
-.body{flex:1;min-height:0;padding:6px 32px 10px;display:grid;grid-template-columns:200px 1fr;gap:14px;position:relative;z-index:1}
-.engine-panel{
-  background:linear-gradient(160deg,rgba(0,240,255,.12),rgba(30,38,56,.95));
-  border:1px solid rgba(0,240,255,.3);border-radius:16px;padding:18px 16px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;
-  box-shadow:0 0 40px rgba(0,240,255,.08);
-}
-.engine-icon{width:64px;height:64px;border-radius:16px;background:rgba(0,240,255,.15);border:1px solid rgba(0,240,255,.35);
-  display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--ppt-accent);
-  box-shadow:0 0 24px rgba(0,240,255,.2)}
-.engine-label{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--ppt-accent);text-transform:uppercase}
-.engine-title{font-size:16px;font-weight:700;line-height:1.4;color:var(--ppt-text-1)}
-.engine-tags{display:flex;flex-direction:column;gap:5px;width:100%}
-.etag{font-size:14px;font-weight:600;padding:5px 8px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);color:var(--ppt-text-2)}
-.etag i{margin-right:5px;color:var(--ppt-accent-2);font-size:14px}
-.strategies{display:flex;flex-direction:column;gap:7px;min-height:0}
-.strat{
-  flex:1;min-height:0;display:flex;gap:10px;padding:9px 12px;border-radius:12px;
-  background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-left:3px solid var(--c);
-  position:relative;overflow:hidden;
-}
-.strat::after{content:'';position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:var(--c);opacity:.04}
-.strat-num{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--c)}
-.strat-icon{flex-shrink:0;width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--c);margin-top:1px}
-.strat-body{flex:1;min-width:0}
-.strat-title{font-size:14px;font-weight:700;color:var(--ppt-text-1);line-height:1.35;margin-bottom:4px}
-.strat-desc{font-size:12.5px;color:var(--ppt-text-2);line-height:1.48}
-.strat.s1{--c:var(--c1)} .strat.s2{--c:var(--c2)} .strat.s3{--c:var(--c3)} .strat.s4{--c:var(--c4)} .strat.s5{--c:var(--c5)}
-.footer{flex-shrink:0;margin:0 32px 12px;padding:8px 14px;border-radius:0 10px 10px 0;border-left:3px solid var(--ppt-accent-2);
-  background:rgba(250,204,21,.05);font-size:14px;color:var(--ppt-text-2);line-height:1.48;position:relative;z-index:1}
-.footer strong{color:var(--ppt-accent-2)}
-html{overflow:hidden;margin:0;padding:0}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+  display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font-body); }
+.fass-slide-root { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
+  display:flex; flex-direction:column; overflow:hidden; }
+.title-region-wrapper { padding:22px 40px 6px; display:flex; flex-direction:column; gap:6px; }
+.title-region-header { display:flex; align-items:center; gap:12px; }
+.title-region-bar { width:4px; height:32px; background:var(--ppt-accent); border-radius:2px; }
+.title-region-text { font-family:var(--ppt-font-display); font-size:28px; font-weight:700; margin:0; }
+.title-sub { font-size:14px; color:var(--ppt-text-2); padding-left:16px; line-height:1.4; }
+.title-region-line { height:1px; width:100%; background:linear-gradient(90deg,var(--ppt-accent),transparent); opacity:0.3; margin-top:4px; }
+.main-container { flex:1; min-height:0; padding:4px 40px 10px; display:flex; flex-direction:column; gap:8px; }
+.columns { display:flex; gap:16px; flex:1; min-height:0; }
+.left-col { flex:0 0 52%; display:flex; flex-direction:column; }
+.visual-card { flex:1; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border);
+  border-radius:var(--ppt-radius-lg); padding:12px 14px; display:flex; flex-direction:column; gap:8px;
+  box-shadow:var(--ppt-shadow-soft); }
+.badge-cyan { background:rgba(0,240,255,0.1); color:var(--ppt-accent); padding:4px 12px;
+  border-radius:var(--ppt-radius-sm); font-size:13px; font-weight:600; border:1px solid rgba(0,240,255,0.3);
+  align-self:flex-start; }
+.diagram { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  background:rgba(255,255,255,0.02); border-radius:var(--ppt-radius-md); border:1px dashed var(--ppt-border); padding:12px; position:relative; }
+.module-db-wrap { width:92%; position:relative; }
+.conn-svg { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.server-box { width:100%; padding:14px; border:2px solid var(--ppt-accent); border-radius:var(--ppt-radius-md);
+  background:rgba(0,240,255,0.05); display:flex; flex-direction:column; gap:10px; position:relative; z-index:1; }
+.server-title { font-size:14px; color:var(--ppt-accent); font-weight:700; text-align:center; }
+.module-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.module-box { background:var(--ppt-surface); border:1px solid var(--ppt-border); padding:10px 6px;
+  border-radius:var(--ppt-radius-sm); text-align:center; display:flex; flex-direction:column; gap:4px; align-items:center; }
+.module-box i { color:var(--ppt-accent); font-size:22px; }
+.module-box span { font-size:13px; font-weight:600; }
+.db-row { display:flex; justify-content:space-around; width:100%; margin-top:2px; }
+.db-item { display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--ppt-text-3); font-size:12px; }
+.diagram-caption { font-size:13px; color:var(--ppt-text-2); text-align:center; line-height:1.4; padding-top:4px; }
+.right-col { flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; }
+.compare-card { flex:1; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border);
+  border-radius:var(--ppt-radius-md); padding:12px 14px; display:flex; align-items:center; gap:12px; }
+.compare-card.highlight { border:2px solid rgba(0,240,255,0.55); border-left:4px solid var(--ppt-accent);
+  background:linear-gradient(135deg,rgba(0,240,255,0.14),var(--ppt-bg-soft));
+  box-shadow:0 0 22px rgba(0,240,255,0.16); }
+.compare-num { width:28px; height:28px; border-radius:50%; background:var(--ppt-surface);
+  border:1px solid var(--ppt-border); font-size:13px; font-weight:700; color:var(--ppt-text-2);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.compare-card.highlight .compare-num { background:rgba(0,240,255,0.22); border-color:var(--ppt-accent); color:var(--ppt-text-1); }
+.compare-icon { width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,0.05);
+  display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.compare-card:nth-child(1) .compare-icon { color:var(--ppt-text-3); }
+.compare-card.highlight .compare-icon { color:var(--ppt-accent); }
+.compare-card:nth-child(3) .compare-icon { color:#A78BFA; }
+.compare-body { flex:1; min-width:0; }
+.compare-title { font-size:15px; font-weight:700; margin-bottom:2px; }
+.compare-card.highlight .compare-title { color:var(--ppt-accent); }
+.compare-label { font-size:14px; font-weight:600; color:var(--ppt-text-1); margin-bottom:2px; }
+.compare-desc { font-size:12.5px; color:var(--ppt-text-3); line-height:1.4; }
+.fass-badge { font-size:11px; font-weight:700; padding:2px 7px; border-radius:10px;
+  background:rgba(0,240,255,0.22); color:var(--ppt-text-1); border:1px solid rgba(0,240,255,0.55); margin-left:6px; }
+.footer-box { background:linear-gradient(90deg,rgba(250,204,21,0.1),transparent);
+  border-left:4px solid var(--ppt-accent-2); padding:9px 16px; border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; flex-shrink:0; }
+.footer-box p { font-size:14px; color:var(--ppt-text-1); line-height:1.4; }
+html { overflow:hidden; margin:0; padding:0; }
 </style>
 </head>
 <body>
-<div class="slide" data-motion="innovation" data-motion-tier="medium">
-  <div class="title-r">
-    <div class="title-row">
-      <div class="bar"></div>
-      <span class="badge">BUSINESS INNOVATION</span>
-      <h1 class="title-main">비즈니스 혁신1: 차세대 영업 핵심 IT 엔진 보유</h1>
+<div class="fass-slide-root" data-motion="architecture" data-motion-tier="medium">
+  <div class="title-region-wrapper">
+    <div class="title-region-header">
+      <div class="title-region-bar"></div>
+      <h1 class="title-region-text">아키텍처 원칙 1 — 안정적 시작, 점진적 확장</h1>
     </div>
-    <p class="sub">차세대 웹 아키텍처 기반 — 영업 경쟁력 · 운영 효율 · 데이터 의사결정 · 안정성 · FinOps 5대 전략</p>
-    <div class="line"></div>
+    <div class="title-sub">성급한 분산 전환 없이, 안정성과 확장성을 동시에 확보</div>
+    <div class="title-region-line"></div>
   </div>
-
-  <div class="body">
-    <div class="engine-panel">
-      <div class="engine-icon"><i class="fas fa-rocket"></i></div>
-      <div class="engine-label">Core IT Engine</div>
-      <div class="engine-title">차세대 영업<br/>핵심 IT 엔진</div>
-      <div class="engine-tags">
-        <span class="etag"><i class="fas fa-cubes"></i>모듈형 배포</span>
-        <span class="etag"><i class="fas fa-plug"></i>API 통합</span>
-        <span class="etag"><i class="fas fa-shield-halved"></i>Zero-Defect</span>
-        <span class="etag"><i class="fas fa-coins"></i>FinOps</span>
+  <div class="main-container">
+    <div class="columns">
+      <div class="left-col">
+        <div class="visual-card">
+          <span class="badge-cyan">FaSS V3.0 — 모듈형 구조</span>
+          <div class="diagram">
+            <div class="module-db-wrap">
+              <svg class="conn-svg" viewBox="0 0 400 120" preserveAspectRatio="none">
+                <line x1="67" y1="70" x2="67" y2="95" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+                <line x1="200" y1="70" x2="200" y2="95" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+                <line x1="333" y1="70" x2="333" y2="95" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+              </svg>
+            <div class="server-box">
+              <div class="server-title">유통물류 시스템</div>
+              <div class="module-grid">
+                <div class="module-box"><i class="fa-solid fa-file-invoice"></i><span>수주</span></div>
+                <div class="module-box"><i class="fa-solid fa-cart-shopping"></i><span>발주</span></div>
+                <div class="module-box"><i class="fa-solid fa-calculator"></i><span>정산</span></div>
+              </div>
+            </div>
+            <div class="db-row" style="position:relative;z-index:1">
+              <div class="db-item"><i class="fas fa-database"></i><span>데이터 A</span></div>
+              <div class="db-item" style="color:var(--ppt-accent)"><i class="fa-solid fa-shield"></i><span>격리</span></div>
+              <div class="db-item"><i class="fas fa-database"></i><span>데이터 B</span></div>
+              <div class="db-item" style="color:var(--ppt-accent)"><i class="fa-solid fa-shield"></i><span>격리</span></div>
+              <div class="db-item"><i class="fas fa-database"></i><span>데이터 C</span></div>
+            </div>
+            <div class="diagram-caption">업무별 독립 모듈 · 데이터 격리로 안전한 운영</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="compare-card">
+          <span class="compare-num">1</span>
+          <div class="compare-icon"><i class="fas fa-cube"></i></div>
+          <div class="compare-body">
+            <div class="compare-title">일체형</div>
+            <div class="compare-label">변경 어려움</div>
+            <div class="compare-desc">전체 재배포 필요, 변경 리스크 큼</div>
+          </div>
+        </div>
+        <div class="compare-card highlight">
+          <span class="compare-num">2</span>
+          <div class="compare-icon"><i class="fas fa-cubes"></i></div>
+          <div class="compare-body">
+            <div class="compare-title">모듈형 <span class="fass-badge">FaSS 선택</span></div>
+            <div class="compare-label">안정 + 유연</div>
+            <div class="compare-desc">핵심 업무 안정 + 신규 기능 빠른 추가</div>
+          </div>
+        </div>
+        <div class="compare-card">
+          <span class="compare-num">3</span>
+          <div class="compare-icon"><i class="fas fa-network-wired"></i></div>
+          <div class="compare-body">
+            <div class="compare-title">분산형</div>
+            <div class="compare-label">미래 확장</div>
+            <div class="compare-desc">트래픽 증가 시 독립 확장 가능</div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="strategies">
-      <div class="strat s1">
-        <div class="strat-num">1</div>
-        <div class="strat-icon"><i class="fas fa-bolt"></i></div>
-        <div class="strat-body">
-          <div class="strat-title">전략 1. 시장 경쟁력 강화를 위한 민첩성 확보</div>
-          <div class="strat-desc">차세대 웹 아키텍처는 기능 단위의 모듈화된 배포를 가능하게 합니다. 시장 환경 변화나 고객의 요구사항에 즉각적으로 대응함으로써, 비즈니스 기회 선점과 프로젝트 성공률 제고에 직접적으로 기여합니다.</div>
-        </div>
-      </div>
-      <div class="strat s2">
-        <div class="strat-num">2</div>
-        <div class="strat-icon"><i class="fas fa-gauge-high"></i></div>
-        <div class="strat-body">
-          <div class="strat-title">전략 2. 기술 부채 해소를 통한 업무 효율 증대</div>
-          <div class="strat-desc">최신 웹 프레임워크 기반의 고도화된 아키텍처는 시스템 응답 속도를 개선하여 실무자의 업무 생산성을 높입니다. 이는 시스템 운영 관점에서의 성능 향상을 넘어, 전사적 운영 비용 절감으로 이어지는 핵심 동력이 될 것입니다.</div>
-        </div>
-      </div>
-      <div class="strat s3">
-        <div class="strat-num">3</div>
-        <div class="strat-icon"><i class="fas fa-chart-line"></i></div>
-        <div class="strat-body">
-          <div class="strat-title">전략 3. 데이터 기반의 의사결정 체계 구축</div>
-          <div class="strat-desc">유연한 API 통합 및 데이터 연동 환경을 구축하여, 파편화된 기업 데이터를 실시간으로 가시화합니다. 이를 통해 경영진의 데이터 기반 의사결정을 지원하는 전략적 플랫폼으로서의 위상을 강화하겠습니다.</div>
-        </div>
-      </div>
-      <div class="strat s4">
-        <div class="strat-num">4</div>
-        <div class="strat-icon"><i class="fas fa-shield-virus"></i></div>
-        <div class="strat-body">
-          <div class="strat-title">전략 4. 리스크 최소화 및 시스템 안정성 강화</div>
-          <div class="strat-desc">'무결점(Zero-Defect) 코드 품질 통제 체계'를 통해 대형 프로젝트에서 발생할 수 있는 장애 요인을 사전에 차단하겠습니다. 기술적 안정성은 비즈니스 연속성을 보장하며, 고객과 이해관계자들에게 우리 기술 솔루션에 대한 강력한 신뢰를 제공할 것입니다.</div>
-        </div>
-      </div>
-      <div class="strat s5">
-        <div class="strat-num">5</div>
-        <div class="strat-icon"><i class="fas fa-piggy-bank"></i></div>
-        <div class="strat-body">
-          <div class="strat-title">전략 5. 경영 효율화를 위한 클라우드 예산 최적화</div>
-          <div class="strat-desc">FinOps 관점의 철저한 클라우드 예산 절감 훈련과 운영 프로세스 최적화를 추진하겠습니다. 단순 기술 도입을 넘어, 기술 자산이 실제적인 경영 성과와 비용 효율로 직결되도록 관리하겠습니다.</div>
-        </div>
-      </div>
+    <div class="footer-box">
+      <p>핵심 업무는 안정적으로, 신규 기능은 빠르게 — 점진적 확장 전략</p>
     </div>
-  </div>
-
-  <div class="footer">
-    <strong>영업 핵심 IT 엔진:</strong> 기술 자산을 수익 창출·민첩성·안정성·비용 효율의 경영 가치로 전환하는 차세대 FaSS 플랫폼의 비즈니스 혁신 기반
   </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('.slide'); if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight,scale=Math.min(sw/960,sh/720);
+    var el=document.querySelector('body>div'); if(!el)return;
+    var sw=window.innerWidth,sh=window.innerHeight;
+    var scale=Math.min(sw/960,sh/720);
     el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
-    el.style.position='absolute'; el.style.left=Math.round((sw-960*scale)/2)+'px';
+    el.style.position='absolute';
+    el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
   applyScale(); window.addEventListener('resize',applyScale);

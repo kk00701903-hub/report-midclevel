@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const basePath = "/report_fassmid";
+const basePath = "/report-midclevel";
 
 const nextConfig: NextConfig = {
   output: "export",

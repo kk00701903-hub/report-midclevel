@@ -2,178 +2,69 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>PART 2 - 프로젝트 진행 경과 및 방향성</title>
+<title>시스템 3대 핵심 요소</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
-:root {
-  --ppt-font-body: "Noto Sans KR", sans-serif;
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-
-  --ppt-bg: #0A0E1A;
-  --ppt-bg-soft: #141B2D;
-  --ppt-surface: #1E2638;
-  --ppt-surface-2: #2A344A;
-  --ppt-border: #334155;
-  --ppt-text-1: #FFF;
-  --ppt-text-2: #94A3B8;
-  --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF;
-  --ppt-accent-2: #FACC15;
-  --ppt-font: "Noto Sans KR", sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body{
-  width:100vw; height:100vh; overflow: hidden;
-  background-color:#0A0E1A; display: flex;
-  justify-content: center; align-items: center;
-;font-family:var(--ppt-font-body,var(--ppt-font))}
-.section-slide-root {
-  width: 960px; height: 720px;
-  background-color: var(--ppt-bg);
-  font-family: var(--ppt-font);
-  position: relative; display: flex;
-  flex-direction: column;
-  justify-content: center; align-items: flex-start;
-  padding: 0 80px;
-  overflow: hidden;
-}
-.bg-grid-overlay {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-}
-.bg-glow-circle {
-  position: absolute; right: -120px; top: 50%;
-  transform: translateY(-50%);
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(250,204,21,0.06) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-.bg-left-bar {
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 6px;
-  background: linear-gradient(180deg, transparent 0%, var(--ppt-accent-2) 40%, var(--ppt-accent-2) 60%, transparent 100%);
-}
-.section-part-number {
-  font-size: 120px; font-weight: 700;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(250,204,21,0.15);
-  position: absolute; right: 60px; bottom: 40px;
-  user-select: none;
-}
-.section-part-label {
-  font-size: 14px; font-weight: 700;
-  color: var(--ppt-accent-2);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  display: flex; align-items: center; gap: 12px;
-}
-.section-part-label::after {
-  content: '';
-  display: block; width: 60px; height: 1px;
-  background: var(--ppt-accent-2); opacity: 0.5;
-}
-.section-title-ko {
-  font-size:26px; font-weight: 700;
-  color: var(--ppt-text-1);
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
-.section-title-en {
-  font-size: 18px; font-weight: 400;
-  color: var(--ppt-accent);
-  letter-spacing: 1px;
-  margin-bottom: 40px;
-}
-.section-divider-line {
-  width: 80px; height: 3px;
-  background: linear-gradient(90deg, var(--ppt-accent-2), transparent);
-  margin-bottom: 36px;
-  border-radius: 2px;
-}
-.section-topics-list {
-  display: flex; flex-direction: column; gap: 14px;
-}
-.section-topic-item {
-  display: flex; align-items: center; gap: 14px;
-}
-.topic-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--ppt-accent-2); flex-shrink: 0;
-  box-shadow: 0 0 8px var(--ppt-accent-2);
-}
-.topic-text {
-  font-size: 17px; color: var(--ppt-text-2);
-  font-weight: 400; line-height: 1.4;
-}
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+:root{--ppt-font:"Noto Sans KR",sans-serif;--ppt-bg:#0A0E1A;--ppt-bg-soft:#141B2D;--ppt-surface:#1E2638;--ppt-border:#334155;--ppt-text-1:#FFF;--ppt-text-2:#94A3B8;--ppt-text-3:#64748B;--ppt-accent:#00F0FF;--ppt-accent-2:#FACC15;--ppt-good:#22C55E}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
+.title-r{flex-shrink:0;padding:22px 40px 6px;display:flex;flex-direction:column;gap:6px}
+.title-row{display:flex;align-items:center;gap:10px}
+.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
+h1{font-size:26px;font-weight:700;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
+.line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.grid{flex:1;min-height:0;padding:10px 36px 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-content:center}
+.card{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:16px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;border-top:3px solid var(--c)}
+.card-icon{width:64px;height:64px;border-radius:16px;background:rgba(0,240,255,.1);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--c)}
+.card-label{font-size:13px;font-weight:700;color:var(--c);letter-spacing:.02em}
+.card-title{font-size:17px;font-weight:700;line-height:1.35}
+.card-msg{font-size:15px;font-weight:600;color:var(--ppt-text-1);line-height:1.4}
+.card-detail{font-size:13px;color:var(--ppt-text-3);line-height:1.45}
+.card.c1{--c:var(--ppt-accent)} .card.c2{--c:var(--ppt-accent-2)} .card.c3{--c:var(--ppt-good)}
+.insight{flex-shrink:0;margin:0 36px 12px;padding:9px 16px;background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.4}
+.insight strong{color:var(--ppt-accent-2)}
+html{overflow:hidden;margin:0;padding:0}
+</style>
+</head>
 <body>
-<div class="section-slide-root" data-motion="part" data-motion-tier="medium">
-  <div class="bg-grid-overlay"></div>
-  <div class="bg-glow-circle"></div>
-  <div class="bg-left-bar"></div>
-  <div class="section-part-number">02</div>
-  <div class="section-part-label">PART 02</div>
-  <div class="section-title-ko">프로젝트 진행 경과 및 방향성</div>
-  <div class="section-title-en">Project Progress &amp; Direction</div>
-  <div class="section-divider-line"></div>
-  <div class="section-topics-list">
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">스프린트 운영현황</span>
+<div class="slide" data-motion="cards" data-motion-tier="medium">
+  <div class="title-r">
+    <div class="title-row"><div class="bar"></div><h1>시스템 3대 핵심 요소</h1></div>
+    <div class="title-sub">각 층이 어떤 역할을 하며, 경영에 왜 중요한가?</div>
+    <div class="line"></div>
+  </div>
+  <div class="grid">
+    <div class="card c1">
+      <div class="card-icon"><i class="fas fa-desktop"></i></div>
+      <div class="card-label">Web · 화면</div>
+      <div class="card-title">사용자가 마주하는 '창구'</div>
+      <div class="card-msg">브라우저에서 화면을 보여주고 입력을 받음</div>
+      <div class="card-detail">현장·고객 경험과 직결 — 사용성·속도가 매출·업무 효율에 영향</div>
     </div>
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">타사 프로젝트 비교</span>
+    <div class="card c2">
+      <div class="card-icon"><i class="fas fa-gears"></i></div>
+      <div class="card-label">WAS · 업무 처리</div>
+      <div class="card-title">비즈니스를 처리하는 '두뇌'</div>
+      <div class="card-msg">주문·정산·재고 등 실제 업무 로직 수행</div>
+      <div class="card-detail">핵심 경쟁력이 구현되는 층 — 변경·확장 속도가 사업 민첩성 좌우</div>
     </div>
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">AI-Augmented 개발 워크플로우</span>
-    </div>
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">프로젝트 진행경과 마일스톤</span>
-    </div>
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">최적화 방안 1. AI 디지털 워커 활용</span>
-    </div>
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">최적화 방안 2. 애자일 워룸 운영</span>
-    </div>
-    <div class="section-topic-item">
-      <div class="topic-dot"></div>
-      <span class="topic-text">최적화 방안 3. 사전 POC 운영</span>
+    <div class="card c3">
+      <div class="card-icon"><i class="fas fa-database"></i></div>
+      <div class="card-label">DB · 데이터</div>
+      <div class="card-title">정보를 보관하는 '창고'</div>
+      <div class="card-msg">고객·거래·재고 등 핵심 데이터 안전 저장</div>
+      <div class="card-detail">데이터 정합성·보안 = 경영 신뢰의 기반</div>
     </div>
   </div>
+  <div class="insight"><strong>경영 시사점:</strong> 세 층이 각자 역할을 하되 연결되어야 — 한 층의 문제가 전체 업무로 번지지 않음</div>
 </div>
 <script>
-(function(){
-  function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight;
-    var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
-    el.style.position='absolute';
-    el.style.left=Math.round((sw-960*scale)/2)+'px';
-    el.style.top=Math.round((sh-720*scale)/2)+'px';
-  }
-  applyScale();
-  window.addEventListener('resize',applyScale);
-})();
+(function(){function s(){var e=document.querySelector('body>div');if(!e)return;var w=window.innerWidth,h=window.innerHeight,sc=Math.min(w/960,h/720);e.style.transform='scale('+sc+')';e.style.transformOrigin='top left';e.style.position='absolute';e.style.left=Math.round((w-960*sc)/2)+'px';e.style.top=Math.round((h-720*sc)/2)+'px';}s();window.addEventListener('resize',s);})();
 </script>
 </body>
 </html>

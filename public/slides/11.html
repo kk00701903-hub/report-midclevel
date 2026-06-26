@@ -1,199 +1,178 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>프로젝트 진행경과 마일스톤</title>
+<title>PART 2 - 프로젝트 진행 경과 및 방향성</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font-body: "Noto Sans KR", sans-serif;
   --ppt-font-display: "Noto Sans KR", sans-serif;
 
-  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638;
-  --ppt-border:#334155; --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
-  --p1:#5B9BD5; --p2:#70AD47; --p3:#FFC000; --p4:#8E6BBE;
-  --p5:#00A88F; --p6:#E85D5D; --p7:#ED7D31;
-  --ppt-font:"Noto Sans KR", sans-serif;
+  --ppt-bg: #0A0E1A;
+  --ppt-bg-soft: #141B2D;
+  --ppt-surface: #1E2638;
+  --ppt-surface-2: #2A344A;
+  --ppt-border: #334155;
+  --ppt-text-1: #FFF;
+  --ppt-text-2: #94A3B8;
+  --ppt-text-3: #64748B;
+  --ppt-accent: #00F0FF;
+  --ppt-accent-2: #FACC15;
+  --ppt-font: "Noto Sans KR", sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
-.slide-root{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
-.title-region{flex-shrink:0;padding:24px 40px 10px}
-.title-header{display:flex;align-items:center;gap:12px}
-.title-bar{width:4px;height:32px;background:var(--ppt-accent);border-radius:2px}
-.title-main{font-size:26px;font-weight:700}
-.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:16px;margin-top:6px}
-.title-line{height:1px;margin-top:10px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.3}
-.content{flex:1;min-height:0;padding:10px 36px 12px;display:flex;flex-direction:column}
-.milestone-grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:10px}
-.milestone-card{
-  background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:12px;
-  padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-height:0;
-  border-top:3px solid var(--phase-color,var(--ppt-border));
-  position:relative;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body{
+  width:100vw; height:100vh; overflow: hidden;
+  background-color:#0A0E1A; display: flex;
+  justify-content: center; align-items: center;
+;font-family:var(--ppt-font-body,var(--ppt-font))}
+.section-slide-root {
+  width: 960px; height: 720px;
+  background-color: var(--ppt-bg);
+  font-family: var(--ppt-font);
+  position: relative; display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 0 80px;
+  overflow: hidden;
 }
-.milestone-card.p1{--phase-color:var(--p1)}
-.milestone-card.p2{--phase-color:var(--p2)}
-.milestone-card.p3{--phase-color:var(--p3)}
-.milestone-card.p4{--phase-color:var(--p4)}
-.milestone-card.p5{--phase-color:var(--p5)}
-.milestone-card.p6{--phase-color:var(--p6)}
-.milestone-card.p7{--phase-color:var(--p7)}
-.milestone-card.current{
-  border-color:rgba(255,192,0,.75);
-  background:linear-gradient(180deg,rgba(255,192,0,.18),rgba(255,192,0,.06));
-  box-shadow:0 0 0 1px rgba(255,192,0,.35),0 0 28px rgba(255,192,0,.22),inset 0 0 24px rgba(255,192,0,.06);
-  z-index:1;
+.bg-grid-overlay {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
 }
-.current-pill{
-  font-size:11px;font-weight:800;letter-spacing:.04em;
-  padding:2px 7px;border-radius:10px;
-  background:var(--p3);color:#1a1a2e;
-  box-shadow:0 0 12px rgba(255,192,0,.45);
-  margin-left:4px;white-space:nowrap
+.bg-glow-circle {
+  position: absolute; right: -120px; top: 50%;
+  transform: translateY(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(250,204,21,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
-.milestone-card.current .phase-badge{color:#FDE68A}
-.milestone-card.current .card-title{color:#FFF}
-.milestone-card.current .period{background:rgba(255,192,0,.15);border-color:rgba(255,192,0,.45)}
-.milestone-card.current .period-y,.milestone-card.current .period-m{color:#FDE68A}
-.milestone-card.span2{grid-column:span 2}
-.card-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 8px;position:relative}
-.card-head-left{display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0}
-.phase-badge{font-size:13px;font-weight:700;color:var(--phase-color);letter-spacing:.02em;white-space:nowrap}
-.period{
-  display:inline-flex;align-items:center;gap:3px;
-  padding:4px 9px;border-radius:10px;
-  background:var(--ppt-surface);border:1px solid var(--ppt-border);
-  font-variant-numeric:tabular-nums;
-  margin-left:0;flex-shrink:0;white-space:nowrap;justify-self:end
+.bg-left-bar {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, transparent 0%, var(--ppt-accent-2) 40%, var(--ppt-accent-2) 60%, transparent 100%);
 }
-.period-y{font-size:13px;font-weight:800;color:var(--ppt-accent-2);letter-spacing:.02em}
-.period-dot{font-size:13px;font-weight:700;color:var(--ppt-text-3)}
-.period-m{font-size:13px;font-weight:800;color:var(--ppt-text-1);letter-spacing:.03em}
-.period-sep{font-size:13px;font-weight:600;color:var(--ppt-text-3);margin:0 2px}
-.period-end .period-y{font-size:13px}
-.period-end .period-m{font-size:13px}
-.card-title{font-size:14px;font-weight:700;line-height:1.35;color:var(--ppt-text-1)}
-.card-desc{font-size:13px;color:var(--ppt-text-2);line-height:1.45;flex:1}
-.card-foot{display:flex;justify-content:flex-end;margin-top:auto}
-.status-tag{font-size:13px;font-weight:700;padding:3px 9px;border-radius:10px}
-.status-done{background:rgba(34,197,94,.15);color:var(--ppt-good)}
-.status-now{background:rgba(255,192,0,.25);color:#FDE68A;border:1px solid rgba(255,192,0,.5)}
-.status-next{background:rgba(100,116,139,.2);color:var(--ppt-text-3)}
-.bottom-bar{
-  flex-shrink:0;margin:10px 36px 14px;padding:10px 14px;
-  border-left:3px solid var(--ppt-accent-2);background:rgba(250,204,21,.05);
-  border-radius:0 8px 8px 0;font-size:13px;color:var(--ppt-text-2);line-height:1.45;
+.section-part-number {
+  font-size: 120px; font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(250,204,21,0.15);
+  position: absolute; right: 60px; bottom: 40px;
+  user-select: none;
 }
-.bottom-bar strong{color:var(--ppt-accent-2)}
-html{overflow:hidden;margin:0;padding:0}
-</style>
-</head>
+.section-part-label {
+  font-size: 14px; font-weight: 700;
+  color: var(--ppt-accent-2);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-part-label::after {
+  content: '';
+  display: block; width: 60px; height: 1px;
+  background: var(--ppt-accent-2); opacity: 0.5;
+}
+.section-title-ko {
+  font-size:26px; font-weight: 700;
+  color: var(--ppt-text-1);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.section-title-en {
+  font-size: 18px; font-weight: 400;
+  color: var(--ppt-accent);
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.section-divider-line {
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, var(--ppt-accent-2), transparent);
+  margin-bottom: 36px;
+  border-radius: 2px;
+}
+.section-topics-list {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.section-topic-item {
+  display: flex; align-items: center; gap: 14px;
+}
+.topic-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ppt-accent-2); flex-shrink: 0;
+  box-shadow: 0 0 8px var(--ppt-accent-2);
+}
+.topic-text {
+  font-size: 17px; color: var(--ppt-text-2);
+  font-weight: 400; line-height: 1.4;
+}
+html { overflow: hidden;  margin:0; padding:0; }
+</style></head>
 <body>
-<div class="slide-root" data-motion="timeline" data-motion-tier="medium">
-  <div class="title-region">
-    <div class="title-header">
-      <div class="title-bar"></div>
-      <h1 class="title-main">프로젝트 진행경과 마일스톤</h1>
+<div class="section-slide-root" data-motion="part" data-motion-tier="medium">
+  <div class="bg-grid-overlay"></div>
+  <div class="bg-glow-circle"></div>
+  <div class="bg-left-bar"></div>
+  <div class="section-part-number">02</div>
+  <div class="section-part-label">PART 02</div>
+  <div class="section-title-ko">프로젝트 진행 경과 및 방향성</div>
+  <div class="section-title-en">Project Progress &amp; Direction</div>
+  <div class="section-divider-line"></div>
+  <div class="section-topics-list">
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">스프린트 운영현황</span>
     </div>
-    <div class="title-sub">FaSS 차세대 플랫폼 구축 — 7단계 로드맵</div>
-    <div class="title-line"></div>
-  </div>
-
-  <div class="content">
-    <div class="milestone-grid">
-      <div class="milestone-card p1">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">1단계</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">01</span></span><span class="period-sep">~</span><span class="period-ym period-end"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">02</span></span></span>
-        </div>
-        <div class="card-title">AS-IS 분석 · AI 에이전트 기반</div>
-        <p class="card-desc">시스템 아키텍처·비즈니스 프레임워크 분석, AI 모델·서브에이전트 구축</p>
-        <div class="card-foot"><span class="status-tag status-done">완료</span></div>
-      </div>
-
-      <div class="milestone-card p2">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">2단계</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">03</span></span><span class="period-sep">~</span><span class="period-ym period-end"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">05</span></span></span>
-        </div>
-        <div class="card-title">TO-BE 모델 · 표준 프레임워크</div>
-        <p class="card-desc">요구사항 정의 및 차세대 표준 프레임워크 모델 정립</p>
-        <div class="card-foot"><span class="status-tag status-done">완료</span></div>
-      </div>
-
-      <div class="milestone-card p3 current">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">3단계</span><span class="current-pill">현재</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">05</span></span><span class="period-sep">~</span><span class="period-ym period-end"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">09</span></span></span>
-        </div>
-        <div class="card-title">공통 아키텍처 · 프레임워크 PoC</div>
-        <p class="card-desc">공통 아키텍처 설계 및 프레임워크 기술 타당성 검증(PoC) — 현재 스프린트를 애자일 방식으로 진행 중</p>
-        <div class="card-foot"><span class="status-tag status-now">진행 중</span></div>
-      </div>
-
-      <div class="milestone-card p4">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">4단계</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">26</span><span class="period-dot">.</span><span class="period-m">10</span></span><span class="period-sep">~</span><span class="period-ym period-end"><span class="period-y">27</span><span class="period-dot">.</span><span class="period-m">03</span></span></span>
-        </div>
-        <div class="card-title">JTGS 프로토타입 개발</div>
-        <p class="card-desc">주요소관리시스템 프로토타입, 템플릿·스토리보드 완성</p>
-        <div class="card-foot"><span class="status-tag status-next">예정</span></div>
-      </div>
-
-      <div class="milestone-card p5">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">5단계</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">27</span><span class="period-dot">.</span><span class="period-m">04</span></span><span class="period-sep">~</span><span class="period-ym period-end"><span class="period-y">27</span><span class="period-dot">.</span><span class="period-m">06</span></span></span>
-        </div>
-        <div class="card-title">시스템 안정화</div>
-        <p class="card-desc">프로토타입 운영 안정화 및 품질·성능 검증</p>
-        <div class="card-foot"><span class="status-tag status-next">예정</span></div>
-      </div>
-
-      <div class="milestone-card p6">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">6단계</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">27</span><span class="period-dot">.</span><span class="period-m">07</span></span><span class="period-sep">~</span><span class="period-ym period-end"><span class="period-y">27</span><span class="period-dot">.</span><span class="period-m">08</span></span></span>
-        </div>
-        <div class="card-title">3PL · 유통물류 전환 준비</div>
-        <p class="card-desc">3PL/유통물류 전환 준비 및 현업 요구사항 반영</p>
-        <div class="card-foot"><span class="status-tag status-next">예정</span></div>
-      </div>
-
-      <div class="milestone-card p7 span2">
-        <div class="card-head">
-          <div class="card-head-left"><span class="phase-badge">7단계</span></div>
-          <span class="period"><span class="period-ym"><span class="period-y">27</span><span class="period-dot">.</span><span class="period-m">09</span></span><span class="period-sep">~</span></span>
-        </div>
-        <div class="card-title">3PL · 유통물류 본 전환</div>
-        <p class="card-desc">3PL 전환 및 유통물류 전환 본격 개발 — 차세대 FaSS 플랫폼 단계적 롤아웃 완료</p>
-        <div class="card-foot"><span class="status-tag status-next">예정</span></div>
-      </div>
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">타사 프로젝트 비교</span>
     </div>
-  </div>
-
-  <div class="bottom-bar">
-    <strong>전환 경로</strong> 주유소(JTGS) → 프로토타입 → 3PL · 유통물류 단계적 전환
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">AI-Augmented 개발 워크플로우</span>
+    </div>
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">프로젝트 진행경과 마일스톤</span>
+    </div>
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">최적화 방안 1. AI 디지털 워커 활용</span>
+    </div>
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">최적화 방안 2. 애자일 워룸 운영</span>
+    </div>
+    <div class="section-topic-item">
+      <div class="topic-dot"></div>
+      <span class="topic-text">최적화 방안 3. 사전 POC 운영</span>
+    </div>
   </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');if(!el)return;
+    var el=document.querySelector('body>div');
+    if(!el)return;
     var sw=window.innerWidth,sh=window.innerHeight;
     var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
+    el.style.transform='scale('+scale+')';
+    el.style.transformOrigin='top left';
     el.style.position='absolute';
     el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();window.addEventListener('resize',applyScale);
+  applyScale();
+  window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

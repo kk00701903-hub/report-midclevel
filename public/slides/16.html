@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>핵심 기술 스택</title>
+<title>최적화 방안 1. AI 디지털 워커 활용</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font-body: "Noto Sans KR", sans-serif;
@@ -14,204 +14,493 @@
 
   --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
   --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
-  --c-infra:#38BDF8; --c-fw:#FACC15; --c-sec:#A78BFA; --c-data:#34D399;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15;
+  --c-human:#38BDF8; --c-ai:#FACC15;
+  --c-code:#22C55E; --c-design:#A78BFA; --c-doc:#FB923C;
   --ppt-font: "Noto Sans KR", sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
-.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
-.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(ellipse at 15% 0%,rgba(0,240,255,.06) 0%,transparent 50%),
-  radial-gradient(ellipse at 85% 100%,rgba(250,204,21,.05) 0%,transparent 45%)}
-.title-r{flex-shrink:0;padding:22px 36px 6px;position:relative;z-index:1}
-.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bar{width:4px;height:28px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 9px;border-radius:12px;background:rgba(0,240,255,.1);border:1px solid rgba(0,240,255,.3);color:var(--ppt-accent)}
-h1{font-size:26px;font-weight:700;line-height:1.3}
-.sub{font-size:13px;color:var(--ppt-text-2);margin-top:4px;padding-left:14px}
-.line{height:1px;margin-top:6px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
-.std-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;padding-left:14px}
-.std-pill{font-size:13px;font-weight:600;padding:4px 10px;border-radius:14px;background:var(--ppt-surface);border:1px solid var(--ppt-border);color:var(--ppt-text-2);display:inline-flex;align-items:center;gap:5px}
-.std-pill i{color:var(--ppt-accent);font-size:13px}
-.body{flex:1;min-height:0;padding:8px 32px 6px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
-.flow-strip{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 12px;background:rgba(20,27,45,.85);border:1px solid var(--ppt-border);border-radius:10px}
-.flow-node{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);font-size:13px;font-weight:700;white-space:nowrap}
-.flow-node i{font-size:13px}
-.flow-node.n1{color:var(--c-infra);border-color:rgba(56,189,248,.35)} .flow-node.n1 i{color:var(--c-infra)}
-.flow-node.n2{color:var(--c-fw);border-color:rgba(250,204,21,.4);background:rgba(250,204,21,.08)} .flow-node.n2 i{color:var(--c-fw)}
-.flow-node.n3{color:var(--c-sec);border-color:rgba(167,139,250,.35)} .flow-node.n3 i{color:var(--c-sec)}
-.flow-node.n4{color:var(--c-data);border-color:rgba(52,211,153,.35)} .flow-node.n4 i{color:var(--c-data)}
-.flow-arrow{color:var(--ppt-text-3);font-size:13px}
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
-.cat-card{background:linear-gradient(145deg,rgba(30,38,56,.95),var(--ppt-bg-soft));border:1px solid var(--ppt-border);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-height:0;border-top:3px solid var(--cat-color);position:relative;overflow:hidden}
-.cat-card.core{border-color:rgba(250,204,21,.5);box-shadow:0 0 28px rgba(250,204,21,.1)}
-.cat-head{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.cat-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(255,255,255,.07);color:var(--cat-color);border:1px solid rgba(255,255,255,.08)}
-.cat-title{font-size:15px;font-weight:700}
-.cat-count{margin-left:auto;font-size:13px;color:var(--ppt-text-3);background:var(--ppt-surface);padding:3px 8px;border-radius:8px;border:1px solid var(--ppt-border)}
-.cat-core-tag{font-size:13px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(250,204,21,.2);color:var(--ppt-accent-2);border:1px solid rgba(250,204,21,.35)}
-.cat-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;justify-content:center}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chip{font-size:13px;font-weight:600;padding:4px 9px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);color:var(--ppt-text-2);display:inline-flex;align-items:center;gap:4px}
-.chip i{font-size:13px;color:var(--cat-color);opacity:.9}
-.chip.spot{
-  color:var(--ppt-text-1);font-weight:700;
-  animation:chipSpotPulse 4.var(--motion-duration,6s) ease-in-out infinite;
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
+.title-region{flex-shrink:0;padding:24px 40px 10px}
+.title-header{display:flex;align-items:center;gap:12px}
+.title-bar{width:4px;height:32px;background:var(--ppt-accent);border-radius:2px}
+.title-main{font-size:26px;font-weight:700;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:16px;margin-top:6px}
+.title-line{height:1px;margin-top:10px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.3}
+.body{flex:1;min-height:0;padding:8px 36px 12px;display:grid;grid-template-columns:1fr 1.45fr;gap:8px 10px}
+
+/* Left column */
+.left-col{display:flex;flex-direction:column;gap:6px;min-height:0}
+.strat-panel{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:10px;padding:7px 9px;display:flex;flex-direction:column;gap:5px;flex-shrink:0}
+.panel-head{font-size:13px;font-weight:700;color:var(--ppt-accent-2);display:flex;align-items:center;gap:5px}
+.strat-row{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.strat-box{background:rgba(10,14,26,.5);border:1px solid var(--ppt-border);border-radius:8px;padding:6px 7px;display:flex;gap:6px;align-items:flex-start}
+.strat-ico{width:26px;height:26px;border-radius:7px;background:var(--ppt-surface);display:flex;align-items:center;justify-content:center;color:var(--ppt-accent);font-size:13px;flex-shrink:0}
+.strat-t{font-size:13px;font-weight:700;line-height:1.25}
+.strat-d{font-size:9.5px;color:var(--ppt-text-2);line-height:1.35;margin-top:2px}
+
+/* Animation stage */
+.anim-panel{
+  flex:1;min-height:0;background:linear-gradient(160deg,rgba(56,189,248,.05),rgba(250,204,21,.04));
+  border:1px solid var(--ppt-border);border-radius:10px;padding:8px 10px 7px;
+  display:flex;flex-direction:column;gap:6px;overflow:hidden;position:relative;
 }
-.chip.spot-infra{
-  border-color:rgba(56,189,248,.5);background:rgba(56,189,248,.1);
-  box-shadow:0 0 10px rgba(56,189,248,.12);
+.anim-panel::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,240,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.025) 1px,transparent 1px);
+  background-size:24px 24px;pointer-events:none;
 }
-.chip.spot-infra i{color:#7DD3FC}
-.chip.spot-sec{
-  border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.1);
-  box-shadow:0 0 10px rgba(167,139,250,.12);
+.anim-head{font-size:13px;font-weight:700;color:var(--ppt-accent);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.anim-status{font-size:13px;font-weight:600;color:var(--ppt-accent-2);padding:2px 8px;border-radius:10px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.3);animation:statusBlink 3s ease-in-out infinite}
+@keyframes statusBlink{0%,100%{opacity:1}50%{opacity:.65}}
+
+/* Human → AI flow row */
+.flow-row{display:flex;align-items:center;gap:4px;position:relative;z-index:1;flex-shrink:0}
+.human-node{
+  width:52px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;
 }
-.chip.spot-sec i{color:#C4B5FD}
-.chip.spot-data{
-  border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.1);
-  box-shadow:0 0 10px rgba(52,211,153,.12);
+.human-avatar{
+  width:40px;height:40px;border-radius:50%;border:2px solid var(--c-human);
+  background:radial-gradient(circle at 35% 30%,rgba(56,189,248,.25),rgba(56,189,248,.08));
+  display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--c-human);
+  animation:humanNod 4s ease-in-out infinite;
 }
-.chip.spot-data i{color:#6EE7B7}
-@keyframes chipSpotPulse{
-  0%,100%{filter:brightness(1);transform:scale(1)}
-  50%{filter:brightness(1.15);transform:scale(1.02)}
+@keyframes humanNod{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.human-label{font-size:13px;font-weight:700;color:var(--c-human);text-align:center;line-height:1.2}
+.speech-bubble{
+  flex:1;min-width:0;background:var(--ppt-surface);border:1px solid rgba(56,189,248,.4);
+  border-radius:8px;padding:5px 8px;font-size:9.5px;color:var(--ppt-text-1);line-height:1.4;
+  position:relative;min-height:36px;display:flex;align-items:center;
 }
-.core-visual{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:rgba(250,204,21,.06);border:1px dashed rgba(250,204,21,.25)}
-.layer-box{flex:1;text-align:center;padding:6px 4px;border-radius:6px;font-size:13px;font-weight:700;line-height:1.3}
-.layer-box.l1{background:rgba(97,218,251,.12);color:#7DD3FC;border:1px solid rgba(97,218,251,.25)}
-.layer-box.l2{background:rgba(250,204,21,.12);color:#FDE68A;border:1px solid rgba(250,204,21,.3)}
-.layer-box.l3{background:rgba(109,179,63,.12);color:#BBF7D0;border:1px solid rgba(109,179,63,.25)}
-.layer-arrow{color:var(--ppt-text-3);font-size:13px}
-.footer{flex-shrink:0;margin:4px 32px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;z-index:1}
-.footer-note{flex:1;padding:9px 12px;font-size:13px;color:var(--ppt-text-2);line-height:1.45;border-left:3px solid var(--ppt-accent-2);background:rgba(250,204,21,.05);border-radius:0 8px 8px 0}
-.footer-note strong{color:var(--ppt-accent-2)}
-.footer-stats{display:flex;gap:8px;flex-shrink:0}
-.stat-box{text-align:center;padding:7px 14px;border-radius:8px;background:var(--ppt-surface);border:1px solid var(--ppt-border);min-width:68px}
-.stat-val{font-size:20px;font-weight:700;color:var(--ppt-accent);line-height:1}
-.stat-lbl{font-size:13px;color:var(--ppt-text-3);margin-top:2px}
+.speech-bubble::before{
+  content:'';position:absolute;left:-6px;top:50%;transform:translateY(-50%);
+  border:5px solid transparent;border-right-color:rgba(56,189,248,.4);
+}
+.speech-text{animation:fadeSwap 9s infinite;opacity:0;position:absolute;left:8px;right:8px}
+.speech-text:nth-child(1){animation-delay:0s}
+.speech-text:nth-child(2){animation-delay:3s}
+.speech-text:nth-child(3){animation-delay:6s}
+@keyframes fadeSwap{
+  0%,5%{opacity:0;transform:translateY(4px)}
+  8%,28%{opacity:1;transform:translateY(0)}
+  33%,100%{opacity:0;transform:translateY(-4px)}
+}
+
+.flow-arrows{flex:0 0 28px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.arrow-line{width:22px;height:2px;background:linear-gradient(90deg,var(--c-human),var(--c-ai));position:relative;overflow:hidden}
+.arrow-line::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);
+  animation:shuttle 1.2s linear infinite;
+}
+@keyframes shuttle{0%{left:-100%}100%{left:100%}}
+.arrow-tip{font-size:13px;color:var(--c-ai)}
+
+.ai-hub{
+  width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;
+}
+.ai-avatar{
+  width:44px;height:44px;border-radius:12px;border:2px solid var(--c-ai);
+  background:radial-gradient(circle at 30% 30%,rgba(250,204,21,.22),rgba(250,204,21,.06));
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--c-ai);
+  animation:aiPulse 2s ease-in-out infinite;position:relative;
+}
+.ai-avatar::after{
+  content:'';position:absolute;inset:-4px;border-radius:14px;border:1px solid rgba(250,204,21,.3);
+  animation:ringExpand 2s ease-out infinite;
+}
+@keyframes aiPulse{0%,100%{box-shadow:0 0 12px rgba(250,204,21,.2)}50%{box-shadow:0 0 22px rgba(250,204,21,.45)}}
+@keyframes ringExpand{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.15);opacity:0}}
+.ai-label{font-size:13px;font-weight:700;color:var(--c-ai);text-align:center;line-height:1.2}
+
+/* Three output lanes */
+.lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex:1;min-height:118px;position:relative;z-index:1}
+.lane{
+  background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:8px;
+  padding:5px 6px;display:flex;flex-direction:column;gap:4px;min-height:0;
+  border-top:2px solid var(--lane-color,var(--ppt-accent));overflow:hidden;
+}
+.lane.code{--lane-color:var(--c-code)}
+.lane.design{--lane-color:var(--c-design)}
+.lane.doc{--lane-color:var(--c-doc)}
+.lane-head{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--lane-color)}
+.lane-head i{font-size:11px}
+.lane-screen{
+  flex:0 0 82px;height:82px;min-height:82px;background:rgba(10,14,26,.6);border:1px solid var(--ppt-border);
+  border-radius:6px;padding:4px 5px;overflow:hidden;position:relative;
+}
+
+/* ── Code lane: scrolling typed code ── */
+.code-screen{display:flex;flex-direction:column;overflow:hidden}
+.code-viewport{flex:1;overflow:hidden;position:relative}
+.code-scroll{
+  display:flex;flex-direction:column;gap:1px;
+  animation:codeScroll 8s ease-in-out infinite;
+}
+@keyframes codeScroll{
+  0%,18%{transform:translateY(0)}
+  28%,48%{transform:translateY(-14px)}
+  58%,78%{transform:translateY(-28px)}
+  88%,100%{transform:translateY(-42px)}
+}
+.code-row{
+  font-family:Consolas,"Courier New",monospace;font-size:7px;line-height:1.55;
+  white-space:nowrap;overflow:hidden;display:flex;align-items:center;min-height:11px;
+}
+.code-row .ln{color:var(--ppt-text-3);width:10px;flex-shrink:0;font-size:6px}
+.code-chunk{display:inline-block;overflow:hidden;max-width:0;vertical-align:bottom}
+.code-row.r1 .code-chunk{animation:codeType 8s steps(28,end) infinite}
+.code-row.r2 .code-chunk{animation:codeType 8s steps(24,end) 0.3s infinite}
+.code-row.r3 .code-chunk{animation:codeType 8s steps(26,end) .7s infinite}
+.code-row.r4 .code-chunk{animation:codeType 8s steps(22,end) 1.0s infinite}
+.code-row.r5 .code-chunk{animation:codeType 8s steps(20,end) 1.4s infinite}
+.code-row.r6 .code-chunk{animation:codeType 8s steps(18,end) 1.7s infinite}
+@keyframes codeType{
+  0%,6%{max-width:0;opacity:.3}
+  14%,82%{max-width:120px;opacity:1}
+  92%,100%{max-width:120px;opacity:.55}
+}
+.kw{color:#C792EA}.ann{color:#FACC15}.cls{color:#82AAFF}.fn{color:#7FDBCA}.str{color:#C3E88D}.cm{color:var(--ppt-text-3)}
+.code-caret{
+  position:absolute;bottom:5px;right:6px;width:5px;height:10px;background:var(--c-code);
+  animation:caretBlink .8s step-end infinite;
+}
+@keyframes caretBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── Design lane: component drawing ── */
+.comp-canvas{position:relative;width:100%;height:100%;min-height:74px}
+.comp{
+  position:absolute;border:1.5px solid var(--c-design);border-radius:4px;background:rgba(167,139,250,.08);
+  opacity:0;transform-origin:left top;
+}
+.comp-btn{
+  top:6px;left:6px;width:42px;height:14px;border-radius:6px;background:rgba(167,139,250,.22);
+  animation:compDrawBtn 6s ease-in-out infinite;
+}
+.comp-btn::after{
+  content:'Button';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:6px;font-weight:700;color:var(--c-design);
+}
+.comp-input{
+  top:26px;left:6px;right:6px;height:12px;border-radius:3px;
+  animation:compDrawInput 6s ease-in-out infinite;
+}
+.comp-input::after{
+  content:'Search…';position:absolute;left:4px;top:50%;transform:translateY(-50%);
+  font-size:5.5px;color:rgba(167,139,250,.7);
+}
+.comp-card{
+  top:44px;left:6px;right:6px;bottom:4px;border-radius:5px;padding:0;overflow:hidden;
+  animation:compDrawCard 6s ease-in-out infinite;
+}
+.comp-card-h{
+  height:8px;background:rgba(167,139,250,.25);border-bottom:1px dashed rgba(167,139,250,.4);
+  transform:scaleX(0);transform-origin:left;animation:compDrawBar 6s ease-in-out infinite;
+}
+.comp-card-b{
+  margin:4px;height:calc(100% - 16px);border:1px dashed rgba(167,139,250,.35);border-radius:2px;
+  transform:scale(.6);opacity:0;animation:compDrawInner 6s ease-in-out infinite;
+}
+.comp-handle{
+  position:absolute;width:6px;height:6px;border:1.5px solid var(--c-design);border-radius:1px;
+  background:rgba(167,139,250,.3);opacity:0;
+}
+.comp-handle.h1{top:4px;left:4px;animation:compHandle 6s ease-in-out infinite}
+.comp-handle.h2{top:22px;left:4px;animation:compHandle 6s ease-in-out 1.2s infinite}
+.comp-handle.h3{top:40px;left:4px;animation:compHandle 6s ease-in-out 2.4s infinite}
+.comp-cursor{
+  position:absolute;width:7px;height:7px;border:1.5px solid var(--c-design);border-radius:50%;
+  box-shadow:0 0 6px rgba(167,139,250,.5);pointer-events:none;z-index:3;
+  animation:compCursorMove 6s ease-in-out infinite;
+}
+@keyframes compDrawBtn{
+  0%,8%{opacity:0;transform:scale(.5)}12%,70%{opacity:1;transform:scale(1)}80%,100%{opacity:.65}
+}
+@keyframes compDrawInput{
+  0%,18%{opacity:0;clip-path:inset(0 100% 0 0)}24%,70%{opacity:1;clip-path:inset(0 0 0 0)}80%,100%{opacity:.65}
+}
+@keyframes compDrawCard{
+  0%,32%{opacity:0;transform:scaleY(.3)}38%,70%{opacity:1;transform:scaleY(1)}80%,100%{opacity:.65}
+}
+@keyframes compDrawBar{
+  0%,36%{transform:scaleX(0)}42%,70%{transform:scaleX(1)}80%,100%{transform:scaleX(1);opacity:.6}
+}
+@keyframes compDrawInner{
+  0%,44%{opacity:0;transform:scale(.6)}50%,70%{opacity:1;transform:scale(1)}80%,100%{opacity:.5}
+}
+@keyframes compHandle{
+  0%,10%{opacity:0;transform:scale(.5)}14%,24%{opacity:1;transform:scale(1)}30%,100%{opacity:0}
+}
+@keyframes compCursorMove{
+  0%,8%{top:12px;left:28px;opacity:0}
+  12%,22%{top:12px;left:28px;opacity:1}
+  28%,38%{top:32px;left:50%;opacity:1}
+  44%,58%{top:58px;left:40%;opacity:1}
+  64%,74%{top:58px;left:70%;opacity:1}
+  80%,100%{opacity:0}
+}
+
+/* ── Doc lane: markdown writing ── */
+.doc-screen{position:relative;overflow:hidden}
+.md-preview{
+  font-family:Consolas,"Courier New",monospace;font-size:6.5px;line-height:1.55;
+  color:var(--ppt-text-2);display:flex;flex-direction:column;gap:2px;padding:1px 0;
+}
+.md-line{display:flex;align-items:center;gap:2px;overflow:hidden;white-space:nowrap;opacity:0}
+.md-line .sym{color:var(--c-doc);font-weight:700;flex-shrink:0}
+.md-line .txt{display:inline-block;overflow:hidden;max-width:0}
+.md-line.m1{animation:mdShow 7s ease-in-out infinite}
+.md-line.m1 .txt{animation:mdType 7s steps(16,end) infinite}
+.md-line.m2{animation:mdShow 7s ease-in-out 0.4s infinite}
+.md-line.m2 .txt{animation:mdType 7s steps(14,end) 0.4s infinite}
+.md-line.m3{animation:mdShow 7s ease-in-out .9s infinite}
+.md-line.m3 .txt{animation:mdType 7s steps(18,end) .9s infinite}
+.md-line.m4{animation:mdShow 7s ease-in-out 1.3s infinite}
+.md-line.m4 .txt{animation:mdType 7s steps(20,end) 1.3s infinite}
+.md-line.m5{animation:mdShow 7s ease-in-out 1.8s infinite}
+.md-line.m5 .txt{animation:mdType 7s steps(12,end) 1.8s infinite}
+.md-line.m6{animation:mdShow 7s ease-in-out 2.2s infinite}
+.md-line.m6 .txt{animation:mdType 7s steps(8,end) 2.2s infinite}
+.md-line.m7{animation:mdShow 7s ease-in-out 2.7s infinite}
+.md-line.m7 .txt{animation:mdType 7s steps(10,end) 2.7s infinite}
+@keyframes mdShow{
+  0%,6%{opacity:0;transform:translateX(-4px)}
+  10%,78%{opacity:1;transform:translateX(0)}
+  88%,100%{opacity:.45}
+}
+@keyframes mdType{
+  0%,8%{max-width:0}
+  18%,82%{max-width:90px}
+  92%,100%{max-width:90px}
+}
+.md-line.m1 .sym,.md-line.m1 .txt{color:#FB923C;font-size:7px;font-weight:700}
+.md-line.m2 .sym,.md-line.m2 .txt{color:#FDBA74;font-weight:700}
+.md-fence{color:#94A3B8;background:rgba(251,146,60,.08);padding:0 2px;border-radius:2px}
+.md-caret{
+  position:absolute;bottom:4px;right:5px;font-size:6px;font-weight:700;color:var(--c-doc);
+  padding:1px 4px;border-radius:3px;background:rgba(251,146,60,.15);
+  animation:docDone 7s ease 3s infinite;
+}
+@keyframes docDone{0%,50%{opacity:0;transform:scale(.85)}58%,82%{opacity:1;transform:scale(1)}92%,100%{opacity:0}}
+
+.lane-foot{font-size:13px;color:var(--ppt-text-3);line-height:1.3;text-align:center;flex-shrink:0}
+
+/* Bottom wf strip */
+.wf-strip{
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:5px;
+  padding:5px 8px;background:rgba(10,14,26,.5);border:1px solid var(--ppt-border);border-radius:8px;
+  font-size:13px;color:var(--ppt-text-2);
+}
+.wf-strip strong{color:var(--ppt-accent)}
+.wf-mini{display:flex;gap:2px}
+.wf-dot{width:14px;height:14px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.wf-dot.h{background:rgba(56,189,248,.15);color:var(--c-human);border:1px solid rgba(56,189,248,.4)}
+.wf-dot.a{background:rgba(250,204,21,.12);color:var(--c-ai);border:1px solid rgba(250,204,21,.4)}
+.wf-eq-num{font-size:14px;font-weight:800;color:var(--ppt-accent);padding:0 4px}
+
+/* Right: org table */
+.org-panel{display:flex;flex-direction:column;gap:5px;min-height:0}
+.org-head{font-size:13px;font-weight:700;color:var(--ppt-accent);display:flex;align-items:center;gap:5px;flex-shrink:0}
+.table-wrap{flex:1;min-height:0;background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:10px;overflow:hidden}
+table{width:100%;height:100%;border-collapse:collapse;table-layout:fixed}
+thead th{background:#2A344A;padding:7px 9px;font-size:11.5px;font-weight:700;color:var(--ppt-accent);text-align:left;border-bottom:2px solid var(--ppt-border)}
+tbody td{padding:7px 9px;font-size:13px;color:var(--ppt-text-1);vertical-align:middle;border-bottom:1px solid var(--ppt-border);line-height:1.38}
+tbody td:nth-child(3){vertical-align:top;padding-top:8px;padding-bottom:8px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr{height:16.66%}
+.role{display:inline-block;padding:3px 7px;background:var(--ppt-surface);border-radius:5px;font-size:10.5px;font-weight:600;color:var(--ppt-text-2);line-height:1.2}
+.name{font-weight:700;font-size:13px;line-height:1.3}
+.names .name{display:block}
+.task{margin:0;padding:0;list-style:none;color:var(--ppt-text-2);font-size:10.5px}
+.task li{display:flex;align-items:flex-start;gap:5px;line-height:1.4}
+.task li+li{margin-top:3px}
+.task li::before{
+  content:'•';flex-shrink:0;width:0.55em;text-align:center;
+  color:var(--ppt-accent);font-size:10.5px;line-height:1.4;
+  position:static;top:auto;left:auto
+}
 html{overflow:hidden;margin:0;padding:0}
 </style>
 </head>
 <body>
-<div class="slide" data-motion="cards" data-motion-tier="medium">
-  <div class="title-r">
-    <div class="title-row">
-      <div class="bar"></div>
-      <span class="badge">Tech Stack</span>
-      <h1>핵심 기술 스택</h1>
+<div class="slide" data-motion="innovation" data-motion-tier="medium">
+  <div class="title-region">
+    <div class="title-header">
+      <div class="title-bar"></div>
+      <h1 class="title-main">최적화 방안 1. AI 디지털 워커 활용</h1>
     </div>
-    <p class="sub">차세대 FaSS 플랫폼 — 4개 영역 · 선정 기술 스택</p>
-    <div class="std-pills">
-      <span class="std-pill"><i class="fab fa-java"></i> Java 21</span>
-      <span class="std-pill"><i class="fab fa-react"></i> Next.js · React 19</span>
-      <span class="std-pill"><i class="fas fa-database"></i> PostgreSQL</span>
-      <span class="std-pill"><i class="fab fa-docker"></i> Docker · K8s Ready</span>
-    </div>
-    <div class="line"></div>
+    <div class="title-sub">인간 7 + AI 8 = 15명 TFT급 추진력</div>
+    <div class="title-line"></div>
   </div>
 
   <div class="body">
-    <div class="flow-strip">
-      <div class="flow-node n1"><i class="fas fa-server"></i> DevOps · 인프라</div>
-      <span class="flow-arrow"><i class="fas fa-chevron-right"></i></span>
-      <div class="flow-node n2"><i class="fas fa-layer-group"></i> 프레임워크 · UI</div>
-      <span class="flow-arrow"><i class="fas fa-chevron-right"></i></span>
-      <div class="flow-node n3"><i class="fas fa-shield-halved"></i> 보안 · 연동</div>
-      <span class="flow-arrow"><i class="fas fa-chevron-right"></i></span>
-      <div class="flow-node n4"><i class="fas fa-chart-line"></i> 데이터 · BI · AI</div>
+    <div class="left-col">
+      <div class="strat-panel">
+        <div class="panel-head"><i class="fas fa-robot"></i> AI 디지털 워커 — TFT 보조</div>
+        <div class="strat-row">
+          <div class="strat-box">
+            <div class="strat-ico"><i class="fas fa-robot"></i></div>
+            <div>
+              <div class="strat-t">24/7 디지털 워커</div>
+              <p class="strat-d">코드·문서·테스트 등 반복 업무 AI 상시 지원</p>
+            </div>
+          </div>
+          <div class="strat-box">
+            <div class="strat-ico"><i class="fas fa-user-check"></i></div>
+            <div>
+              <div class="strat-t">Human-in-the-loop</div>
+              <p class="strat-d">설계·품질·의사결정은 TFT가 최종 통제</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="anim-panel">
+        <div class="anim-head">
+          <span><i class="fas fa-play-circle"></i> Human → Digital Worker 협업 시나리오</span>
+          <span class="anim-status">● LIVE</span>
+        </div>
+
+        <div class="flow-row">
+          <div class="human-node">
+            <div class="human-avatar"><i class="fas fa-user-tie"></i></div>
+            <span class="human-label">TFT<br/>담당자</span>
+          </div>
+          <div class="speech-bubble">
+            <span class="speech-text">「 API 스펙 설계 완료 — 백엔드 모듈 구현해줘 」</span>
+            <span class="speech-text">「 UI 와이어프레임 승인 — Figma 컴포넌트 정리해줘 」</span>
+            <span class="speech-text">「 회의록·README·OpenAPI 문서 작성 부탁해 」</span>
+          </div>
+          <div class="flow-arrows">
+            <div class="arrow-line"></div>
+            <i class="fas fa-caret-right arrow-tip"></i>
+          </div>
+          <div class="ai-hub">
+            <div class="ai-avatar"><i class="fas fa-robot"></i></div>
+            <span class="ai-label">디지털<br/>워커</span>
+          </div>
+        </div>
+
+        <div class="lanes">
+          <div class="lane code">
+            <div class="lane-head"><i class="fas fa-code"></i> 코딩 지원</div>
+            <div class="lane-screen code-screen">
+              <div class="code-viewport">
+                <div class="code-scroll">
+                  <div class="code-row r1"><span class="ln">1</span><span class="code-chunk"><span class="ann">@RestController</span></span></div>
+                  <div class="code-row r2"><span class="ln">2</span><span class="code-chunk"><span class="kw">public class</span> <span class="cls">OrderApi</span> {</span></div>
+                  <div class="code-row r3"><span class="ln">3</span><span class="code-chunk">  <span class="ann">@PostMapping</span>(<span class="str">"/api/order"</span>)</span></div>
+                  <div class="code-row r4"><span class="ln">4</span><span class="code-chunk">  <span class="kw">public</span> <span class="cls">OrderDto</span> <span class="fn">create</span>(...) {</span></div>
+                  <div class="code-row r5"><span class="ln">5</span><span class="code-chunk">    <span class="kw">return</span> svc.<span class="fn">save</span>(dto);</span></div>
+                  <div class="code-row r6"><span class="ln">6</span><span class="code-chunk">  <span class="cm">// AI-generated test ✓</span></span></div>
+                </div>
+              </div>
+              <span class="code-caret"></span>
+            </div>
+            <div class="lane-foot">Claude Code · Cursor<br/>보일러플레이트·단위테스트 자동 생성</div>
+          </div>
+
+          <div class="lane design">
+            <div class="lane-head"><i class="fas fa-palette"></i> 디자인 지원</div>
+            <div class="lane-screen">
+              <div class="comp-canvas">
+                <div class="comp comp-btn"></div>
+                <div class="comp comp-input"></div>
+                <div class="comp comp-card">
+                  <div class="comp-card-h"></div>
+                  <div class="comp-card-b"></div>
+                </div>
+                <div class="comp-handle h1"></div>
+                <div class="comp-handle h2"></div>
+                <div class="comp-handle h3"></div>
+                <div class="comp-cursor"></div>
+              </div>
+            </div>
+            <div class="lane-foot">Figma · Adobe<br/>컴포넌트·스토리북·가이드 정리</div>
+          </div>
+
+          <div class="lane doc">
+            <div class="lane-head"><i class="fas fa-file-lines"></i> 문서 작업</div>
+            <div class="lane-screen doc-screen">
+              <div class="md-preview">
+                <div class="md-line m1"><span class="sym"># </span><span class="txt">Order API Guide</span></div>
+                <div class="md-line m2"><span class="sym">## </span><span class="txt">Overview</span></div>
+                <div class="md-line m3"><span class="sym">- </span><span class="txt">POST /api/order endpoint</span></div>
+                <div class="md-line m4"><span class="sym">- </span><span class="txt">Request: OrderDto schema</span></div>
+                <div class="md-line m5"><span class="sym">- </span><span class="txt">Response: 201 Created</span></div>
+                <div class="md-line m6"><span class="sym md-fence">```</span><span class="txt">yaml</span></div>
+                <div class="md-line m7"><span class="sym">  </span><span class="txt">paths: /api/order</span></div>
+              </div>
+              <span class="md-caret">✓ .md 초안</span>
+            </div>
+            <div class="lane-foot">README · Wiki · API Doc<br/>회의록·RAG 컨텍스트 자동 작성</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-strip">
+        <span>인간 <strong>7</strong></span>
+        <div class="wf-mini">
+          <span class="wf-dot h"><i class="fas fa-user"></i></span>
+          <span class="wf-dot h"><i class="fas fa-user"></i></span>
+          <span class="wf-dot h"><i class="fas fa-user"></i></span>
+          <span style="color:var(--ppt-text-3);font-size:13px">···</span>
+        </div>
+        <span>+</span>
+        <span>AI <strong>8</strong></span>
+        <div class="wf-mini">
+          <span class="wf-dot a"><i class="fas fa-robot"></i></span>
+          <span class="wf-dot a"><i class="fas fa-robot"></i></span>
+          <span class="wf-dot a"><i class="fas fa-robot"></i></span>
+          <span style="color:var(--ppt-text-3);font-size:13px">···</span>
+        </div>
+        <span>=</span>
+        <span class="wf-eq-num">15</span>
+        <span>TFT급 추진력 · <strong>지시→AI실행→Human검토</strong> 루프</span>
+      </div>
     </div>
 
-    <div class="grid">
-      <div class="cat-card" style="--cat-color:var(--c-infra)">
-        <div class="cat-head">
-          <div class="cat-icon"><i class="fas fa-server"></i></div>
-          <span class="cat-title">DevOps · 인프라</span>
-          <span class="cat-count">8종</span>
-        </div>
-        <div class="cat-body">
-          <div class="chips">
-            <span class="chip spot spot-infra"><i class="fab fa-docker"></i>Docker</span>
-            <span class="chip"><i class="fas fa-ship"></i>K8s</span>
-            <span class="chip spot spot-infra" style="animation-delay:.8s"><i class="fab fa-gitlab"></i>GitLab CI</span>
-            <span class="chip"><i class="fas fa-rotate"></i>ArgoCD</span>
-            <span class="chip"><i class="fas fa-magnifying-glass-chart"></i>SonarQube</span>
-            <span class="chip"><i class="fas fa-cube"></i>Nexus</span>
-            <span class="chip"><i class="fas fa-leaf"></i>Spring Cloud Config</span>
-            <span class="chip"><i class="fas fa-bolt"></i>Redis</span>
-          </div>
-        </div>
+    <div class="org-panel">
+      <div class="org-head"><i class="fas fa-sitemap"></i> 차세대 FaSS TFT — 핵심 조직</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:23%">역할</th>
+              <th style="width:17%">담당자</th>
+              <th style="width:60%">주요 업무</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="role">최고 의사결정</span></td>
+              <td><span class="name">시스템<br/>사업부장</span></td>
+              <td><ul class="task"><li>비즈니스 방향성·투자 우선순위 총괄</li></ul></td>
+            </tr>
+            <tr>
+              <td><span class="role">TFT 팀장</span></td>
+              <td><span class="name">서선범</span></td>
+              <td><ul class="task"><li>프로젝트 총괄 관리 및 리스크 차단</li><li>유관 부서 간 업무 프로세스 조율</li></ul></td>
+            </tr>
+            <tr>
+              <td><span class="role">프로젝트 리더</span></td>
+              <td><span class="name">기충영</span></td>
+              <td><ul class="task"><li>FaSS V3.0 공통 프레임워크 표준 설계</li><li>전체 아키텍처 통제 및 품질 관리</li></ul></td>
+            </tr>
+            <tr>
+              <td><span class="role">BE 엔지니어</span></td>
+              <td><div class="names"><span class="name">김희찬</span><span class="name">송민준</span></div></td>
+              <td><ul class="task"><li>백엔드 코어 모듈 구현</li><li>Kafka 기반 데이터 동기화 파이프라인</li></ul></td>
+            </tr>
+            <tr>
+              <td><span class="role">FE 엔지니어</span></td>
+              <td><div class="names"><span class="name">심지훈</span><span class="name">오준열</span><span class="name">이지상</span></div></td>
+              <td><ul class="task"><li>프론트엔드 및 UX 표준 구현</li><li>AI 연동 RAG 환경 및 인터페이스 구축</li></ul></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <div class="cat-card core" style="--cat-color:var(--c-fw)">
-        <div class="cat-head">
-          <div class="cat-icon"><i class="fas fa-layer-group"></i></div>
-          <span class="cat-title">프레임워크 · UI</span>
-          <span class="cat-core-tag">핵심 축</span>
-        </div>
-        <div class="core-visual">
-          <div class="layer-box l1">Presentation<br>Next.js · React</div>
-          <span class="layer-arrow">▶</span>
-          <div class="layer-box l2">Component<br>RealGrid · Tailwind</div>
-          <span class="layer-arrow">▶</span>
-          <div class="layer-box l3">Batch<br>Spring Batch</div>
-        </div>
-        <div class="cat-body">
-          <div class="chips">
-            <span class="chip"><i class="fas fa-n"></i>Next.js</span>
-            <span class="chip"><i class="fab fa-react"></i>React 19</span>
-            <span class="chip"><i class="fas fa-wind"></i>Tailwind CSS</span>
-            <span class="chip"><i class="fas fa-table"></i>RealGrid</span>
-            <span class="chip"><i class="fas fa-atom"></i>Atomic Design</span>
-            <span class="chip"><i class="fas fa-leaf"></i>Spring Batch</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cat-card" style="--cat-color:var(--c-sec)">
-        <div class="cat-head">
-          <div class="cat-icon"><i class="fas fa-shield-halved"></i></div>
-          <span class="cat-title">보안 · 연동</span>
-          <span class="cat-count">6종</span>
-        </div>
-        <div class="cat-body">
-          <div class="chips">
-            <span class="chip"><i class="fas fa-key"></i>Keycloak</span>
-            <span class="chip"><i class="fas fa-id-card"></i>JWT</span>
-            <span class="chip"><i class="fas fa-lock"></i>Spring Security</span>
-            <span class="chip spot spot-sec" style="animation-delay:.4s"><i class="fas fa-shield-halved"></i>API Gateway</span>
-            <span class="chip"><i class="fas fa-plug"></i>REST / gRPC</span>
-            <span class="chip"><i class="fas fa-users-rectangle"></i>Multi-tenancy</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cat-card" style="--cat-color:var(--c-data)">
-        <div class="cat-head">
-          <div class="cat-icon"><i class="fas fa-chart-pie"></i></div>
-          <span class="cat-title">데이터 · BI · AI</span>
-          <span class="cat-count">6종</span>
-        </div>
-        <div class="cat-body">
-          <div class="chips">
-            <span class="chip spot spot-data" style="animation-delay:1.2s"><i class="fas fa-database"></i>Debezium</span>
-            <span class="chip"><i class="fas fa-stream"></i>Kafka</span>
-            <span class="chip"><i class="fas fa-print"></i>ClipReport</span>
-            <span class="chip"><i class="fas fa-chart-bar"></i>Superset</span>
-            <span class="chip"><i class="fas fa-chart-line"></i>Grafana</span>
-            <span class="chip"><i class="fas fa-robot"></i>LangChain</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="footer-note"><strong>핵심 축</strong> Next.js · React 19 프레임워크 중심 — DevOps 안정화 → UI 표준화 → 연동·보안 → BI·AI 순 단계 구축</div>
-    <div class="footer-stats">
-      <div class="stat-box"><div class="stat-val">4</div><div class="stat-lbl">영역</div></div>
-      <div class="stat-box"><div class="stat-val">26</div><div class="stat-lbl">기술</div></div>
     </div>
   </div>
 </div>

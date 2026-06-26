@@ -4,7 +4,7 @@ export function getBasePath(): string {
     if (match) return match[1];
   }
 
-  return process.env.NEXT_PUBLIC_BASE_PATH ?? "/report_fassmid";
+  return process.env.NEXT_PUBLIC_BASE_PATH ?? "/report-midclevel";
 }
 
 export function getSlideHtmlUrl(fileName: string): string {

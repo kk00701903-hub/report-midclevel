@@ -1,7 +1,7 @@
 {
   "name": "report",
   "version": "0.1.0",
-  "homepage": "https://kk00701903-hub.github.io/report_fassmid/",
+  "homepage": "https://kk00701903-hub.github.io/report-midclevel/",
   "private": true,
   "scripts": {
     "dev": "next dev",

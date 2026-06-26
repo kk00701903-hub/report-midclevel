@@ -10,7 +10,7 @@ const page = await browser.newPage();
 await page.setViewportSize({ width: 960, height: 720 });
 
 const results = [];
-for (let i = 1; i <= 32; i++) {
+for (let i = 1; i <= 37; i++) {
   const filePath = join(slidesDir, `${i}.html`);
   try {
     const html = readFileSync(filePath, "utf8");

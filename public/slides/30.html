@@ -1,555 +1,108 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=960, height=720" name="viewport"/>
-<title>단계적 롤아웃 로드맵</title>
+<title>비즈니스 혁신6 — 클라우드 비용 최적화</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<style>:root {
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root {
   --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    --ppt-accent-2: #FACC15;
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
-* {
-    margin: 0 0;
-    padding: 0 0;
-    box-sizing: border-box
-    }
-body {width:100vw; height:100vh; overflow: hidden; background-color: var(--ppt-bg);
-    color: var(--ppt-text-1);
-    font-family: var(--ppt-font-body);
-    display: flex;
-    justify-content: center;
-    align-items: center}
-.roadmap-slide-root {
-    width: 960px;
-    height: 720px;
-    display: flex;
-    flex-direction: column;
-    position: relative
-    }
-/* Title Region */
-.title-region-wrapper {
-    padding: 22px 40px 8px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px
-    }
-.title-region-main {
-    display: flex;
-    align-items: center;
-    gap: 12px
-    }
-.title-region-bar {
-    width: 4px;
-    height: 32px;
-    background: var(--ppt-accent);
-    border-radius: 2px
-    }
-.title-region-text {
-    font-family: var(--ppt-font-display);
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    margin: 0
-    }
-.title-region-line {
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--ppt-accent) 0%, transparent 100%);
-    opacity: 0.3;
-    margin-top: 8px
-    }
-/* Content Area */
-.roadmap-content-container {
-    flex: 1;
-    min-height: 0;
-    padding: 0 40px 8px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px
-    }
-/* Strategy Summary (The one small-height block) */
-.roadmap-strategy-summary-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 19px 24px
-    }
-.roadmap-strategy-card {
-    flex-shrink: 0;
-    max-width: 240px;
-    background: var(--ppt-bg-soft);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-md);
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px
-    }
-.roadmap-strategy-icon {
-    font-size: 22px;
-    color: var(--ppt-accent);
-    flex-shrink: 0
-    }
-.roadmap-strategy-text-group {
-    display: flex;
-    flex-direction: column
-    }
-.roadmap-strategy-label {
-    font-size:13px;
-    color: var(--ppt-accent);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0px
-    }
-.roadmap-strategy-desc {
-    font-size: 14px;
-    color: var(--ppt-text-1);
-    font-weight: 500;
-    line-height: 1.4
-    }
-/* Visual Timeline Track */
-.roadmap-visual-track-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    position: relative;
-    min-height: 88px;
-    padding: 10px 12px 6px;
-    border-radius: var(--ppt-radius-md);
-    border: 1px solid rgba(0, 240, 255, 0.18);
-    background: linear-gradient(135deg, rgba(20, 27, 45, 0.92), rgba(10, 14, 26, 0.75));
-    box-shadow: inset 0 0 24px rgba(0, 240, 255, 0.04);
-    overflow: visible;
-    gap: 2px
-    }
-.roadmap-visual-track-line {
-    position: absolute;
-    top: 34px;
-    left: 48px;
-    right: 48px;
-    height: 3px;
-    border-radius: 3px;
-    background: linear-gradient(90deg, var(--ppt-border), rgba(0, 240, 255, 0.25) 50%, var(--ppt-border));
-    z-index: 1;
-    overflow: hidden
-    }
-.roadmap-visual-track-line::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.65) 50%, transparent 100%);
-    background-size: 35% 100%;
-    background-repeat: no-repeat;
-    animation: roadmapTrackShine 5s linear infinite
-    }
-.roadmap-track-runner {
-    position: absolute;
-    top: 34px;
-    left: 48px;
-    width: 12px;
-    height: 12px;
-    margin: -6px 0 0 -6px;
-    border-radius: 50%;
-    z-index: 4;
-    background: radial-gradient(circle at 35% 35%, #fff, var(--ppt-accent));
-    box-shadow: 0 0 12px var(--ppt-accent), 0 0 22px rgba(0, 240, 255, 0.45);
-    animation: roadmapRunnerMove 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite
-    }
-.roadmap-step-node {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    flex: 1;
-    min-width: 0;
-    max-width: 130px;
-    animation: roadmapNodeReveal 5s ease-in-out infinite
-    }
-.roadmap-step-node.step-kickoff {
-    max-width: 142px;
-    animation-delay: 0s
-    }
-.roadmap-step-node:nth-child(5) { animation-delay: 1.1s; }
-.roadmap-step-node:nth-child(7) { animation-delay: 2.2s; }
-.roadmap-step-node:nth-child(9) { animation-delay: 3.3s; }
-.roadmap-step-arrow {
-    position: relative;
-    z-index: 3;
-    flex-shrink: 0;
-    width: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ppt-accent);
-    font-size: 11px;
-    margin-top: 18px;
-    opacity: 0.55;
-    animation: roadmapArrowNudge 2.4s ease-in-out infinite
-    }
-.roadmap-step-arrow:nth-of-type(2) { animation-delay: 0.4s; }
-.roadmap-step-arrow:nth-of-type(4) { animation-delay: 1.5s; }
-.roadmap-step-arrow:nth-of-type(6) { animation-delay: 2.6s; }
-.roadmap-node-circle {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--ppt-bg);
-    border: 4px solid var(--ppt-accent);
-    box-shadow: 0 0 10px var(--ppt-accent)
-    }
-.roadmap-node-circle.gold {
-    border-color: var(--ppt-accent-2);
-    box-shadow: 0 0 10px var(--ppt-accent-2)
-    }
-.roadmap-step-node.step-kickoff .roadmap-node-circle {
-    width: 30px;
-    height: 30px;
-    border-width: 3px;
-    border-color: var(--ppt-good);
-    box-shadow: 0 0 16px rgba(34, 197, 94, 0.55);
-    animation: roadmapKickoffPulse 2.4s ease-in-out infinite
-    }
-.roadmap-kickoff-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #052e16;
-    background: linear-gradient(135deg, #4ade80, var(--ppt-good));
-    padding: 2px 7px;
-    border-radius: 10px;
-    box-shadow: 0 0 12px rgba(34, 197, 94, 0.45);
-    animation: roadmapLiveBlink 2.4s ease-in-out infinite
-    }
-.roadmap-kickoff-badge::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 6px #fff;
-    animation: roadmapLiveDot 1.2s ease-in-out infinite
-    }
-.roadmap-step-node.step-kickoff .roadmap-node-date {
-    color: var(--ppt-good);
-    font-size: 12px
-    }
-.roadmap-step-node.step-kickoff .roadmap-node-label {
-    font-weight: 700;
-    color: var(--ppt-text-1)
-    }
-.roadmap-node-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--ppt-text-1);
-    text-align: center;
-    line-height: 1.3
-    }
-.roadmap-node-date {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--ppt-accent);
-    text-align: center
-    }
-/* Table Region */
-.roadmap-table-section-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column
-    }
-.roadmap-table-container {
-    flex: 1;
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-md);
-    background: var(--ppt-surface)
-    }
-.roadmap-data-table {
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse;
-    table-layout: fixed
-    }
-.roadmap-data-table thead {
-    background: var(--ppt-bg-soft)
-    }
-.roadmap-data-table th {
-    padding: 6px 12px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ppt-text-2);
-    border-bottom: 1px solid var(--ppt-border)
-    }
-.roadmap-data-table td {
-    padding: 6px 12px;
-    font-size: 13px;
-    color: var(--ppt-text-1);
-    border-bottom: 1px solid var(--ppt-border);
-    vertical-align: top
-    }
-.roadmap-data-table tr:last-child td {
-    border-bottom: none
-    }
-.roadmap-phase-badge {
-    display: inline-block;
-    padding: 3px 12px;
-    border-radius: var(--ppt-radius-sm);
-    font-size: 14px;
-    font-weight: 600;
-    background: var(--ppt-surface-2);
-    color: var(--ppt-accent);
-    margin-bottom: 3px
-    }
-.roadmap-phase-badge.final {
-    color: var(--ppt-accent-2)
-    }
-.roadmap-schedule-text {
-    font-family: var(--ppt-font-display);
-    font-weight: 600;
-    color: var(--ppt-accent)
-    }
-.roadmap-content-list {
-    list-style: none
-    }
-.roadmap-content-item {
-    display: block;
-    position: relative;
-    padding-left: 18px;
-    margin-bottom: 3px;
-    line-height: 1.3
-    }
-.roadmap-content-item::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--ppt-accent)
-    }
-.roadmap-content-item.highlight::before {
-    color: var(--ppt-accent-2)
-    }
-@keyframes roadmapTrackShine {
-    0% { background-position: -35% 0; }
-    100% { background-position: 135% 0; }
-    }
-@keyframes roadmapRunnerMove {
-    0% { left: 48px; opacity: 0; }
-    6% { opacity: 1; }
-    94% { opacity: 1; }
-    100% { left: calc(100% - 48px); opacity: 0; }
-    }
-@keyframes roadmapKickoffPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 16px rgba(34, 197, 94, 0.45); }
-    50% { transform: scale(1.12); box-shadow: 0 0 24px rgba(34, 197, 94, 0.75); }
-    }
-@keyframes roadmapLiveBlink {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.15); }
-    }
-@keyframes roadmapLiveDot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.75); }
-    }
-@keyframes roadmapNodeReveal {
-    0%, 8%, 100% { opacity: 0.72; transform: translateY(0); }
-    12%, 24% { opacity: 1; transform: translateY(-2px); }
-    }
-@keyframes roadmapArrowNudge {
-    0%, 100% { transform: translateX(0); opacity: 0.45; }
-    50% { transform: translateX(2px); opacity: 1; }
-    }
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-border:#334155;
+  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15;
+  --ppt-radius-lg:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.bg-grid{position:absolute;inset:0;pointer-events:none;background-image:
+  linear-gradient(rgba(0,240,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.03) 1px,transparent 1px);
+  background-size:40px 40px}
+.bg-glow{position:absolute;right:0;top:50%;transform:translateY(-50%);width:300px;height:300px;
+  background:radial-gradient(circle,rgba(0,240,255,.06) 0%,transparent 70%);border-radius:50%;pointer-events:none;overflow:hidden}
+.title-r{flex-shrink:0;padding:20px 36px 4px;position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
+.title-row{display:flex;align-items:center;gap:10px}
+.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+h1.title-main{font-size:26px;font-weight:700;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
+.line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.body-wrap{flex:1;min-height:0;padding:10px 36px 8px;display:flex;align-items:stretch;gap:0;position:relative;z-index:1;overflow:hidden}
+.col{flex:1;min-width:0;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:var(--ppt-radius-lg);
+  padding:16px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.col-arrow{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;color:var(--ppt-accent);font-size:18px}
+.col-icon{width:56px;height:56px;border-radius:50%;background:rgba(0,240,255,.08);border:2px solid rgba(0,240,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ppt-accent)}
+.col-title{font-size:17px;font-weight:700}
+.col-msg{font-size:13px;font-weight:600;color:var(--ppt-text-1);line-height:1.4}
+.col-detail{font-size:12px;color:var(--ppt-text-3);line-height:1.4}
+.col-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
+  background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+.col-impact{font-size:11.5px;color:var(--ppt-text-2);line-height:1.35;margin-top:auto;padding-top:6px;
+  border-top:1px dashed var(--ppt-border);width:100%}
+.insight-bar{flex-shrink:0;margin:0 40px 12px;padding:9px 16px;position:relative;z-index:1;
+  background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);
+  border-left:3px solid var(--ppt-accent-2);border-radius:0 8px 8px 0;font-size:14px;color:var(--ppt-text-2);line-height:1.4}
+.insight-bar strong{color:var(--ppt-accent-2)}
+html{overflow:hidden;margin:0;padding:0}
+</style>
+</head>
 <body>
-<div class="roadmap-slide-root" data-motion="roadmap" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Title Region -->
-<div class="title-region-wrapper">
-<div class="title-region-main">
-<div class="title-region-bar"></div>
-<h1 class="title-region-text">단계적 롤아웃 로드맵</h1>
-</div>
-<div class="title-region-line"></div>
-</div>
-<!-- Content Area -->
-<div class="roadmap-content-container">
-<!-- Strategy Summary & Visual Track -->
-<div class="roadmap-strategy-summary-wrapper">
-<div class="roadmap-strategy-card">
-<div class="roadmap-strategy-icon">
-<i class="fas fa-shield-halved"></i>
-</div>
-<div class="roadmap-strategy-text-group">
-<span class="roadmap-strategy-label">목표 기간</span>
-<span class="roadmap-strategy-desc">2027.03 주유소 관리시스템 프로토타입 Live → 7~8월 분석 → 3PL 선행 전환 → 2028.12 통합 완료</span>
-</div>
-</div>
-<div style="flex: 2;padding: 8px 0;">
-<div class="roadmap-visual-track-container">
-<div class="roadmap-visual-track-line"></div>
-<div class="roadmap-track-runner" aria-hidden="true"></div>
-<div class="roadmap-step-node step-kickoff">
-<div class="roadmap-node-circle"></div>
-<span class="roadmap-kickoff-badge">LIVE</span>
-<span class="roadmap-node-date">2027.03</span>
-<span class="roadmap-node-label">주유소 관리<br/>프로토타입 Live</span>
-</div>
-<span class="roadmap-step-arrow" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-<div class="roadmap-step-node">
-<div class="roadmap-node-circle"></div>
-<span class="roadmap-node-date">2027.07~08</span>
-<span class="roadmap-node-label">3PL·유통물류<br/>분석·요구사항</span>
-</div>
-<span class="roadmap-step-arrow" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-<div class="roadmap-step-node">
-<div class="roadmap-node-circle gold"></div>
-<span class="roadmap-node-date">2027.09~</span>
-<span class="roadmap-node-label">3PL<br/>단계적 전환</span>
-</div>
-<span class="roadmap-step-arrow" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-<div class="roadmap-step-node">
-<div class="roadmap-node-circle gold"></div>
-<span class="roadmap-node-date">~2028.12</span>
-<span class="roadmap-node-label">유통물류 전환<br/>· 시스템 통합</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Roadmap Table Area -->
-<div class="roadmap-table-section-wrapper">
-<div class="roadmap-table-container">
-<div style="flex: 1;">
-<table class="roadmap-data-table">
-<colgroup>
-<col style="width: 22%;"/>
-<col style="width: 22%;"/>
-<col style="width: 56%;"/>
-</colgroup>
-<thead>
-<tr>
-<th>이관 단계</th>
-<th>목표 일정</th>
-<th>주요 추진 내용 및 기대 효과</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<span class="roadmap-phase-badge">Phase 1</span>
-<div style="font-weight: 600;">주유소 관리시스템 프로토타입 Live</div>
-</td>
-<td>
-<span class="roadmap-schedule-text">2027년 3월</span>
-</td>
-<td>
-<div class="roadmap-content-list">
-<span class="roadmap-content-item highlight">2027년 3월 주유소(JTGS) 관리시스템 프로토타입 Live — 차세대 스택 실전 가동</span>
-<span class="roadmap-content-item">SiteFramework 등 프레임워크 템플릿·AI 파이프라인 실전 검증 및 안정화</span>
-<span class="roadmap-content-item">프로토타입 Live 이후 고도화·표준 템플릿 확정 — 본격 이관의 기술·조직 기반 마련</span>
-</div>
-</td>
-</tr>
-<tr>
-<td>
-<span class="roadmap-phase-badge">Phase 2</span>
-<div style="font-weight: 600;">분석 · 요구사항 수렴</div>
-</td>
-<td>
-<span class="roadmap-schedule-text">2027.07 ~ 2027.08</span>
-</td>
-<td>
-<div class="roadmap-content-list">
-<span class="roadmap-content-item highlight">3PL 시스템·유통물류 시스템 현행 분석 및 Gap·개선 방향 도출</span>
-<span class="roadmap-content-item">현업·IT 요구사항 수렴 — 전환 범위·우선순위·통합 아키텍처 합의</span>
-<span class="roadmap-content-item">단계적 롤아웃 상세 계획·Quality Gate 기준 확정</span>
-</div>
-</td>
-</tr>
-<tr>
-<td>
-<span class="roadmap-phase-badge">Phase 3</span>
-<div style="font-weight: 600;">3PL 차세대 전환</div>
-</td>
-<td>
-<span class="roadmap-schedule-text">2027.09 ~</span>
-</td>
-<td>
-<div class="roadmap-content-list">
-<span class="roadmap-content-item highlight">3PL 시스템부터 단계적 차세대 FaSS 플랫폼 전환 착수</span>
-<span class="roadmap-content-item">검증된 프레임워크·AI 패턴을 3PL 업무 모듈에 순차 적용</span>
-<span class="roadmap-content-item">모듈별 Quality Gate 통과 후 다음 범위 확대 — 상시 롤백 가능</span>
-</div>
-</td>
-</tr>
-<tr>
-<td>
-<span class="roadmap-phase-badge final">Phase 4</span>
-<div style="font-weight: 600;">유통물류 전환 · 통합</div>
-</td>
-<td>
-<span class="roadmap-schedule-text">~2028.12</span>
-</td>
-<td>
-<div class="roadmap-content-list">
-<span class="roadmap-content-item">유통물류 시스템 차세대 전환 병행·후속 추진</span>
-<span class="roadmap-content-item highlight">3PL·유통물류 양 시스템 통합 — 단일 FaSS 플랫폼으로 업무·데이터 일원화</span>
-<span class="roadmap-content-item">2028년 12월까지 단계적 롤아웃 완료 — 레거시 단계적 폐기 및 전사 표준 가동</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div style="margin-top: 13px;display: flex;align-items: center;gap: 6px 8px;">
-<i class="fas fa-circle-info" style="color: var(--ppt-accent);font-size:13px;"></i>
-<span style="font-size: 14px;color: var(--ppt-text-2);">
-            3PL 선행 전환 → 유통물류 전환 → 양 시스템 통합. 각 단계 Quality Gate 통과 시에만 다음 단계 진행, 상시 롤백 가능 파이프라인 유지
-          </span>
-</div>
-</div>
-</div>
+<div class="slide" data-motion="innovation" data-motion-tier="medium">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="title-r">
+    <div class="title-row">
+      <div class="bar"></div>
+      <span class="badge">BUSINESS INNOVATION</span>
+      <h1 class="title-main">비즈니스 혁신6 — 클라우드 비용 최적화</h1>
+    </div>
+    <div class="title-sub">개발 단계부터 비용 효율 습관을 내재화하여 수익성 기반 마련</div>
+    <div class="line"></div>
+  </div>
+  <div class="body-wrap">
+    <div class="col">
+      <div class="col-icon"><i class="fas fa-bullseye"></i></div>
+      <div class="col-title">수익화</div>
+      <div class="col-msg">솔루션 외부 공급 시<br/>가격 경쟁력 확보</div>
+      <div class="col-detail">클라우드 효율이 곧<br/>제품 마진 경쟁력</div>
+      <span class="col-badge">ASP·SaaS 기반</span>
+      <div class="col-impact">ASP·SaaS 외부 공급 시 마진 확보</div>
+    </div>
+    <div class="col-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="col">
+      <div class="col-icon"><i class="fas fa-toggle-off"></i></div>
+      <div class="col-title">최적화</div>
+      <div class="col-msg">미사용 자원<br/>자동 탐지·차단</div>
+      <div class="col-detail">낭비 자원을 실시간<br/>식별하여 비용 절감</div>
+      <span class="col-badge">비용 절감</span>
+      <div class="col-impact">불필요 인프라 지출 원천 차단</div>
+    </div>
+    <div class="col-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="col">
+      <div class="col-icon"><i class="fas fa-coins"></i></div>
+      <div class="col-title">경영 효과</div>
+      <div class="col-msg">인프라 비용<br/>실시간 가시화</div>
+      <div class="col-detail">팀·프로젝트별 비용<br/>투명하게 관리</div>
+      <span class="col-badge">비용 가시화</span>
+      <div class="col-impact">경영진 의사결정 근거 제공</div>
+    </div>
+  </div>
+  <div class="insight-bar"><strong>경영 시사점:</strong> 절감된 인프라 비용 = 직접적인 경영 성과</div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight;
-    var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
-    el.style.position='absolute';
-    el.style.left=Math.round((sw-960*scale)/2)+'px';
+    var el=document.querySelector('body>div');if(!el)return;
+    var sw=window.innerWidth,sh=window.innerHeight,scale=Math.min(sw/960,sh/720);
+    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
+    el.style.position='absolute';el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();
-  window.addEventListener('resize',applyScale);
+  applyScale();window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

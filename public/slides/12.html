@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>최적화 방안 1. AI 디지털 워커 활용</title>
+<title>스프린트 운영현황</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font-body: "Noto Sans KR", sans-serif;
@@ -14,508 +14,197 @@
 
   --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-surface:#1E2638; --ppt-border:#334155;
   --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
-  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15;
-  --c-human:#38BDF8; --c-ai:#FACC15;
-  --c-code:#22C55E; --c-design:#A78BFA; --c-doc:#FB923C;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E;
+  --p0:#38BDF8; --p1:#A78BFA; --p2:#FACC15; --p3:#34D399; --px:#FB923C;
   --ppt-font: "Noto Sans KR", sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:100vw;height:100vh;overflow:hidden;background:var(--ppt-bg);display:flex;justify-content:center;align-items:center;font-family:var(--ppt-font)}
-.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden}
-.title-region{flex-shrink:0;padding:24px 40px 10px}
-.title-header{display:flex;align-items:center;gap:12px}
-.title-bar{width:4px;height:32px;background:var(--ppt-accent);border-radius:2px}
-.title-main{font-size:26px;font-weight:700;margin:0}
-.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:16px;margin-top:6px}
-.title-line{height:1px;margin-top:10px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.3}
-.body{flex:1;min-height:0;padding:8px 36px 12px;display:grid;grid-template-columns:1fr 1.45fr;gap:8px 10px}
-
-/* Left column */
-.left-col{display:flex;flex-direction:column;gap:6px;min-height:0}
-.strat-panel{background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:10px;padding:7px 9px;display:flex;flex-direction:column;gap:5px;flex-shrink:0}
-.panel-head{font-size:13px;font-weight:700;color:var(--ppt-accent-2);display:flex;align-items:center;gap:5px}
-.strat-row{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.strat-box{background:rgba(10,14,26,.5);border:1px solid var(--ppt-border);border-radius:8px;padding:6px 7px;display:flex;gap:6px;align-items:flex-start}
-.strat-ico{width:26px;height:26px;border-radius:7px;background:var(--ppt-surface);display:flex;align-items:center;justify-content:center;color:var(--ppt-accent);font-size:13px;flex-shrink:0}
-.strat-t{font-size:13px;font-weight:700;line-height:1.25}
-.strat-d{font-size:9.5px;color:var(--ppt-text-2);line-height:1.35;margin-top:2px}
-
-/* Animation stage */
-.anim-panel{
-  flex:1;min-height:0;background:linear-gradient(160deg,rgba(56,189,248,.05),rgba(250,204,21,.04));
-  border:1px solid var(--ppt-border);border-radius:10px;padding:8px 10px 7px;
-  display:flex;flex-direction:column;gap:6px;overflow:hidden;position:relative;
-}
-.anim-panel::before{
-  content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(0,240,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.025) 1px,transparent 1px);
-  background-size:24px 24px;pointer-events:none;
-}
-.anim-head{font-size:13px;font-weight:700;color:var(--ppt-accent);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
-.anim-status{font-size:13px;font-weight:600;color:var(--ppt-accent-2);padding:2px 8px;border-radius:10px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.3);animation:statusBlink 3s ease-in-out infinite}
-@keyframes statusBlink{0%,100%{opacity:1}50%{opacity:.65}}
-
-/* Human → AI flow row */
-.flow-row{display:flex;align-items:center;gap:4px;position:relative;z-index:1;flex-shrink:0}
-.human-node{
-  width:52px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;
-}
-.human-avatar{
-  width:40px;height:40px;border-radius:50%;border:2px solid var(--c-human);
-  background:radial-gradient(circle at 35% 30%,rgba(56,189,248,.25),rgba(56,189,248,.08));
-  display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--c-human);
-  animation:humanNod 4s ease-in-out infinite;
-}
-@keyframes humanNod{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-.human-label{font-size:13px;font-weight:700;color:var(--c-human);text-align:center;line-height:1.2}
-.speech-bubble{
-  flex:1;min-width:0;background:var(--ppt-surface);border:1px solid rgba(56,189,248,.4);
-  border-radius:8px;padding:5px 8px;font-size:9.5px;color:var(--ppt-text-1);line-height:1.4;
-  position:relative;min-height:36px;display:flex;align-items:center;
-}
-.speech-bubble::before{
-  content:'';position:absolute;left:-6px;top:50%;transform:translateY(-50%);
-  border:5px solid transparent;border-right-color:rgba(56,189,248,.4);
-}
-.speech-text{animation:fadeSwap 9s infinite;opacity:0;position:absolute;left:8px;right:8px}
-.speech-text:nth-child(1){animation-delay:0s}
-.speech-text:nth-child(2){animation-delay:3s}
-.speech-text:nth-child(3){animation-delay:6s}
-@keyframes fadeSwap{
-  0%,5%{opacity:0;transform:translateY(4px)}
-  8%,28%{opacity:1;transform:translateY(0)}
-  33%,100%{opacity:0;transform:translateY(-4px)}
-}
-
-.flow-arrows{flex:0 0 28px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
-.arrow-line{width:22px;height:2px;background:linear-gradient(90deg,var(--c-human),var(--c-ai));position:relative;overflow:hidden}
-.arrow-line::after{
-  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);
-  animation:shuttle 1.2s linear infinite;
-}
-@keyframes shuttle{0%{left:-100%}100%{left:100%}}
-.arrow-tip{font-size:13px;color:var(--c-ai)}
-
-.ai-hub{
-  width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;
-}
-.ai-avatar{
-  width:44px;height:44px;border-radius:12px;border:2px solid var(--c-ai);
-  background:radial-gradient(circle at 30% 30%,rgba(250,204,21,.22),rgba(250,204,21,.06));
-  display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--c-ai);
-  animation:aiPulse 2s ease-in-out infinite;position:relative;
-}
-.ai-avatar::after{
-  content:'';position:absolute;inset:-4px;border-radius:14px;border:1px solid rgba(250,204,21,.3);
-  animation:ringExpand 2s ease-out infinite;
-}
-@keyframes aiPulse{0%,100%{box-shadow:0 0 12px rgba(250,204,21,.2)}50%{box-shadow:0 0 22px rgba(250,204,21,.45)}}
-@keyframes ringExpand{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.15);opacity:0}}
-.ai-label{font-size:13px;font-weight:700;color:var(--c-ai);text-align:center;line-height:1.2}
-
-/* Three output lanes */
-.lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex:1;min-height:118px;position:relative;z-index:1}
-.lane{
-  background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:8px;
-  padding:5px 6px;display:flex;flex-direction:column;gap:4px;min-height:0;
-  border-top:2px solid var(--lane-color,var(--ppt-accent));overflow:hidden;
-}
-.lane.code{--lane-color:var(--c-code)}
-.lane.design{--lane-color:var(--c-design)}
-.lane.doc{--lane-color:var(--c-doc)}
-.lane-head{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--lane-color)}
-.lane-head i{font-size:11px}
-.lane-screen{
-  flex:0 0 82px;height:82px;min-height:82px;background:rgba(10,14,26,.6);border:1px solid var(--ppt-border);
-  border-radius:6px;padding:4px 5px;overflow:hidden;position:relative;
-}
-
-/* ── Code lane: scrolling typed code ── */
-.code-screen{display:flex;flex-direction:column;overflow:hidden}
-.code-viewport{flex:1;overflow:hidden;position:relative}
-.code-scroll{
-  display:flex;flex-direction:column;gap:1px;
-  animation:codeScroll 8s ease-in-out infinite;
-}
-@keyframes codeScroll{
-  0%,18%{transform:translateY(0)}
-  28%,48%{transform:translateY(-14px)}
-  58%,78%{transform:translateY(-28px)}
-  88%,100%{transform:translateY(-42px)}
-}
-.code-row{
-  font-family:Consolas,"Courier New",monospace;font-size:7px;line-height:1.55;
-  white-space:nowrap;overflow:hidden;display:flex;align-items:center;min-height:11px;
-}
-.code-row .ln{color:var(--ppt-text-3);width:10px;flex-shrink:0;font-size:6px}
-.code-chunk{display:inline-block;overflow:hidden;max-width:0;vertical-align:bottom}
-.code-row.r1 .code-chunk{animation:codeType 8s steps(28,end) infinite}
-.code-row.r2 .code-chunk{animation:codeType 8s steps(24,end) 0.3s infinite}
-.code-row.r3 .code-chunk{animation:codeType 8s steps(26,end) .7s infinite}
-.code-row.r4 .code-chunk{animation:codeType 8s steps(22,end) 1.0s infinite}
-.code-row.r5 .code-chunk{animation:codeType 8s steps(20,end) 1.4s infinite}
-.code-row.r6 .code-chunk{animation:codeType 8s steps(18,end) 1.7s infinite}
-@keyframes codeType{
-  0%,6%{max-width:0;opacity:.3}
-  14%,82%{max-width:120px;opacity:1}
-  92%,100%{max-width:120px;opacity:.55}
-}
-.kw{color:#C792EA}.ann{color:#FACC15}.cls{color:#82AAFF}.fn{color:#7FDBCA}.str{color:#C3E88D}.cm{color:var(--ppt-text-3)}
-.code-caret{
-  position:absolute;bottom:5px;right:6px;width:5px;height:10px;background:var(--c-code);
-  animation:caretBlink .8s step-end infinite;
-}
-@keyframes caretBlink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* ── Design lane: component drawing ── */
-.comp-canvas{position:relative;width:100%;height:100%;min-height:74px}
-.comp{
-  position:absolute;border:1.5px solid var(--c-design);border-radius:4px;background:rgba(167,139,250,.08);
-  opacity:0;transform-origin:left top;
-}
-.comp-btn{
-  top:6px;left:6px;width:42px;height:14px;border-radius:6px;background:rgba(167,139,250,.22);
-  animation:compDrawBtn 6s ease-in-out infinite;
-}
-.comp-btn::after{
-  content:'Button';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-size:6px;font-weight:700;color:var(--c-design);
-}
-.comp-input{
-  top:26px;left:6px;right:6px;height:12px;border-radius:3px;
-  animation:compDrawInput 6s ease-in-out infinite;
-}
-.comp-input::after{
-  content:'Search…';position:absolute;left:4px;top:50%;transform:translateY(-50%);
-  font-size:5.5px;color:rgba(167,139,250,.7);
-}
-.comp-card{
-  top:44px;left:6px;right:6px;bottom:4px;border-radius:5px;padding:0;overflow:hidden;
-  animation:compDrawCard 6s ease-in-out infinite;
-}
-.comp-card-h{
-  height:8px;background:rgba(167,139,250,.25);border-bottom:1px dashed rgba(167,139,250,.4);
-  transform:scaleX(0);transform-origin:left;animation:compDrawBar 6s ease-in-out infinite;
-}
-.comp-card-b{
-  margin:4px;height:calc(100% - 16px);border:1px dashed rgba(167,139,250,.35);border-radius:2px;
-  transform:scale(.6);opacity:0;animation:compDrawInner 6s ease-in-out infinite;
-}
-.comp-handle{
-  position:absolute;width:6px;height:6px;border:1.5px solid var(--c-design);border-radius:1px;
-  background:rgba(167,139,250,.3);opacity:0;
-}
-.comp-handle.h1{top:4px;left:4px;animation:compHandle 6s ease-in-out infinite}
-.comp-handle.h2{top:22px;left:4px;animation:compHandle 6s ease-in-out 1.2s infinite}
-.comp-handle.h3{top:40px;left:4px;animation:compHandle 6s ease-in-out 2.4s infinite}
-.comp-cursor{
-  position:absolute;width:7px;height:7px;border:1.5px solid var(--c-design);border-radius:50%;
-  box-shadow:0 0 6px rgba(167,139,250,.5);pointer-events:none;z-index:3;
-  animation:compCursorMove 6s ease-in-out infinite;
-}
-@keyframes compDrawBtn{
-  0%,8%{opacity:0;transform:scale(.5)}12%,70%{opacity:1;transform:scale(1)}80%,100%{opacity:.65}
-}
-@keyframes compDrawInput{
-  0%,18%{opacity:0;clip-path:inset(0 100% 0 0)}24%,70%{opacity:1;clip-path:inset(0 0 0 0)}80%,100%{opacity:.65}
-}
-@keyframes compDrawCard{
-  0%,32%{opacity:0;transform:scaleY(.3)}38%,70%{opacity:1;transform:scaleY(1)}80%,100%{opacity:.65}
-}
-@keyframes compDrawBar{
-  0%,36%{transform:scaleX(0)}42%,70%{transform:scaleX(1)}80%,100%{transform:scaleX(1);opacity:.6}
-}
-@keyframes compDrawInner{
-  0%,44%{opacity:0;transform:scale(.6)}50%,70%{opacity:1;transform:scale(1)}80%,100%{opacity:.5}
-}
-@keyframes compHandle{
-  0%,10%{opacity:0;transform:scale(.5)}14%,24%{opacity:1;transform:scale(1)}30%,100%{opacity:0}
-}
-@keyframes compCursorMove{
-  0%,8%{top:12px;left:28px;opacity:0}
-  12%,22%{top:12px;left:28px;opacity:1}
-  28%,38%{top:32px;left:50%;opacity:1}
-  44%,58%{top:58px;left:40%;opacity:1}
-  64%,74%{top:58px;left:70%;opacity:1}
-  80%,100%{opacity:0}
-}
-
-/* ── Doc lane: markdown writing ── */
-.doc-screen{position:relative;overflow:hidden}
-.md-preview{
-  font-family:Consolas,"Courier New",monospace;font-size:6.5px;line-height:1.55;
-  color:var(--ppt-text-2);display:flex;flex-direction:column;gap:2px;padding:1px 0;
-}
-.md-line{display:flex;align-items:center;gap:2px;overflow:hidden;white-space:nowrap;opacity:0}
-.md-line .sym{color:var(--c-doc);font-weight:700;flex-shrink:0}
-.md-line .txt{display:inline-block;overflow:hidden;max-width:0}
-.md-line.m1{animation:mdShow 7s ease-in-out infinite}
-.md-line.m1 .txt{animation:mdType 7s steps(16,end) infinite}
-.md-line.m2{animation:mdShow 7s ease-in-out 0.4s infinite}
-.md-line.m2 .txt{animation:mdType 7s steps(14,end) 0.4s infinite}
-.md-line.m3{animation:mdShow 7s ease-in-out .9s infinite}
-.md-line.m3 .txt{animation:mdType 7s steps(18,end) .9s infinite}
-.md-line.m4{animation:mdShow 7s ease-in-out 1.3s infinite}
-.md-line.m4 .txt{animation:mdType 7s steps(20,end) 1.3s infinite}
-.md-line.m5{animation:mdShow 7s ease-in-out 1.8s infinite}
-.md-line.m5 .txt{animation:mdType 7s steps(12,end) 1.8s infinite}
-.md-line.m6{animation:mdShow 7s ease-in-out 2.2s infinite}
-.md-line.m6 .txt{animation:mdType 7s steps(8,end) 2.2s infinite}
-.md-line.m7{animation:mdShow 7s ease-in-out 2.7s infinite}
-.md-line.m7 .txt{animation:mdType 7s steps(10,end) 2.7s infinite}
-@keyframes mdShow{
-  0%,6%{opacity:0;transform:translateX(-4px)}
-  10%,78%{opacity:1;transform:translateX(0)}
-  88%,100%{opacity:.45}
-}
-@keyframes mdType{
-  0%,8%{max-width:0}
-  18%,82%{max-width:90px}
-  92%,100%{max-width:90px}
-}
-.md-line.m1 .sym,.md-line.m1 .txt{color:#FB923C;font-size:7px;font-weight:700}
-.md-line.m2 .sym,.md-line.m2 .txt{color:#FDBA74;font-weight:700}
-.md-fence{color:#94A3B8;background:rgba(251,146,60,.08);padding:0 2px;border-radius:2px}
-.md-caret{
-  position:absolute;bottom:4px;right:5px;font-size:6px;font-weight:700;color:var(--c-doc);
-  padding:1px 4px;border-radius:3px;background:rgba(251,146,60,.15);
-  animation:docDone 7s ease 3s infinite;
-}
-@keyframes docDone{0%,50%{opacity:0;transform:scale(.85)}58%,82%{opacity:1;transform:scale(1)}92%,100%{opacity:0}}
-
-.lane-foot{font-size:13px;color:var(--ppt-text-3);line-height:1.3;text-align:center;flex-shrink:0}
-
-/* Bottom wf strip */
-.wf-strip{
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:5px;
-  padding:5px 8px;background:rgba(10,14,26,.5);border:1px solid var(--ppt-border);border-radius:8px;
-  font-size:13px;color:var(--ppt-text-2);
-}
-.wf-strip strong{color:var(--ppt-accent)}
-.wf-mini{display:flex;gap:2px}
-.wf-dot{width:14px;height:14px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px}
-.wf-dot.h{background:rgba(56,189,248,.15);color:var(--c-human);border:1px solid rgba(56,189,248,.4)}
-.wf-dot.a{background:rgba(250,204,21,.12);color:var(--c-ai);border:1px solid rgba(250,204,21,.4)}
-.wf-eq-num{font-size:14px;font-weight:800;color:var(--ppt-accent);padding:0 4px}
-
-/* Right: org table */
-.org-panel{display:flex;flex-direction:column;gap:5px;min-height:0}
-.org-head{font-size:13px;font-weight:700;color:var(--ppt-accent);display:flex;align-items:center;gap:5px;flex-shrink:0}
-.table-wrap{flex:1;min-height:0;background:var(--ppt-surface);border:1px solid var(--ppt-border);border-radius:10px;overflow:hidden}
-table{width:100%;height:100%;border-collapse:collapse;table-layout:fixed}
-thead th{background:#2A344A;padding:7px 9px;font-size:11.5px;font-weight:700;color:var(--ppt-accent);text-align:left;border-bottom:2px solid var(--ppt-border)}
-tbody td{padding:7px 9px;font-size:13px;color:var(--ppt-text-1);vertical-align:middle;border-bottom:1px solid var(--ppt-border);line-height:1.38}
-tbody td:nth-child(3){vertical-align:top;padding-top:8px;padding-bottom:8px}
-tbody tr:last-child td{border-bottom:none}
-tbody tr{height:16.66%}
-.role{display:inline-block;padding:3px 7px;background:var(--ppt-surface);border-radius:5px;font-size:10.5px;font-weight:600;color:var(--ppt-text-2);line-height:1.2}
-.name{font-weight:700;font-size:13px;line-height:1.3}
-.names .name{display:block}
-.task{margin:0;padding:0;list-style:none;color:var(--ppt-text-2);font-size:10.5px}
-.task li{display:flex;align-items:flex-start;gap:5px;line-height:1.4}
-.task li+li{margin-top:3px}
-.task li::before{
-  content:'•';flex-shrink:0;width:0.55em;text-align:center;
-  color:var(--ppt-accent);font-size:10.5px;line-height:1.4;
-  position:static;top:auto;left:auto
-}
+.slide{width:960px;height:720px;background:var(--ppt-bg);color:var(--ppt-text-1);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse at 10% 0%,rgba(0,240,255,.07) 0%,transparent 45%),
+  radial-gradient(ellipse at 90% 100%,rgba(250,204,21,.06) 0%,transparent 40%)}
+.title-r{flex-shrink:0;padding:20px 32px 4px;position:relative;z-index:1}
+.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bar{width:4px;height:28px;background:var(--ppt-accent);border-radius:2px}
+.badge{font-size:13px;font-weight:700;padding:3px 9px;border-radius:12px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.4);color:var(--ppt-good);display:inline-flex;align-items:center;gap:5px}
+.badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--ppt-good);box-shadow:0 0 8px var(--ppt-good);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+h1{font-size:26px;font-weight:700;line-height:1.25}
+.sub{font-size:13px;color:var(--ppt-text-2);margin-top:3px;padding-left:14px}
+.line{height:1px;margin-top:6px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.hero{flex-shrink:0;margin:8px 32px 6px;padding:10px 14px;border-radius:12px;position:relative;z-index:1;
+  background:linear-gradient(135deg,rgba(0,240,255,.08),rgba(250,204,21,.06));
+  border:1px solid rgba(0,240,255,.25);display:flex;align-items:center;gap:14px}
+.hero-text{flex:1;min-width:0}
+.hero-title{font-size:14px;font-weight:700;color:var(--ppt-text-1);line-height:1.35}
+.hero-title em{font-style:normal;color:var(--ppt-accent-2)}
+.hero-desc{font-size:13px;color:var(--ppt-text-2);margin-top:3px;line-height:1.4}
+.hero-stats{display:flex;gap:8px;flex-shrink:0}
+.hstat{text-align:center;padding:6px 12px;border-radius:10px;background:rgba(10,14,26,.6);border:1px solid var(--ppt-border);min-width:62px}
+.hstat-val{font-size:18px;font-weight:800;color:var(--ppt-accent);line-height:1;font-variant-numeric:tabular-nums}
+.hstat-lbl{font-size:13px;color:var(--ppt-text-3);margin-top:2px;letter-spacing:.04em}
+.lanes{flex-shrink:0;margin:0 32px 6px;height:28px;display:flex;align-items:center;gap:6px;position:relative;z-index:1}
+.lane{flex:1;height:6px;border-radius:3px;background:var(--ppt-surface);border:1px solid var(--ppt-border);position:relative;overflow:hidden}
+.lane::after{content:'';position:absolute;top:0;left:-40%;width:40%;height:100%;border-radius:3px;animation:flow var(--motion-duration,6s) linear infinite}
+.lane.l0::after{background:linear-gradient(90deg,transparent,var(--p0),transparent)}
+.lane.l1::after{background:linear-gradient(90deg,transparent,var(--p1),transparent);animation-delay:.3s}
+.lane.l2::after{background:linear-gradient(90deg,transparent,var(--p2),transparent);animation-delay:.6s}
+.lane.l3::after{background:linear-gradient(90deg,transparent,var(--p3),transparent);animation-delay:.9s}
+.lane.lx::after{background:linear-gradient(90deg,transparent,var(--px),transparent);animation-delay:1.2s}
+@keyframes flow{0%{left:-40%}100%{left:100%}}
+.lane-labels{display:flex;gap:6px;margin:0 32px 4px}
+.lane-labels span{flex:1;font-size:13px;font-weight:700;text-align:center;color:var(--ppt-text-3);letter-spacing:.03em}
+.board{flex:1;min-height:0;padding:0 28px 8px;display:grid;grid-template-columns:repeat(5,1fr);gap:7px;position:relative;z-index:1}
+.phase-col{display:flex;flex-direction:column;min-height:0;background:var(--ppt-bg-soft);border:1px solid var(--ppt-border);border-radius:12px;overflow:hidden;border-top:3px solid var(--phase-c)}
+.phase-head{flex-shrink:0;padding:6px 8px 5px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--ppt-border)}
+.phase-num{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--phase-c);text-transform:uppercase}
+.phase-name{font-size:12px;font-weight:700;line-height:1.25;margin-top:1px;color:var(--ppt-text-1)}
+.phase-count{font-size:10px;color:var(--ppt-text-3);margin-top:1px}
+.sprint-list{flex:1;min-height:0;padding:4px 5px 5px;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.sprint{display:flex;align-items:flex-start;gap:4px;padding:4px 5px;border-radius:7px;background:var(--ppt-surface);border:1px solid var(--ppt-border);position:relative;transition:box-shadow .2s}
+.sprint::before{content:'';position:absolute;left:0;top:3px;bottom:3px;width:2px;border-radius:1px;background:var(--phase-c);opacity:.7}
+.sprint-id{flex-shrink:0;font-size:10px;font-weight:800;padding:1px 4px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--phase-c);border:1px solid rgba(255,255,255,.08);font-variant-numeric:tabular-nums;line-height:1.25}
+.sprint-body{flex:1;min-width:0}
+.sprint-title{font-size:11px;font-weight:600;line-height:1.3;color:var(--ppt-text-1)}
+.sprint-meta{display:flex;align-items:center;gap:3px;margin-top:1px;flex-wrap:wrap}
+.sprint-tag{font-size:10px;font-weight:700;padding:0 4px;border-radius:5px;background:rgba(250,204,21,.15);color:var(--ppt-accent-2);border:1px solid rgba(250,204,21,.3);line-height:1.45}
+.sprint-live{font-size:10px;font-weight:700;color:var(--ppt-good);display:inline-flex;align-items:center;gap:2px;line-height:1.45}
+.sprint-live i{font-size:9px;animation:pulse 1.4s ease-in-out infinite}
+.sprint-done{font-size:10px;font-weight:700;color:var(--ppt-text-3);display:inline-flex;align-items:center;gap:2px;line-height:1.45}
+.sprint-done i{font-size:9px;color:var(--ppt-text-3)}
+.sprint-future{font-size:10px;font-weight:700;color:#94A3B8;display:inline-flex;align-items:center;gap:2px;line-height:1.45}
+.sprint-future i{font-size:9px;color:var(--ppt-accent)}
+.sprint.s-done{opacity:.72}
+.sprint.s-done::before{background:var(--ppt-text-3)}
+.phase-col.p0{--phase-c:var(--p0)} .phase-col.p1{--phase-c:var(--p1)} .phase-col.p2{--phase-c:var(--p2)}
+.phase-col.p3{--phase-c:var(--p3)} .phase-col.px{--phase-c:var(--px)}
+.footer{flex-shrink:0;margin:4px 32px 12px;padding:9px 14px;border-radius:0 10px 10px 0;border-left:3px solid var(--ppt-accent-2);
+  background:rgba(250,204,21,.05);font-size:13px;color:var(--ppt-text-2);line-height:1.45;position:relative;z-index:1}
+.footer strong{color:var(--ppt-accent-2)}
 html{overflow:hidden;margin:0;padding:0}
 </style>
 </head>
 <body>
-<div class="slide" data-motion="innovation" data-motion-tier="medium">
-  <div class="title-region">
-    <div class="title-header">
-      <div class="title-bar"></div>
-      <h1 class="title-main">최적화 방안 1. AI 디지털 워커 활용</h1>
+<div class="slide" data-motion="timeline" data-motion-tier="medium">
+  <div class="title-r">
+    <div class="title-row">
+      <div class="bar"></div>
+      <span class="badge"><span class="pulse"></span> LIVE · 동시 진행</span>
+      <h1>스프린트 운영현황</h1>
     </div>
-    <div class="title-sub">인간 7 + AI 8 = 15명 TFT급 추진력</div>
-    <div class="title-line"></div>
+    <p class="sub">FaSS Platform v3.0 — 19개 Mega-Sprint · ACTIVE 9 · 종료 2 · 예정 8</p>
+    <div class="line"></div>
   </div>
 
-  <div class="body">
-    <div class="left-col">
-      <div class="strat-panel">
-        <div class="panel-head"><i class="fas fa-robot"></i> AI 디지털 워커 — TFT 보조</div>
-        <div class="strat-row">
-          <div class="strat-box">
-            <div class="strat-ico"><i class="fas fa-robot"></i></div>
-            <div>
-              <div class="strat-t">24/7 디지털 워커</div>
-              <p class="strat-d">코드·문서·테스트 등 반복 업무 AI 상시 지원</p>
-            </div>
-          </div>
-          <div class="strat-box">
-            <div class="strat-ico"><i class="fas fa-user-check"></i></div>
-            <div>
-              <div class="strat-t">Human-in-the-loop</div>
-              <p class="strat-d">설계·품질·의사결정은 TFT가 최종 통제</p>
-            </div>
-          </div>
-        </div>
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-title">스프린트 백로그 기준 <em>실제 운영 현황</em> · S01·S08 <em>종료</em> · S23 리포트 Tool 추가</div>
+      <div class="hero-desc">별첨 스프린트/태스크 현황 반영 — 진행중(ACTIVE) · 예정(FUTURE) · 종료(CLOSED) 상태별 표시</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val">19</div><div class="hstat-lbl">TOTAL</div></div>
+      <div class="hstat"><div class="hstat-val">9</div><div class="hstat-lbl">ACTIVE</div></div>
+      <div class="hstat"><div class="hstat-val">2</div><div class="hstat-lbl">CLOSED</div></div>
+    </div>
+  </div>
+
+  <div class="lanes">
+    <div class="lane l0"></div>
+    <div class="lane l1"></div>
+    <div class="lane l2"></div>
+    <div class="lane l3"></div>
+    <div class="lane lx"></div>
+  </div>
+  <div class="lane-labels">
+    <span>Phase 0</span><span>Phase 1</span><span>Phase 2</span><span>Phase 3</span><span>추가 과제</span>
+  </div>
+
+  <div class="board">
+    <div class="phase-col p0">
+      <div class="phase-head">
+        <div class="phase-num">Phase 0</div>
+        <div class="phase-name">기반 · 표준</div>
+        <div class="phase-count">3 Sprints</div>
       </div>
-
-      <div class="anim-panel">
-        <div class="anim-head">
-          <span><i class="fas fa-play-circle"></i> Human → Digital Worker 협업 시나리오</span>
-          <span class="anim-status">● LIVE</span>
-        </div>
-
-        <div class="flow-row">
-          <div class="human-node">
-            <div class="human-avatar"><i class="fas fa-user-tie"></i></div>
-            <span class="human-label">TFT<br/>담당자</span>
-          </div>
-          <div class="speech-bubble">
-            <span class="speech-text">「 API 스펙 설계 완료 — 백엔드 모듈 구현해줘 」</span>
-            <span class="speech-text">「 UI 와이어프레임 승인 — Figma 컴포넌트 정리해줘 」</span>
-            <span class="speech-text">「 회의록·README·OpenAPI 문서 작성 부탁해 」</span>
-          </div>
-          <div class="flow-arrows">
-            <div class="arrow-line"></div>
-            <i class="fas fa-caret-right arrow-tip"></i>
-          </div>
-          <div class="ai-hub">
-            <div class="ai-avatar"><i class="fas fa-robot"></i></div>
-            <span class="ai-label">디지털<br/>워커</span>
-          </div>
-        </div>
-
-        <div class="lanes">
-          <div class="lane code">
-            <div class="lane-head"><i class="fas fa-code"></i> 코딩 지원</div>
-            <div class="lane-screen code-screen">
-              <div class="code-viewport">
-                <div class="code-scroll">
-                  <div class="code-row r1"><span class="ln">1</span><span class="code-chunk"><span class="ann">@RestController</span></span></div>
-                  <div class="code-row r2"><span class="ln">2</span><span class="code-chunk"><span class="kw">public class</span> <span class="cls">OrderApi</span> {</span></div>
-                  <div class="code-row r3"><span class="ln">3</span><span class="code-chunk">  <span class="ann">@PostMapping</span>(<span class="str">"/api/order"</span>)</span></div>
-                  <div class="code-row r4"><span class="ln">4</span><span class="code-chunk">  <span class="kw">public</span> <span class="cls">OrderDto</span> <span class="fn">create</span>(...) {</span></div>
-                  <div class="code-row r5"><span class="ln">5</span><span class="code-chunk">    <span class="kw">return</span> svc.<span class="fn">save</span>(dto);</span></div>
-                  <div class="code-row r6"><span class="ln">6</span><span class="code-chunk">  <span class="cm">// AI-generated test ✓</span></span></div>
-                </div>
-              </div>
-              <span class="code-caret"></span>
-            </div>
-            <div class="lane-foot">Claude Code · Cursor<br/>보일러플레이트·단위테스트 자동 생성</div>
-          </div>
-
-          <div class="lane design">
-            <div class="lane-head"><i class="fas fa-palette"></i> 디자인 지원</div>
-            <div class="lane-screen">
-              <div class="comp-canvas">
-                <div class="comp comp-btn"></div>
-                <div class="comp comp-input"></div>
-                <div class="comp comp-card">
-                  <div class="comp-card-h"></div>
-                  <div class="comp-card-b"></div>
-                </div>
-                <div class="comp-handle h1"></div>
-                <div class="comp-handle h2"></div>
-                <div class="comp-handle h3"></div>
-                <div class="comp-cursor"></div>
-              </div>
-            </div>
-            <div class="lane-foot">Figma · Adobe<br/>컴포넌트·스토리북·가이드 정리</div>
-          </div>
-
-          <div class="lane doc">
-            <div class="lane-head"><i class="fas fa-file-lines"></i> 문서 작업</div>
-            <div class="lane-screen doc-screen">
-              <div class="md-preview">
-                <div class="md-line m1"><span class="sym"># </span><span class="txt">Order API Guide</span></div>
-                <div class="md-line m2"><span class="sym">## </span><span class="txt">Overview</span></div>
-                <div class="md-line m3"><span class="sym">- </span><span class="txt">POST /api/order endpoint</span></div>
-                <div class="md-line m4"><span class="sym">- </span><span class="txt">Request: OrderDto schema</span></div>
-                <div class="md-line m5"><span class="sym">- </span><span class="txt">Response: 201 Created</span></div>
-                <div class="md-line m6"><span class="sym md-fence">```</span><span class="txt">yaml</span></div>
-                <div class="md-line m7"><span class="sym">  </span><span class="txt">paths: /api/order</span></div>
-              </div>
-              <span class="md-caret">✓ .md 초안</span>
-            </div>
-            <div class="lane-foot">README · Wiki · API Doc<br/>회의록·RAG 컨텍스트 자동 작성</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wf-strip">
-        <span>인간 <strong>7</strong></span>
-        <div class="wf-mini">
-          <span class="wf-dot h"><i class="fas fa-user"></i></span>
-          <span class="wf-dot h"><i class="fas fa-user"></i></span>
-          <span class="wf-dot h"><i class="fas fa-user"></i></span>
-          <span style="color:var(--ppt-text-3);font-size:13px">···</span>
-        </div>
-        <span>+</span>
-        <span>AI <strong>8</strong></span>
-        <div class="wf-mini">
-          <span class="wf-dot a"><i class="fas fa-robot"></i></span>
-          <span class="wf-dot a"><i class="fas fa-robot"></i></span>
-          <span class="wf-dot a"><i class="fas fa-robot"></i></span>
-          <span style="color:var(--ppt-text-3);font-size:13px">···</span>
-        </div>
-        <span>=</span>
-        <span class="wf-eq-num">15</span>
-        <span>TFT급 추진력 · <strong>지시→AI실행→Human검토</strong> 루프</span>
+      <div class="sprint-list">
+        <div class="sprint s-done"><span class="sprint-id">S01</span><div class="sprint-body"><div class="sprint-title">개발 명명 규칙 표준화 작업</div><div class="sprint-meta"><span class="sprint-done"><i class="fas fa-check"></i>종료</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S02</span><div class="sprint-body"><div class="sprint-title">개발 환경 및 인프라 기반 구축</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S03</span><div class="sprint-body"><div class="sprint-title">공통 플랫폼 인프라</div><div class="sprint-meta"><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
       </div>
     </div>
 
-    <div class="org-panel">
-      <div class="org-head"><i class="fas fa-sitemap"></i> 차세대 FaSS TFT — 핵심 조직</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:23%">역할</th>
-              <th style="width:17%">담당자</th>
-              <th style="width:60%">주요 업무</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="role">최고 의사결정</span></td>
-              <td><span class="name">시스템<br/>사업부장</span></td>
-              <td><ul class="task"><li>비즈니스 방향성·투자 우선순위 총괄</li></ul></td>
-            </tr>
-            <tr>
-              <td><span class="role">TFT 팀장</span></td>
-              <td><span class="name">서선범</span></td>
-              <td><ul class="task"><li>프로젝트 총괄 관리 및 리스크 차단</li><li>유관 부서 간 업무 프로세스 조율</li></ul></td>
-            </tr>
-            <tr>
-              <td><span class="role">프로젝트 리더</span></td>
-              <td><span class="name">기충영</span></td>
-              <td><ul class="task"><li>FaSS V3.0 공통 프레임워크 표준 설계</li><li>전체 아키텍처 통제 및 품질 관리</li></ul></td>
-            </tr>
-            <tr>
-              <td><span class="role">BE 엔지니어</span></td>
-              <td><div class="names"><span class="name">김희찬</span><span class="name">송민준</span></div></td>
-              <td><ul class="task"><li>백엔드 코어 모듈 구현</li><li>Kafka 기반 데이터 동기화 파이프라인</li></ul></td>
-            </tr>
-            <tr>
-              <td><span class="role">FE 엔지니어</span></td>
-              <td><div class="names"><span class="name">심지훈</span><span class="name">오준열</span><span class="name">이지상</span></div></td>
-              <td><ul class="task"><li>프론트엔드 및 UX 표준 구현</li><li>AI 연동 RAG 환경 및 인터페이스 구축</li></ul></td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="phase-col p1">
+      <div class="phase-head">
+        <div class="phase-num">Phase 1</div>
+        <div class="phase-name">인증/보안/권한</div>
+        <div class="phase-count">4 Sprints</div>
+      </div>
+      <div class="sprint-list">
+        <div class="sprint"><span class="sprint-id">S05</span><div class="sprint-body"><div class="sprint-title">SSO 연동 구축</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S07</span><div class="sprint-body"><div class="sprint-title">권한 관리</div><div class="sprint-meta"><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint s-done"><span class="sprint-id">S08</span><div class="sprint-body"><div class="sprint-title">상태관리 및 API 통신 공통 모듈 개발</div><div class="sprint-meta"><span class="sprint-done"><i class="fas fa-check"></i>종료</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S15</span><div class="sprint-body"><div class="sprint-title">데이터 보안</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
       </div>
     </div>
+
+    <div class="phase-col p2">
+      <div class="phase-head">
+        <div class="phase-num">Phase 2</div>
+        <div class="phase-name">아키텍처/공통</div>
+        <div class="phase-count">5 Sprints</div>
+      </div>
+      <div class="sprint-list">
+        <div class="sprint"><span class="sprint-id">S04</span><div class="sprint-body"><div class="sprint-title">공통 프레임워크 아키텍처</div><div class="sprint-meta"><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S09</span><div class="sprint-body"><div class="sprint-title">공통 UI 컴포넌트 라이브러리 개발</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S10</span><div class="sprint-body"><div class="sprint-title">비즈니스 컴포넌트 개발 가이드</div><div class="sprint-meta"><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S11</span><div class="sprint-body"><div class="sprint-title">멀티 컴퍼니 지원</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S16</span><div class="sprint-body"><div class="sprint-title">SSR-RSC 최적화 및 Web Vitals</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="phase-col p3">
+      <div class="phase-head">
+        <div class="phase-num">Phase 3</div>
+        <div class="phase-name">데이터/통합/AI</div>
+        <div class="phase-count">3 Sprints</div>
+      </div>
+      <div class="sprint-list">
+        <div class="sprint"><span class="sprint-id">S12</span><div class="sprint-body"><div class="sprint-title">외부 인터페이스</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S14</span><div class="sprint-body"><div class="sprint-title">AI 연동 모듈 개발</div><div class="sprint-meta"><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S17</span><div class="sprint-body"><div class="sprint-title">CDC 데이터 동기화 파이프라인 구축</div><div class="sprint-meta"><span class="sprint-future"><i class="fas fa-clock"></i>예정</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="phase-col px">
+      <div class="phase-head">
+        <div class="phase-num">추가 과제</div>
+        <div class="phase-name">전략·품질·Tool</div>
+        <div class="phase-count">4 Sprints</div>
+      </div>
+      <div class="sprint-list">
+        <div class="sprint"><span class="sprint-id">S18</span><div class="sprint-body"><div class="sprint-title">MSA 전환 로드맵 실행 (Phase 1→2→3)</div><div class="sprint-meta"><span class="sprint-tag">대규모</span><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S19</span><div class="sprint-body"><div class="sprint-title">표준 라이브러리 골든셋 (Golden Set)</div><div class="sprint-meta"><span class="sprint-tag">대규모</span><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S20</span><div class="sprint-body"><div class="sprint-title">SCA 도입 (Nexus IQ — OSS 공급망 보안)</div><div class="sprint-meta"><span class="sprint-tag">대규모</span><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+        <div class="sprint"><span class="sprint-id">S23</span><div class="sprint-body"><div class="sprint-title">리포트 Tool 도입</div><div class="sprint-meta"><span class="sprint-live"><i class="fas fa-circle"></i>진행중</span></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>현황 기준:</strong> 별첨 스프린트 백로그 반영 — <strong>S01·S08 종료</strong>, ACTIVE 9건 (일반 6 + 대규모 S18~S20·S23), FUTURE 8건 예정
   </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');if(!el)return;
-    var sw=window.innerWidth,sh=window.innerHeight;
-    var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';el.style.transformOrigin='top left';
-    el.style.position='absolute';
-    el.style.left=Math.round((sw-960*scale)/2)+'px';
+    var el=document.querySelector('.slide'); if(!el)return;
+    var sw=window.innerWidth,sh=window.innerHeight,scale=Math.min(sw/960,sh/720);
+    el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
+    el.style.position='absolute'; el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();window.addEventListener('resize',applyScale);
+  applyScale(); window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

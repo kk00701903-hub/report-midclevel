@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /report_fassmid
+          NEXT_PUBLIC_BASE_PATH: /report-midclevel
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

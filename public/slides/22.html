@@ -1,252 +1,192 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>비즈니스 혁신2: AI 지능형 물류 플랫폼으로의 전환</title>
+<title>아키텍처 원칙 2 — 서비스 중단 없는 전환</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<style>:root {
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
+<style>
+:root {
   --ppt-font: "Noto Sans KR", sans-serif;
-
-    --ppt-bg: #0A0E1A;
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    --ppt-accent-2: #FACC15;
-    --ppt-good: #22C55E;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
-* {
-    margin: 0 0;
-    padding: 0 0;
-    box-sizing: border-box
-    }
-body {width:100vw; height:100vh; overflow: hidden; background-color: var(--ppt-bg);
-    color: var(--ppt-text-1);
-    font-family: var(--ppt-font-body);
-    display: flex;
-    justify-content: center;
-    align-items: center}
-.fass-slide-root {
-    width: 960px;
-    height: 720px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--ppt-bg)
-    }
-/* Title Region — match slide 19 */
-.title-r{flex-shrink:0;padding:22px 36px 6px;position:relative;z-index:1}
-.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
-.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
-h1.title-main{font-size:26px;font-weight:700;line-height:1.3;margin:0}
-.sub{font-size:13px;color:var(--ppt-text-2);margin-top:4px;padding-left:14px;line-height:1.4}
-.line{height:1px;margin-top:8px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
-/* Content Layout */
-.fass-smart-logistics-content-wrapper {
-    flex: 1;
-    padding: 12px 40px 20px 40px;
-    display: flex;
-    gap: 20px 28px;
-    align-items: stretch
-    }
-/* Left Column: Concept */
-.fass-smart-logistics-left-concept-block {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 24px
-    }
-.fass-smart-logistics-paradigm-text-box {
-    display: flex;
-    flex-direction: column;
-    gap: 12px
-    }
-.fass-smart-logistics-concept-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ppt-accent);
-    text-transform: uppercase;
-    letter-spacing: 1px
-    }
-.fass-smart-logistics-concept-description {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: var(--ppt-text-1)
-    }
-.fass-smart-logistics-concept-highlight {
-    color: var(--ppt-accent-2)
-    }
-.fass-smart-logistics-visual-image-box {
-    height: 200px;
-    border-radius: var(--ppt-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--ppt-shadow-strong);
-    border: 1px solid var(--ppt-border)
-    }
-.fass-smart-logistics-visual-image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover
-    }
-/* Right Column: Action */
-.fass-smart-logistics-right-action-block {
-    flex: 1.2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px 20px
-    }
-.fass-smart-logistics-action-item-card {
-    background: var(--ppt-surface);
-    padding: 14px 18px;
-    border-radius: var(--ppt-radius-lg);
-    border: 1px solid var(--ppt-border);
-    display: flex;
-    flex-direction: column;
-    gap: 13px 16px;
-    flex: 1
-    }
-.fass-smart-logistics-card-header {
-    display: flex;
-    align-items: center;
-    gap: 13px 16px
-    }
-.fass-smart-logistics-card-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--ppt-bg-soft);
-    border-radius: var(--ppt-radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: var(--ppt-accent);
-    border: 1px solid var(--ppt-accent)
-    }
-.fass-smart-logistics-card-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.fass-smart-logistics-card-body {
-    font-size: 15px;
-    line-height: 1.45;
-    color: var(--ppt-text-2)
-    }
-.fass-smart-logistics-impact-badge {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    gap: 6px 8px;
-    padding: 6px 16px;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid var(--ppt-good);
-    border-radius: var(--ppt-radius-sm);
-    width: fit-content
-    }
-.fass-smart-logistics-impact-text {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ppt-good)
-    }
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+  --ppt-bg: #0A0E1A; --ppt-bg-soft: #141B2D; --ppt-surface: #1E2638;
+  --ppt-border: #334155; --ppt-text-1: #FFF; --ppt-text-2: #94A3B8; --ppt-text-3: #64748B;
+  --ppt-accent: #00F0FF; --ppt-accent-2: #FACC15; --ppt-good: #22C55E;
+  --ppt-radius-md: 8px; --ppt-radius-lg: 16px;
+  --ppt-font-display: "Noto Sans KR", sans-serif;
+  --ppt-font-body: "Noto Sans KR", sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+  display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font-body); }
+.slide-root { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
+  display:flex; flex-direction:column; overflow:hidden; }
+.title-wrap { padding:22px 40px 6px; display:flex; flex-direction:column; gap:6px; }
+.title-header { display:flex; align-items:center; gap:12px; }
+.title-bar { width:4px; height:32px; background:var(--ppt-accent); border-radius:2px; }
+.title-text { font-family:var(--ppt-font-display); font-size:28px; font-weight:700; margin:0; }
+.title-sub { font-size:14px; color:var(--ppt-text-2); padding-left:16px; line-height:1.4; }
+.title-line { height:1px; width:100%; background:linear-gradient(90deg,var(--ppt-accent),transparent); opacity:0.3; margin-top:4px; }
+.content { flex:1; min-height:0; padding:6px 40px 10px; display:flex; flex-direction:column; gap:10px; }
+.hero-row { display:flex; align-items:stretch; justify-content:center; gap:12px; flex-shrink:0; }
+.hero-kpi { flex:1; max-width:200px; background:var(--ppt-bg-soft); border:1px solid var(--ppt-border); border-radius:var(--ppt-radius-md);
+  padding:12px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+.hero-kpi i { font-size:22px; color:var(--ppt-accent); }
+.hero-kpi-val { font-size:20px; font-weight:800; color:var(--ppt-good); }
+.hero-kpi-lbl { font-size:12px; color:var(--ppt-text-2); line-height:1.3; }
+.hero-stat { flex:1.2; max-width:280px; text-align:center; background:linear-gradient(135deg,rgba(0,240,255,.08),rgba(250,204,21,.06));
+  border:1px solid rgba(0,240,255,.25); border-radius:var(--ppt-radius-lg); padding:14px 12px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.hero-num { font-size:56px; font-weight:700; color:var(--ppt-accent-2); line-height:1; letter-spacing:-2px; }
+.hero-unit { font-size:16px; color:var(--ppt-accent); font-weight:600; margin-top:4px; }
+.hero-label { font-size:14px; color:var(--ppt-text-2); margin-top:4px; }
+.hero-context { font-size:12px; color:var(--ppt-text-3); margin-top:4px; }
+.pipeline { flex:1; min-height:0; display:flex; align-items:stretch; gap:0; position:relative; }
+.flow-svg { position:absolute; top:50%; left:12%; right:12%; height:20px; transform:translateY(-50%); pointer-events:none; z-index:0; }
+.node-col { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
+.node-box { background:var(--ppt-surface); border:1px solid var(--ppt-border); border-radius:var(--ppt-radius-lg);
+  padding:14px 10px; text-align:center; flex:1; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; gap:6px; }
+.node-box.new { border-color:var(--ppt-good); }
+.node-icon { font-size:32px; color:var(--ppt-text-3); }
+.node-box.new .node-icon { color:var(--ppt-good); }
+.node-title { font-size:16px; font-weight:700; }
+.node-desc { font-size:13px; font-weight:600; color:var(--ppt-text-1); }
+.node-detail { font-size:11.5px; color:var(--ppt-text-3); line-height:1.35; }
+.engine-col { flex:1.2; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
+.engine-box { background:linear-gradient(145deg,#2A344A,var(--ppt-surface)); border:2px solid var(--ppt-accent);
+  border-radius:var(--ppt-radius-lg); padding:16px 12px; height:100%; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; gap:8px; box-shadow:0 0 28px rgba(0,240,255,0.18); position:relative; }
+.engine-box::before { content:''; position:absolute; inset:-4px; border-radius:18px; border:2px solid rgba(0,240,255,.2);
+  animation:pulse-ring 2s ease-in-out infinite; }
+@keyframes pulse-ring { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.8;transform:scale(1.02)} }
+.engine-label { background:rgba(0,240,255,0.1); color:var(--ppt-accent); padding:5px 14px;
+  border-radius:20px; font-size:13px; font-weight:700; z-index:1; }
+.engine-stat { font-size:28px; font-weight:700; color:var(--ppt-accent-2); z-index:1; }
+.engine-sub { font-size:13px; color:var(--ppt-text-2); z-index:1; }
+.flow-arrows { display:flex; align-items:center; gap:6px; color:var(--ppt-accent); font-size:18px; z-index:1; }
+.metrics { display:flex; gap:10px; flex-shrink:0; }
+.metric { flex:1; background:var(--ppt-bg-soft); border-left:4px solid var(--ppt-accent);
+  padding:10px 12px; border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0;
+  display:flex; align-items:center; gap:10px; }
+.metric-icon { width:40px; height:40px; background:var(--ppt-surface); border-radius:var(--ppt-radius-md);
+  display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--ppt-accent); flex-shrink:0; }
+.metric-body { flex:1; min-width:0; }
+.metric-title { font-size:14px; font-weight:700; color:var(--ppt-text-1); margin-bottom:2px; }
+.metric-desc { font-size:12px; color:var(--ppt-text-3); line-height:1.35; }
+.insight-bar { flex-shrink:0; margin:0 40px 12px; padding:9px 16px;
+  background:linear-gradient(90deg,rgba(250,204,21,0.1),transparent);
+  border-left:4px solid var(--ppt-accent-2); border-radius:0 var(--ppt-radius-md) var(--ppt-radius-md) 0; }
+.insight-bar p { font-size:14px; color:var(--ppt-text-2); line-height:1.4; }
+.insight-bar strong { color:var(--ppt-accent-2); }
+html { overflow:hidden; margin:0; padding:0; }
+</style>
+</head>
 <body>
-<div class="fass-slide-root" data-motion="innovation" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Non-Cover-Page Title Region -->
-<div class="title-r">
-<div class="title-row">
-<div class="bar"></div>
-<span class="badge">BUSINESS INNOVATION</span>
-<h1 class="title-main">비즈니스 혁신2: AI 지능형 물류 플랫폼으로의 전환</h1>
-</div>
-<p class="sub">단순 기록/조회에서 데이터 기반 예측·자동화 시스템으로의 전환</p>
-<div class="line"></div>
-</div>
-<!-- Main Content Wrapper -->
-<div class="fass-smart-logistics-content-wrapper">
-<!-- Left: Concept Section -->
-<div class="fass-smart-logistics-left-concept-block">
-<div class="fass-smart-logistics-paradigm-text-box">
-<span class="fass-smart-logistics-concept-label">Paradigm Shift</span>
-<p class="fass-smart-logistics-concept-description">
-                        단순 기록/조회 시스템에서<br/>
-                        데이터 기반 <span class="fass-smart-logistics-concept-highlight">예측 및 자동화 시스템</span>으로의 전환
-                    </p>
-</div>
-<div class="fass-smart-logistics-visual-image-box">
-<img alt="Smart Logistics Visual" src="https://agents-download.skywork.ai/image/rt/d6fd321f922784da7bb75669ba52eb67.jpg"/>
-</div>
-</div>
-<!-- Right: Action Section -->
-<div class="fass-smart-logistics-right-action-block">
-<!-- Action Item 1: Adaptive Web Experience -->
-<div class="fass-smart-logistics-action-item-card">
-<div class="fass-smart-logistics-card-header">
-<div class="fass-smart-logistics-card-icon">
-<i class="fas fa-window-maximize"></i>
-</div>
-<h2 class="fass-smart-logistics-card-title">적응형 웹 경험 (Adaptive Web Experience)</h2>
-</div>
-<div class="fass-smart-logistics-card-body">
-                        차세대 FaSS는 <b>웹(Next.js)</b> 기반으로 구성되어 AI 연동성이 뛰어납니다.
-                        표준 <b>REST/OpenAPI</b>를 다수 제공해 일반 사용자도 회사 데이터에 쉽게 접근하고,
-                        AI·업무 앱이 동일 API로 물류·재고 데이터를 활용할 수 있습니다.
-                    </div>
-<div class="fass-smart-logistics-impact-badge">
-<i class="fas fa-plug" style="color: var(--ppt-good);font-size: 14px;"></i>
-<span class="fass-smart-logistics-impact-text">표준 API 기반 · 데이터 접근 민주화</span>
-</div>
-</div>
-<!-- Action Item 2: AI Business Assistant -->
-<div class="fass-smart-logistics-action-item-card">
-<div class="fass-smart-logistics-card-header">
-<div class="fass-smart-logistics-card-icon">
-<i class="fas fa-brain"></i>
-</div>
-<h2 class="fass-smart-logistics-card-title">AI 업무 어시스턴트 (RAG)</h2>
-</div>
-<div class="fass-smart-logistics-card-body">
-                        복잡한 3PL 계약서 및 무역 규정을 AI가 자동 검증하여 실무진의 서류 검토 리드타임을 극강으로 단축합니다.
-                    </div>
-<div class="fass-smart-logistics-impact-badge">
-<i class="fas fa-bolt" style="color: var(--ppt-good);font-size: 14px;"></i>
-<span class="fass-smart-logistics-impact-text">검토 리드타임 60% 이상 단축 예상</span>
-</div>
-</div>
-</div>
-</div>
+<div class="slide-root" data-motion="architecture" data-motion-tier="medium">
+  <div class="title-wrap">
+    <div class="title-header">
+      <div class="title-bar"></div>
+      <h1 class="title-text">아키텍처 원칙 2 — 서비스 중단 없는 전환</h1>
+    </div>
+    <div class="title-sub">업무 중단 없이 기존·신규 시스템을 병행 운영하며 전환</div>
+    <div class="title-line"></div>
+  </div>
+  <div class="content">
+    <div class="hero-row">
+      <div class="hero-kpi">
+        <i class="fa-solid fa-clock"></i>
+        <div class="hero-kpi-val">Zero</div>
+        <div class="hero-kpi-lbl">무중단<br/>업무 중단</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-num">0.1초</div>
+        <div class="hero-unit">실시간 동기화</div>
+        <div class="hero-label">업무 중단 없이 시스템 전환</div>
+        <div class="hero-context">철야 이관 없이 실시간 데이터 동기화</div>
+      </div>
+      <div class="hero-kpi">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div class="hero-kpi-val">100%</div>
+        <div class="hero-kpi-lbl">데이터<br/>정합성</div>
+      </div>
+    </div>
+    <div class="pipeline">
+      <svg class="flow-svg" viewBox="0 0 600 20" preserveAspectRatio="none">
+        <line x1="0" y1="10" x2="600" y2="10" stroke="#334155" stroke-width="2" stroke-dasharray="8 6"/>
+        <polygon points="590,5 600,10 590,15" fill="#00F0FF" opacity="0.6"/>
+        <polygon points="10,5 0,10 10,15" fill="#00F0FF" opacity="0.6"/>
+      </svg>
+      <div class="node-col">
+        <div class="node-box">
+          <i class="fa-solid fa-database node-icon"></i>
+          <div class="node-title">기존 시스템</div>
+          <div class="node-desc">현행 업무 데이터</div>
+          <div class="node-detail">현장 업무가 중단 없이 계속 운영</div>
+        </div>
+      </div>
+      <div class="engine-col">
+        <div class="engine-box">
+          <div class="engine-label">실시간 동기화</div>
+          <div class="flow-arrows">
+            <i class="fa-solid fa-circle-chevron-left" style="opacity:0.3"></i>
+            <i class="fa-solid fa-bolt"></i>
+            <i class="fa-solid fa-circle-chevron-right"></i>
+          </div>
+          <div class="engine-stat">0.1초</div>
+          <div class="engine-sub">변경 즉시 반영</div>
+        </div>
+      </div>
+      <div class="node-col">
+        <div class="node-box new">
+          <i class="fa-solid fa-database node-icon"></i>
+          <div class="node-title">신규 플랫폼</div>
+          <div class="node-desc">차세대 FaSS</div>
+          <div class="node-detail">전환 전 실전 환경에서 검증 완료</div>
+        </div>
+      </div>
+    </div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="metric-body">
+          <div class="metric-title">무중단</div>
+          <div class="metric-desc">현장 업무 중단 Zero</div>
+        </div>
+      </div>
+      <div class="metric">
+        <div class="metric-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="metric-body">
+          <div class="metric-title">데이터 무결성</div>
+          <div class="metric-desc">100% 정합성 검증</div>
+        </div>
+      </div>
+      <div class="metric">
+        <div class="metric-icon"><i class="fa-solid fa-arrows-left-right"></i></div>
+        <div class="metric-body">
+          <div class="metric-title">병행 검증</div>
+          <div class="metric-desc">전환 전 실전 검증 완료</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="insight-bar">
+    <p><strong>경영 시사점:</strong> 빅뱅 전환 없이 리스크를 최소화하고, 현장 업무 연속성을 보장합니다.</p>
+  </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
+    var el=document.querySelector('body>div'); if(!el)return;
     var sw=window.innerWidth,sh=window.innerHeight;
     var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
+    el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
     el.style.position='absolute';
     el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();
-  window.addEventListener('resize',applyScale);
+  applyScale(); window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>

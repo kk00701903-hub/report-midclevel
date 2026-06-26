@@ -1,390 +1,188 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>최적화 방안 2. 애자일 워룸 운영</title>
+<title>타사 프로젝트 비교</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>:root {
   --ppt-font: "Noto Sans KR", sans-serif;
 
-    --ppt-bg: #0A0E1A;
-    --ppt-bg-soft: #141B2D;
-    --ppt-surface: #1E2638;
-    --ppt-surface-2: #2A344A;
-    --ppt-border: #334155;
-    --ppt-text-1: #FFF;
-    --ppt-text-2: #94A3B8;
-    --ppt-text-3: #64748B;
-    --ppt-accent: #00F0FF;
-    --ppt-accent-2: #FACC15;
-    --ppt-good: #22C55E;
-    --ppt-warn: #F59E0B;
-    --ppt-bad: #EF4444;
-    --ppt-radius-sm: 4px;
-    --ppt-radius-md: 8px;
-    --ppt-radius-lg: 16px;
-    --ppt-font-display: "Noto Sans KR", sans-serif;
-    --ppt-font-body: "Noto Sans KR", sans-serif
-    }
-* {
-    box-sizing: border-box;
-    margin: 0 0;
-    padding: 0 0
-    }
-body {width:100vw; height:100vh; overflow: hidden; background-color:#0A0E1A;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--ppt-font-body)}
-.war-room-slide-root {
-    width: 960px;
-    height: 720px;
-    background-color: var(--ppt-bg);
-    color: var(--ppt-text-1);
-    display: flex;
-    flex-direction: column;
-    position: relative
-    }
-/* Title Region */
-.title-region-container {
-    padding: 28px 40px 8px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px
-    }
-.title-region-header {
-    display: flex;
-    align-items: center;
-    gap: 12px
-    }
-.title-region-bar {
-    width: 4px;
-    height: 32px;
-    background: var(--ppt-accent);
-    border-radius: 2px
-    }
-.title-region-text {
-    font-family: var(--ppt-font-display);
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    margin: 0
-    }
-.title-region-line {
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--ppt-accent) 0%, transparent 100%);
-    opacity: 0.3;
-    margin-top: 8px
-    }
-/* Body Layout */
-.war-room-content-wrapper {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    padding: 8px 40px 8px 40px;
-    gap: 14px;
-    align-items: stretch
-    }
-.war-room-left-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px 20px
-    }
-.war-room-right-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 13px 20px
-    }
-/* Common Card Styles */
-.war-room-feature-card {
-    background: var(--ppt-surface);
-    border: 1px solid var(--ppt-border);
-    border-radius: var(--ppt-radius-lg);
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1
-    }
-.war-room-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px 12px
-    }
-.war-room-card-icon {
-    font-size: 24px;
-    color: var(--ppt-accent);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 240, 255, 0.1);
-    border-radius: var(--ppt-radius-md)
-    }
-.war-room-card-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ppt-text-1)
-    }
-.war-room-card-body {
-    font-size: 14px;
-    line-height: 1.45;
-    color: var(--ppt-text-2)
-    }
-.war-room-highlight-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px 10px;
-    margin-bottom: 6px
-    }
-.war-room-highlight-bullet {
-    color: var(--ppt-accent);
-    margin-top: 5px;
-    font-size: 14px
-    }
-.war-room-badge-container {
-    display: flex;
-    gap: 10px 12px;
-    margin-top: auto
-    }
-.war-room-status-badge {
-    background: var(--ppt-surface-2);
-    border: 1px solid var(--ppt-accent);
-    color: var(--ppt-accent);
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600
-    }
-.war-room-location-tag {
-    font-size: 14px;
-    color: var(--ppt-accent-2);
-    font-weight: 600;
-    margin-bottom: 3px;
-    display: block
-    }
-.war-room-dashboard-preview {
-    display: flex;
-    gap: 8px 10px;
-    margin-top: 6px
-    }
-.war-room-dashboard-box {
-    flex: 1;
-    height: 60px;
-    background: var(--ppt-bg-soft);
-    border: 1px dashed var(--ppt-border);
-    border-radius: var(--ppt-radius-sm);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px 4px
-    }
-.war-room-dashboard-label {
-    font-size:13px;
-    color: var(--ppt-text-3);
-    text-transform: uppercase
-    }
-.war-room-dashboard-value {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ppt-accent)
-    }
-.war-room-dailyscrum-banner {
-    margin: 0 40px 14px 40px;
-    flex-shrink: 0;
-    background: linear-gradient(90deg, rgba(0,240,255,0.08) 0%, rgba(167,139,250,0.06) 100%);
-    border: 1px solid rgba(0,240,255,0.35);
-    border-radius: var(--ppt-radius-lg);
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-height: 0;
-    }
-.war-room-dailyscrum-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: var(--ppt-radius-md);
-    background: rgba(0,240,255,0.12);
-    color: var(--ppt-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-    }
-.war-room-dailyscrum-body {
-    flex: 1;
-    min-width: 0;
-    }
-.war-room-dailyscrum-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ppt-text-1);
-    margin-bottom: 3px;
-    }
-.war-room-dailyscrum-desc {
-    font-size:13px;
-    color: var(--ppt-text-2);
-    line-height: 1.38;
-    }
-.war-room-dailyscrum-link {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: var(--ppt-radius-md);
-    background: rgba(0,240,255,0.12);
-    border: 1px solid var(--ppt-accent);
-    color: var(--ppt-accent);
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background 0.2s, color 0.2s;
-    }
-.war-room-dailyscrum-link:hover {
-    background: var(--ppt-accent);
-    color: var(--ppt-bg);
-    }
-html { overflow: hidden; margin:0; padding:0; }
-</style></head>
+  --ppt-bg: #0A0E1A;
+  --ppt-bg-soft: #141B2D;
+  --ppt-surface: #1E2638;
+  --ppt-border: #334155;
+  --ppt-text-1: #FFF;
+  --ppt-text-2: #94A3B8;
+  --ppt-text-3: #64748B;
+  --ppt-accent: #00F0FF;
+  --ppt-accent-2: #FACC15;
+  --ppt-good: #22C55E;
+  --ppt-radius-md: 8px;
+  --ppt-radius-lg: 16px;
+  --ppt-font-display: "Noto Sans KR", sans-serif;
+  --ppt-font-body: "Noto Sans KR", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 100vw; height: 100vh; overflow: hidden;
+  background: #0A0E1A;
+  display: flex; justify-content: center; align-items: center;
+  font-family: var(--ppt-font-body);
+}
+.slide-root {
+  width: 960px; height: 720px;
+  background: var(--ppt-bg);
+  color: var(--ppt-text-1);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.title-region { padding: 28px 40px 10px; }
+.title-row { display: flex; align-items: center; gap: 12px; }
+.title-bar { width: 4px; height: 32px; background: var(--ppt-accent-2); border-radius: 2px; }
+.title-text { font-family: var(--ppt-font-display); font-size:26px; font-weight: 700; }
+.title-sub { font-size: 14px; color: var(--ppt-text-2); margin-top: 8px; padding-left: 16px; }
+.title-line {
+  height: 1px; margin-top: 10px;
+  background: linear-gradient(90deg, var(--ppt-accent-2) 0%, transparent 100%);
+  opacity: 0.35;
+}
+.main-body { flex: 1; padding: 8px 40px 20px; display: flex; flex-direction: column; gap: 12px; }
+.ref-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: var(--ppt-radius-md);
+  background: rgba(250,204,21,0.08); border: 1px solid rgba(250,204,21,0.25);
+  font-size: 13px; color: var(--ppt-accent-2); width: fit-content;
+}
+.compare-grid { flex: 1; display: grid; grid-template-columns: 1fr 56px 1fr; gap: 10px; align-items: stretch; }
+.compare-card {
+  background: var(--ppt-bg-soft); border: 1px solid var(--ppt-border);
+  border-radius: var(--ppt-radius-lg); padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.compare-card--peer { border-top: 3px solid var(--ppt-accent-2); }
+.compare-card--ours { border-top: 3px solid var(--ppt-accent); }
+.compare-label { font-size:13px; font-weight: 700; color: var(--ppt-text-3); letter-spacing: 1px; text-transform: uppercase; }
+.compare-company { font-size: 20px; font-weight: 700; }
+.compare-company.peer { color: var(--ppt-accent-2); }
+.compare-company.ours { color: var(--ppt-accent); }
+.compare-scope { font-size: 13px; color: var(--ppt-text-2); line-height: 1.5; }
+.metric-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.metric-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px; border-radius: var(--ppt-radius-md);
+  background: rgba(30,38,56,0.55); border: 1px solid var(--ppt-border);
+  font-size: 13px;
+}
+.metric-item span:first-child { color: var(--ppt-text-2); }
+.metric-item strong { color: var(--ppt-text-1); font-size: 14px; }
+.vs-col { display: flex; align-items: center; justify-content: center; }
+.vs-badge {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--ppt-border); background: var(--ppt-surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: var(--ppt-text-3);
+}
+.table-wrap {
+  border: 1px solid var(--ppt-border); border-radius: var(--ppt-radius-lg);
+  overflow: hidden; background: var(--ppt-bg-soft);
+}
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.compare-table th {
+  padding: 10px 14px; text-align: left;
+  background: rgba(30,38,56,0.85); color: var(--ppt-text-2);
+  border-bottom: 1px solid var(--ppt-border); font-weight: 600;
+}
+.compare-table td {
+  padding: 9px 14px; border-bottom: 1px solid rgba(51,65,85,0.55);
+  color: var(--ppt-text-2); vertical-align: top;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td strong { color: var(--ppt-text-1); }
+.footnote {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size:13px; color: var(--ppt-text-3); line-height: 1.45;
+}
+.footnote i { color: var(--ppt-accent-2); margin-top: 2px; }
+html { overflow: hidden; margin: 0; padding: 0; }
+</style>
+</head>
 <body>
-<div class="war-room-slide-root" data-motion="cards" data-motion-tier="medium" style="overflow: hidden;">
-<!-- Title Region -->
-<div class="title-region-container">
-<div class="title-region-header">
-<div class="title-region-bar"></div>
-<h1 class="title-region-text">최적화 방안 2. 애자일 워룸 운영</h1>
-</div>
-<div class="title-region-line"></div>
-</div>
-<!-- Main Content -->
-<div class="war-room-content-wrapper">
-<!-- Left Column: Infrastructure & Strategy -->
-<div class="war-room-left-column">
-<div class="war-room-feature-card">
-<div class="war-room-card-header">
-<div class="war-room-card-icon"><i class="fas fa-users-rectangle"></i></div>
-<div class="war-room-card-title">일체형 조직 운영 (All-in-One)</div>
-</div>
-<div class="war-room-card-body">
-<span class="war-room-location-tag"><i class="fas fa-location-dot"></i> 남양주 1공장 2층 프로젝트룸</span>
-<div class="war-room-highlight-item">
-<i class="fas fa-check war-room-highlight-bullet"></i>
-<span>단독 프로젝트 룸 운영을 통한 커뮤니케이션 사일로(silo) 제거</span>
-</div>
-<div class="war-room-highlight-item">
-<i class="fas fa-check war-room-highlight-bullet"></i>
-<span>이슈 발생 시 그 자리에서 즉시 토론하고 의사결정하여 '결재 및 대기 시간'을 완벽하게 삭제</span>
-</div>
-</div>
-<div class="war-room-badge-container">
-<div class="war-room-status-badge">물리적 통합 완료</div>
-<div class="war-room-status-badge">Agile 스프린트 최적화</div>
-</div>
-</div>
-<div class="war-room-feature-card">
-<div class="war-room-card-header">
-<div class="war-room-card-icon"><i class="fas fa-bolt"></i></div>
-<div class="war-room-card-title">의사결정 리드타임 제로화</div>
-</div>
-<div class="war-room-card-body">
-<div class="war-room-highlight-item">
-<i class="fas fa-circle-arrow-right war-room-highlight-bullet"></i>
-<span>현장 즉결 처리 체계 도입으로 프로젝트 지연 요소 선제적 차단</span>
-</div>
-<div class="war-room-highlight-item">
-<i class="fas fa-circle-arrow-right war-room-highlight-bullet"></i>
-<span>부서 간 업무 이관 단계 축소를 통한 개발 생산성 극대화</span>
-</div>
-</div>
-<div class="war-room-dashboard-preview">
-<div class="war-room-dashboard-box">
-<span class="war-room-dashboard-label">Wait Time</span>
-<span class="war-room-dashboard-value">0s</span>
-</div>
-<div class="war-room-dashboard-box">
-<span class="war-room-dashboard-label">Decision Speed</span>
-<span class="war-room-dashboard-value">Real-time</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Monitoring & Visualization -->
-<div class="war-room-right-column">
-<div class="war-room-feature-card">
-<div class="war-room-card-header">
-<div class="war-room-card-icon"><i class="fas fa-desktop"></i></div>
-<div class="war-room-card-title">실시간 가시성 대시보드</div>
-</div>
-<div class="war-room-card-body">
-<div class="war-room-highlight-item">
-<i class="fas fa-chart-line war-room-highlight-bullet"></i>
-<span><a href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="color:var(--ppt-accent);font-weight:600;">FASS 데일리 스크럼 Analytics</a>으로 일단위 업무·스프린트 진척도를 점검하고 워룸에서 공유</span>
-</div>
-<div class="war-room-highlight-item">
-<i class="fas fa-bug war-room-highlight-bullet"></i>
-<span>태스크 완료율·블로커·버그 지표 시각화로 품질 리스크 상시 모니터링</span>
-</div>
-</div>
-<div class="war-room-dashboard-preview">
-<a class="war-room-dashboard-box" href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer" style="border-color:var(--ppt-accent);text-decoration:none;cursor:pointer;">
-<span class="war-room-dashboard-label">Daily Scrum</span>
-<span class="war-room-dashboard-value">Analytics</span>
-</a>
-<div class="war-room-dashboard-box" style="border-color: var(--ppt-good);">
-<span class="war-room-dashboard-label">Sprint</span>
-<span class="war-room-dashboard-value">Progress</span>
-</div>
-</div>
-</div>
-<div class="war-room-feature-card">
-<div class="war-room-card-header">
-<div class="war-room-card-icon"><i class="fas fa-gauge-high"></i></div>
-<div class="war-room-card-title">프로젝트 성공 속도 가속화</div>
-</div>
-<div class="war-room-card-body">
-<div class="war-room-highlight-item">
-<i class="fas fa-shield-halved war-room-highlight-bullet"></i>
-<span>이슈 감지부터 해결까지의 MTTR(평균 복구 시간) 70% 이상 단축</span>
-</div>
-<div class="war-room-highlight-item">
-<i class="fas fa-shield-halved war-room-highlight-bullet"></i>
-<span>전 팀원이 동일한 목표 지표를 실시간으로 인지하여 성과 중심 조직으로 변모</span>
-</div>
-</div>
-<div class="war-room-badge-container">
-<div class="war-room-status-badge" style="border-color: var(--ppt-accent-2);color: var(--ppt-accent-2);">핵심 성과 지표(KPI) 연동</div>
-<div class="war-room-status-badge" style="border-color: var(--ppt-good);color: var(--ppt-good);">무결점 배포 보장</div>
-</div>
-</div>
-</div>
-</div>
-<!-- FASS Daily Scrum -->
-<div class="war-room-dailyscrum-banner">
-<div class="war-room-dailyscrum-icon"><i class="fas fa-clipboard-list"></i></div>
-<div class="war-room-dailyscrum-body">
-<div class="war-room-dailyscrum-title">FASS 데일리 스크럼 — TFT 애자일 운영 허브</div>
-<p class="war-room-dailyscrum-desc">일일 스크럼·태스크·스프린트 데이터를 기록하고 Analytics로 진척·블로커·완료율을 워룸 대형 화면에 공유합니다.</p>
-</div>
-<a class="war-room-dailyscrum-link" href="https://kk00701903-hub.github.io/fass-dailyscrum/#/analytics" target="_blank" rel="noopener noreferrer">
-<i class="fas fa-chart-line"></i> Analytics
-</a>
-</div>
+<div class="slide-root" data-motion="compare" data-motion-tier="medium">
+  <div class="title-region">
+    <div class="title-row">
+      <div class="title-bar"></div>
+      <h1 class="title-text">타사 프로젝트 비교</h1>
+    </div>
+    <p class="title-sub">동일 시기·유사 범위 엔터프라이즈 플랫폼 구축 사례를 벤치마크로 참고합니다. (내부 전략 수립용)</p>
+    <div class="title-line"></div>
+  </div>
+
+  <div class="main-body">
+    <div class="ref-badge">
+      <i class="fa-solid fa-bookmark"></i>
+      벤치마크 참고 자료 — 기술 스택·AI 오케스트레이션과는 별도로 검토
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-card--peer">
+        <div class="compare-label">타사 사례 (참고)</div>
+        <div class="compare-company peer">삼성E&amp;A (삼성엔지니어링)</div>
+        <p class="compare-scope">70명 규모 인력이 2년간 진행한 대규모 엔지니어링·플랫폼 프로젝트</p>
+        <ul class="metric-list">
+          <li class="metric-item"><span>총 투입 인력</span><strong>70명</strong></li>
+          <li class="metric-item"><span>진행 기간</span><strong>2년</strong></li>
+          <li class="metric-item"><span>총 투입 규모</span><strong>1,680 M/M</strong></li>
+          <li class="metric-item"><span>조직 형태</span><strong>대형 전담 조직</strong></li>
+        </ul>
+      </div>
+
+      <div class="vs-col"><div class="vs-badge">VS</div></div>
+
+      <div class="compare-card compare-card--ours">
+        <div class="compare-label">당사 차세대 FaSS</div>
+        <div class="compare-company ours">소규모 TFT (AI도구 협업)</div>
+        <p class="compare-scope">차세대 웹프레임워크 TFT 중심 · AI 도구로 생산성 보완</p>
+        <ul class="metric-list">
+          <li class="metric-item"><span>총 투입 인력</span><strong>핵심 7명 (+ AI 8)</strong></li>
+          <li class="metric-item"><span>진행 기간</span><strong>1.5년</strong></li>
+          <li class="metric-item"><span>총 투입 규모</span><strong>108 M/M</strong></li>
+          <li class="metric-item"><span>조직 형태</span><strong>소규모 TFT (AI도구 협업)</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>비교 항목</th>
+            <th>삼성E&amp;A (참고)</th>
+            <th>당사 FaSS TFT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>조직 형태</strong></td>
+            <td>대형 전담 조직</td>
+            <td>소규모 TFT (AI도구 협업)</td>
+          </tr>
+          <tr>
+            <td><strong>시사점</strong></td>
+            <td>유사 범위 프로젝트의 규모 감각 확보</td>
+            <td>동일 산출물 대비 M/M·일정 효율 극대화</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footnote">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>본 슬라이드는 규모 벤치마크 참고용입니다. AI 오케스트레이션·기술 스택 상세는 다음 슬라이드에서 별도로 다룹니다.</span>
+    </div>
+  </div>
 </div>
 <script>
 (function(){

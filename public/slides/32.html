@@ -1,310 +1,160 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>중장기 목표 2: MSA 전환</title>
+<title>비즈니스 혁신8: 빌더형 인재 육성을 위한 전환</title>
 <script src="https://picture-search.skywork.ai/aippt/static/tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-fonts.css">
-<link rel="stylesheet" href="/report_fassmid/slides/shared/slide-motion.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-fonts.css">
+<link rel="stylesheet" href="/report-midclevel/slides/shared/slide-motion.css">
 <style>
 :root {
   --ppt-font: "Noto Sans KR", sans-serif;
-
-  --ppt-bg: #0A0E1A;
-  --ppt-bg-soft: #141B2D;
-  --ppt-surface: #1E2638;
-  --ppt-surface-2: #2A344A;
-  --ppt-border: #334155;
-  --ppt-text-1: #FFF;
-  --ppt-text-2: #94A3B8;
-  --ppt-text-3: #64748B;
-  --ppt-accent: #00F0FF;
-  --ppt-accent-2: #FACC15;
-  --ppt-good: #22C55E;
-  --ppt-warn: #F59E0B;
-  --ppt-bad: #EF4444;
-  --ppt-radius-sm: 4px;
-  --ppt-radius-md: 8px;
-  --ppt-radius-lg: 16px;
-  --ppt-shadow-soft: 0 4px 12px rgba(0,0,0,0.3);
-  --ppt-font-display: "Noto Sans KR", sans-serif;
-  --ppt-font-body: "Noto Sans KR", sans-serif;
+  --ppt-bg:#0A0E1A; --ppt-bg-soft:#141B2D; --ppt-border:#334155;
+  --ppt-text-1:#FFF; --ppt-text-2:#94A3B8; --ppt-text-3:#64748B;
+  --ppt-accent:#00F0FF; --ppt-accent-2:#FACC15; --ppt-good:#22C55E; --ppt-purple:#A78BFA;
+  --ppt-radius-lg:16px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width:100vw; height:100vh; overflow: hidden;
-  background-color:#0A0E1A;
-  display: flex; justify-content: center; align-items: center;
-  font-family: var(--ppt-font-body);
-}
-.slide-root {
-  width: 960px; height: 720px;
-  background-color: var(--ppt-bg);
-  color: var(--ppt-text-1);
-  position: relative;
-  display: flex; flex-direction: column;
-  border: 1px solid var(--ppt-border);
-  overflow: hidden;
-}
-/* Title */
-.title-region {
-  padding: 28px 40px 12px 40px;
-  display: flex; flex-direction: column; gap: 6px;
-}
-.title-header { display: flex; align-items: center; gap: 12px; }
-.title-bar { width: 4px; height: 32px; background: var(--ppt-accent); border-radius: 2px; }
-.title-badge {
-  background: rgba(0,240,255,0.12); color: var(--ppt-accent);
-  padding: 3px 12px; border-radius: var(--ppt-radius-sm);
-  font-size: 13px; font-weight: 600;
-  border: 1px solid rgba(0,240,255,0.3);
-  white-space: nowrap;
-}
-.title-text {
-  font-family: var(--ppt-font-display);
-  font-size:26px; font-weight: 700; color: var(--ppt-text-1); margin: 0;
-}
-.title-line {
-  height: 1px; width: 100%;
-  background: linear-gradient(90deg, var(--ppt-accent) 0%, transparent 100%);
-  opacity: 0.3; margin-top: 4px;
-}
-/* Main layout */
-.main-container {
-  flex: 1;
-  padding: 10px 40px 12px 40px;
-  display: flex;
-  gap: 24px;
-}
-/* Left: Strangler Fig Diagram */
-.left-col {
-  flex: 1.1;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.diagram-card {
-  flex: 1;
-  background: var(--ppt-bg-soft);
-  border: 1px solid var(--ppt-border);
-  border-radius: var(--ppt-radius-lg);
-  padding: 14px 18px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.diagram-label {
-  font-size: 13px; font-weight: 700; color: var(--ppt-accent);
-  text-transform: uppercase; letter-spacing: 1px;
-  display: flex; align-items: center; gap: 6px;
-}
-.diagram-stages {
-  flex: 1;
-  display: flex; flex-direction: column; gap: 6px;
-  justify-content: center;
-}
-.stage-row {
-  display: flex; align-items: stretch; gap: 6px;
-}
-.stage-label-col {
-  width: 58px;
-  display: flex; align-items: center; justify-content: center;
-  font-size:13px; font-weight: 700; color: var(--ppt-text-3);
-  text-align: center; line-height: 1.3;
-}
-.stage-blocks {
-  flex: 1; display: flex; gap: 5px; align-items: center;
-}
-.block-legacy {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border-radius: var(--ppt-radius-sm); font-size:13px; font-weight: 600; padding: 5px 4px;
-  text-align: center; line-height: 1.3;
-}
-.block-lg { background: rgba(100,116,139,0.25); border: 1px solid rgba(100,116,139,0.4); color: #94A3B8; }
-.block-new { background: rgba(0,240,255,0.12); border: 1px solid rgba(0,240,255,0.35); color: var(--ppt-accent); }
-.block-ai  { background: rgba(250,204,21,0.12); border: 1px solid rgba(250,204,21,0.4); color: var(--ppt-accent-2); }
-.block-msa { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.4); color: var(--ppt-good); }
-.arrow-right { color: var(--ppt-text-3); font-size:13px; }
-.stage-arrow-row {
-  display: flex; justify-content: center; align-items: center; gap: 4px;
-  color: var(--ppt-accent); opacity: 0.5;
-}
-.strangler-note {
-  font-size:13px; color: var(--ppt-text-3); text-align: center;
-  padding: 5px 8px;
-  background: rgba(0,240,255,0.04); border-radius: var(--ppt-radius-sm);
-  border: 1px dashed rgba(0,240,255,0.2);
-}
-/* Right: Reasons + Trade-off */
-.right-col {
-  flex: 1.3;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.section-title {
-  font-size: 15px; font-weight: 700; color: var(--ppt-accent-2);
-  display: flex; align-items: center; gap: 8px;
-}
-.reasons-grid { display: flex; flex-direction: column; gap: 7px; }
-.reason-card {
-  background: var(--ppt-surface);
-  border: 1px solid var(--ppt-border);
-  border-left: 3px solid var(--ppt-accent);
-  border-radius: var(--ppt-radius-md);
-  padding: 9px 14px;
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.reason-num {
-  width: 28px; height: 28px;
-  background: rgba(0,240,255,0.12);
-  border: 1px solid rgba(0,240,255,0.3);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: var(--ppt-accent);
-  flex-shrink: 0;
-}
-.reason-content { display: flex; flex-direction: column; gap: 2px; }
-.reason-title { font-size: 15px; font-weight: 700; color: var(--ppt-text-1); }
-.reason-desc  { font-size:13px; color: var(--ppt-text-2); line-height: 1.4; }
-.tradeoff-box {
-  background: linear-gradient(90deg, rgba(239,68,68,0.08) 0%, rgba(250,204,21,0.06) 100%);
-  border-left: 3px solid var(--ppt-accent-2);
-  border-radius: 0 var(--ppt-radius-md) var(--ppt-radius-md) 0;
-  padding: 9px 14px;
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.tradeoff-icon { color: var(--ppt-accent-2); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-.tradeoff-text { font-size: 13px; color: var(--ppt-text-2); line-height: 1.5; }
-.tradeoff-text strong { color: var(--ppt-accent-2); }
-/* Bottom bar */
-.bottom-bar {
-  padding: 8px 40px;
-  background: linear-gradient(90deg, rgba(0,240,255,0.06) 0%, transparent 100%);
-  border-top: 1px solid rgba(0,240,255,0.15);
-  display: flex; align-items: center; gap: 10px;
-}
-.bottom-bar-icon { color: var(--ppt-accent); font-size: 16px; }
-.bottom-bar-text { font-size: 14px; color: var(--ppt-text-1); font-weight: 600; }
-.bottom-bar-sub  { font-size: 13px; color: var(--ppt-text-2); margin-left: 4px; }
-html { overflow: hidden;  margin:0; padding:0; }
-</style></head>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { width:100vw; height:100vh; overflow:hidden; background:#0A0E1A;
+  display:flex; justify-content:center; align-items:center; font-family:var(--ppt-font); }
+.slide-root { width:960px; height:720px; background:var(--ppt-bg); color:var(--ppt-text-1);
+  display:flex; flex-direction:column; overflow:hidden; }
+.title-r{flex-shrink:0;padding:20px 36px 4px;display:flex;flex-direction:column;gap:6px}
+.title-row{display:flex;align-items:center;gap:10px}
+.bar{width:4px;height:30px;background:var(--ppt-accent);border-radius:2px}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.35);color:var(--ppt-accent-2)}
+h1.title-main{font-size:26px;font-weight:700;margin:0}
+.title-sub{font-size:14px;color:var(--ppt-text-2);padding-left:14px;line-height:1.4}
+.line{height:1px;margin-top:4px;background:linear-gradient(90deg,var(--ppt-accent),transparent);opacity:.35}
+.main-body { flex:1; min-height:0; padding:6px 40px 8px; display:flex; flex-direction:column; gap:10px; }
+.concept-strip { flex-shrink:0; display:grid; grid-template-columns:1fr 52px 1fr; gap:10px; align-items:stretch; }
+.concept-box { background:var(--ppt-bg-soft); border:1px solid var(--ppt-border); border-radius:12px;
+  padding:14px 12px; display:flex; flex-direction:column; gap:6px; }
+.concept-box.old { border-top:3px solid var(--ppt-text-2); }
+.concept-box.new { border-top:3px solid var(--ppt-good); background:linear-gradient(160deg,rgba(34,197,94,.08),var(--ppt-bg-soft)); }
+.concept-label { font-size:11px; font-weight:800; letter-spacing:.06em; }
+.concept-box.old .concept-label { color:var(--ppt-text-2); }
+.concept-box.new .concept-label { color:var(--ppt-good); }
+.concept-title { font-size:15px; font-weight:700; line-height:1.35; }
+.concept-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.concept-list li { font-size:13px; line-height:1.35; }
+.cap-bar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:6px;background:var(--ppt-surface)}
+.cap-bar span{height:100%}
+.concept-box.old .cap-bar .dep{flex:0 0 80%;background:#64748B}
+.concept-box.old .cap-bar .self-p{flex:1;background:rgba(100,116,139,.2)}
+.concept-box.new .cap-bar .dep{flex:0 0 25%;background:rgba(100,116,139,.3)}
+.concept-box.new .cap-bar .self-p{flex:1;background:var(--ppt-good)}
+.bridge-strip{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 0}
+.bridge-strip svg{width:100%;max-width:500px;height:36px}
+.bridge-label{font-size:11px;font-weight:700;color:var(--ppt-accent);white-space:nowrap}
+.hub-strip { display:none; }
+.role-icon { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px;
+  border:2px solid transparent; box-shadow:0 0 0 4px rgba(255,255,255,.04); }
+.role-icon.cyan { background:rgba(0,240,255,.1); color:var(--ppt-accent); border-color:rgba(0,240,255,.3); }
+.role-icon.green { background:rgba(34,197,94,.1); color:var(--ppt-good); border-color:rgba(34,197,94,.3); }
+.role-icon.purple { background:rgba(167,139,250,.1); color:var(--ppt-purple); border-color:rgba(167,139,250,.3); }
+.role-icon.gold { background:rgba(250,204,21,.1); color:var(--ppt-accent-2); border-color:rgba(250,204,21,.3); }
+.concept-headline { font-weight:600; color:var(--ppt-text-1); display:block; }
+.concept-sub { font-size:12px; color:var(--ppt-text-3); display:block; margin-top:1px; }
+.concept-arrow { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  color:var(--ppt-good); font-size:12px; font-weight:700; }
+.concept-arrow i { font-size:20px; }
+.roles { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; flex:1; min-height:0; align-content:center; }
+.role { background:var(--ppt-bg-soft); border:1px solid var(--ppt-border); border-radius:var(--ppt-radius-lg);
+  padding:14px 10px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; }
+.role h3 { font-size:14px; font-weight:700; }
+.role-msg { font-size:12.5px; font-weight:600; color:var(--ppt-text-1); line-height:1.35; }
+.role p { font-size:11.5px; color:var(--ppt-text-3); line-height:1.35; }
+.bottom-bar { flex-shrink:0; margin:0 40px 10px; padding:8px 14px;
+  background:linear-gradient(90deg,rgba(250,204,21,.08),transparent);
+  border-left:3px solid var(--ppt-accent-2); border-radius:0 8px 8px 0; }
+.bottom-bar p { font-size:13px; color:var(--ppt-text-2); line-height:1.4; }
+.bottom-bar strong { color:var(--ppt-accent-2); }
+html { overflow:hidden; margin:0; padding:0; }
+</style>
+</head>
 <body>
-<div class="slide-root" data-motion="architecture" data-motion-tier="medium">
-  <!-- Title -->
-  <div class="title-region">
-    <div class="title-header">
-      <div class="title-bar"></div>
-      <span class="title-badge">ULTIMATE GOAL</span>
-      <h1 class="title-text">중장기 목표 2: MSA 전환</h1>
+<div class="slide-root" data-motion="innovation" data-motion-tier="medium">
+  <div class="title-r">
+    <div class="title-row">
+      <div class="bar"></div>
+      <span class="badge">BUSINESS INNOVATION</span>
+      <h1 class="title-main">비즈니스 혁신8: 빌더형 인재 육성을 위한 전환</h1>
     </div>
-    <div class="title-line"></div>
+    <div class="title-sub">사용자형에서 빌더형으로 — AI 협업 기반 자립형 IT 조직 전환</div>
+    <div class="line"></div>
   </div>
-
-  <!-- Main -->
-  <div class="main-container">
-    <!-- Left: Diagram -->
-    <div class="left-col">
-      <div class="diagram-card">
-        <div class="diagram-label">
-          <i class="fas fa-project-diagram"></i> Strangler Fig Pattern — 점진적 신규 시스템 확대
-        </div>
-        <div class="diagram-stages">
-          <!-- Stage 1 -->
-          <div class="stage-row">
-            <div class="stage-label-col">현재<br/>(Phase 1)</div>
-            <div class="stage-blocks">
-              <div class="block-legacy block-lg" style="flex:2.5; height:44px;">레거시 모놀리스<br/>(C# 시스템)</div>
-              <div class="arrow-right"><i class="fas fa-arrow-right"></i></div>
-              <div class="block-legacy block-new" style="flex:1.2; height:44px;">FaSS<br/>V3.0</div>
-            </div>
-          </div>
-          <div class="stage-arrow-row"><i class="fas fa-chevron-down"></i><span style="font-size:13px; margin-left:4px;">AI 접목 신규 시스템 점진적 확대</span></div>
-          <!-- Stage 2 -->
-          <div class="stage-row">
-            <div class="stage-label-col">전환기<br/>(Phase 2)</div>
-            <div class="stage-blocks">
-              <div class="block-legacy block-lg" style="flex:1.2; height:44px;">레거시<br/>(축소)</div>
-              <div class="arrow-right"><i class="fas fa-arrow-right"></i></div>
-              <div class="block-legacy block-new" style="flex:1.5; height:44px;">FaSS<br/>Core</div>
-              <div class="arrow-right"><i class="fas fa-arrow-right"></i></div>
-              <div class="block-legacy block-ai" style="flex:1.3; height:44px;">AI<br/>Service</div>
-            </div>
-          </div>
-          <div class="stage-arrow-row"><i class="fas fa-chevron-down"></i><span style="font-size:13px; margin-left:4px;">레거시 완전 제거 — 완전한 MSA 구현</span></div>
-          <!-- Stage 3 -->
-          <div class="stage-row">
-            <div class="stage-label-col">최종<br/>(MSA)</div>
-            <div class="stage-blocks">
-              <div class="block-legacy block-msa" style="flex:1; height:44px;">유통<br/>물류</div>
-              <div class="block-legacy block-msa" style="flex:1; height:44px;">3PL<br/>시스템</div>
-              <div class="block-legacy block-msa" style="flex:1; height:44px;">주유소관리<br/>시스템</div>
-              <div class="block-legacy block-ai" style="flex:1; height:44px;">AI<br/>Engine</div>
-            </div>
-          </div>
-        </div>
-        <div class="strangler-note">
-          <i class="fas fa-leaf" style="color:var(--ppt-accent);"></i>
-          &nbsp;기존 시스템을 한 번에 교체하지 않고, 신규 AI 접목 시스템부터 독립 서비스로 래핑하여 점진적으로 레거시를 대체
-        </div>
+  <div class="main-body">
+    <div class="concept-strip">
+      <div class="concept-box old">
+        <span class="concept-label">Before · 사용자형</span>
+        <div class="concept-title">만들어진 것을 사용하는 인력</div>
+        <ul class="concept-list">
+          <li><span class="concept-headline">외주·SI에 개발 의존</span><span class="concept-sub">내부 역량 축적 불가</span></li>
+          <li><span class="concept-headline">매뉴얼 조작·운영 위주</span><span class="concept-sub">변화 대응 속도 한계</span></li>
+        </ul>
+        <div class="cap-bar"><span class="dep"></span><span class="self-p"></span></div>
+      </div>
+      <div class="concept-arrow"><span>전환</span><i class="fas fa-arrow-right"></i></div>
+      <div class="concept-box new">
+        <span class="concept-label">After · 빌더형</span>
+        <div class="concept-title">직접 만들고·운영하는 인력</div>
+        <ul class="concept-list">
+          <li><span class="concept-headline">AI와 함께 직접 구현</span><span class="concept-sub">요구사항을 즉시 반영</span></li>
+          <li><span class="concept-headline">배포·품질 스스로 관제</span><span class="concept-sub">자립형 운영 역량 확보</span></li>
+        </ul>
+        <div class="cap-bar"><span class="dep"></span><span class="self-p"></span></div>
       </div>
     </div>
-
-    <!-- Right: Reasons + Trade-off -->
-    <div class="right-col">
-      <div class="section-title">
-        <i class="fas fa-bullseye"></i> FaSS 최종 목표 — MSA가 반드시 필요한 3가지 이유
+    <div class="bridge-strip">
+      <span class="bridge-label">Before</span>
+      <svg viewBox="0 0 400 36"><path d="M0 18 Q100 4 200 18 T400 18" fill="none" stroke="#00F0FF" stroke-width="2" stroke-dasharray="6 4" opacity=".6"/><circle cx="200" cy="18" r="6" fill="#00F0FF" opacity=".8"/><text x="200" y="32" text-anchor="middle" fill="#94A3B8" font-size="10" font-family="Noto Sans KR,sans-serif">Build · Monitor · Share</text></svg>
+      <span class="bridge-label">After</span>
+    </div>
+    <div class="roles">
+      <div class="role">
+        <div class="role-icon cyan"><i class="fas fa-graduation-cap"></i></div>
+        <h3>표준 학습</h3>
+        <div class="role-msg">실전 코드로 온보딩 단축</div>
+        <p>표준 패턴 학습으로<br/>즉시 실무 투입</p>
       </div>
-      <div class="reasons-grid">
-        <div class="reason-card">
-          <div class="reason-num">1</div>
-          <div class="reason-content">
-            <div class="reason-title">볼륨 성장 → 무중단 배포 필수</div>
-            <div class="reason-desc">유통물류 유저 및 트래픽이 커질수록, 특정 모듈 배포 시 전체 시스템을 중단할 수 없음. MSA는 모듈별 독립 배포로 <span style="color:var(--ppt-accent); font-weight:600;">365일 무중단 운영</span>을 보장합니다.</div>
-          </div>
-        </div>
-        <div class="reason-card">
-          <div class="reason-num">2</div>
-          <div class="reason-content">
-            <div class="reason-title">부분 장애 → 전체 마비 리스크 차단</div>
-            <div class="reason-desc">시스템 규모가 커질수록 단일 서비스 오류가 전 시스템을 마비시키는 위험이 급증함. MSA의 서킷 브레이커 패턴으로 <span style="color:var(--ppt-accent); font-weight:600;">장애 격리(Fault Isolation)</span> 를 실현합니다.</div>
-          </div>
-        </div>
-        <div class="reason-card">
-          <div class="reason-num">3</div>
-          <div class="reason-content">
-            <div class="reason-title">AI 서비스 — 단일 시스템 내 동시 운영 불가</div>
-            <div class="reason-desc">AI 추론 엔진(수요예측·RAG)은 막대한 CPU/GPU 자원을 요구함. 단일 시스템에서 AI와 비즈니스 로직을 공존시키면 서로 자원 충돌. <span style="color:var(--ppt-accent-2); font-weight:600;">AI 서비스 독립 분리</span>가 핵심 전제 조건입니다.</div>
-          </div>
-        </div>
+      <div class="role">
+        <div class="role-icon green"><i class="fas fa-hammer"></i></div>
+        <h3>Build 실습</h3>
+        <div class="role-msg">요구→구현→배포 풀사이클</div>
+        <p>AI 협업으로 직접<br/>기능 구현 경험</p>
       </div>
-      <!-- Trade-off note -->
-      <div class="tradeoff-box">
-        <div class="tradeoff-icon"><i class="fas fa-balance-scale"></i></div>
-        <div class="tradeoff-text">
-          <strong>⚠ 개발팀에 가해지는 복잡도 증가</strong>는 MSA 전환의 피할 수 없는 부산물입니다. 서비스 간 통신 설계, 분산 트랜잭션, 운영 복잡성이 높아지지만, 이는 <strong>회사의 대의(성장·수익화)를 위해 TFT 전원이 감수해야 할 기술적 부채</strong>입니다.
-        </div>
+      <div class="role">
+        <div class="role-icon purple"><i class="fas fa-satellite-dish"></i></div>
+        <h3>Monitor 실습</h3>
+        <div class="role-msg">품질·배포 스스로 관제</div>
+        <p>운영 품질을<br/>스스로 책임</p>
+      </div>
+      <div class="role">
+        <div class="role-icon gold"><i class="fas fa-book"></i></div>
+        <h3>Share 기여</h3>
+        <div class="role-msg">표준·문서로 역량 축적</div>
+        <p>조직 지식으로<br/>전환하여 공유</p>
       </div>
     </div>
   </div>
-
-  <!-- Bottom bar -->
   <div class="bottom-bar">
-    <div class="bottom-bar-icon"><i class="fas fa-flag-checkered"></i></div>
-    <div class="bottom-bar-text">MSA는 선택이 아닌 필수</div>
-    <div class="bottom-bar-sub">— FaSS 플랫폼이 진정한 'AI 디지털 물류 엔진'으로 거듭나기 위한 최종 아키텍처 목적지</div>
+    <p><strong>경영 시사점:</strong> 빌더형 인재 = 외주 의존 감소 + 자립형 IT 조직의 핵심 자산</p>
   </div>
 </div>
 <script>
 (function(){
   function applyScale(){
-    var el=document.querySelector('body>div');
-    if(!el)return;
+    var el=document.querySelector('body>div'); if(!el)return;
     var sw=window.innerWidth,sh=window.innerHeight;
     var scale=Math.min(sw/960,sh/720);
-    el.style.transform='scale('+scale+')';
-    el.style.transformOrigin='top left';
+    el.style.transform='scale('+scale+')'; el.style.transformOrigin='top left';
     el.style.position='absolute';
     el.style.left=Math.round((sw-960*scale)/2)+'px';
     el.style.top=Math.round((sh-720*scale)/2)+'px';
   }
-  applyScale();
-  window.addEventListener('resize',applyScale);
+  applyScale(); window.addEventListener('resize',applyScale);
 })();
 </script>
 </body>
